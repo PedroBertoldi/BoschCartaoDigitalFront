@@ -1,0 +1,10 @@
+.headerGraphic {
+    background: url('/assets/supergraphic.svg');
+    height: 15px;
+}
+
+p {
+    font-size: large;
+    margin-left: 10px;
+    color: #737A80;
+}

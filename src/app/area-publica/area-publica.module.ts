@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { AreaPublicaRoutingModule } from './area-publica-routing.module';
 import { AreaPublicaComponent } from './area-publica.component';
+import { AreaPublicaLoginComponent } from './area-publica-login/area-publica-login.component';
 
 
 @NgModule({
   declarations: [
-    AreaPublicaComponent
+    AreaPublicaComponent,
+    AreaPublicaLoginComponent
   ],
   imports: [
     CommonModule,
