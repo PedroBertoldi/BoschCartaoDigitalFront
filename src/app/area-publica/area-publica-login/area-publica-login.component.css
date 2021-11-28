@@ -1,0 +1,20 @@
+.logintitle{
+    margin-left: 8%;
+}
+.loginForm{
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    margin:5px auto 5px auto;
+}
+
+.loginForm button{
+    background-color: #007bff;
+    color: #cee8ff;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    margin-left: 10px
+;
+}
