@@ -1,0 +1,43 @@
+<div class="center">
+    <div class="menuContainer">
+        <h1>Indicar um Terceiro</h1>
+        <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/meus-beneficios">Meus Benef&iacute;cios</button>
+            <button mat-menu-item routerLink="/">Sair</button>
+        </mat-menu>
+    </div>
+    <div class="currentIndication">
+        <p>Usu&aacute;rio <b>JOELCIO LEANDRO BENVENUTTI</b> de <b>EDV: 92617565</b> est&aacute; indicado atualmente.</p>
+        <button>Remover Indica&ccedil;&atilde;o</button>
+    </div>
+
+
+    <form class="indicarForm" action="meus-beneficios">
+        <mat-form-field>
+            <mat-select [(value)]="idType">
+                <mat-option value="edv">
+                    Colaborador Bosch
+                </mat-option>
+                <mat-option value="cpf">
+                    Retirada Via CPF
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <label for="name">Nome</label>
+            <input [class.disabled]="idType =='edv'" id="name" type="text">
+        </div>
+
+        <div *ngIf="idType =='cpf'">
+            <label for="cpf">CPF</label>
+            <input id="cpf" type="text">
+        </div>
+        <div *ngIf="idType =='edv'">
+            <label for="edv">EDV</label>
+            <input id="edv" type="text">
+        </div>
+        <button type="submit">Enviar</button>
+    </form>
+
+</div>

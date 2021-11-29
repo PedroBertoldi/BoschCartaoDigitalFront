@@ -1,0 +1,46 @@
+.center {
+    width: 80%;
+    margin: 5px auto 5px auto;
+}
+
+.menuContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+
+.indicarForm input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.disabled {
+    background-color: #e9ecef;
+    pointer-events: none;
+}
+
+.currentIndication {
+    background-color: #d1ecf1;
+    padding: 10px;
+    display: flex;
+    font-size: small;
+    border-radius: 5px;
+}
+
+.currentIndication p {
+    margin: auto auto auto 0;
+}
+
+.center button {
+    background-color: #007bff;
+    color: #cee8ff;
+    width: fit-content;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    margin-left: 10px;
+}

@@ -5,20 +5,24 @@ import { AreaPublicaComponent } from './area-publica.component';
 import { AreaPublicaLoginComponent } from './area-publica-login/area-publica-login.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 import { BeneficioTableComponent } from './beneficio-table/beneficio-table.component';
+import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
 
 @NgModule({
   declarations: [
     AreaPublicaComponent,
     AreaPublicaLoginComponent,
-    BeneficioTableComponent
+    BeneficioTableComponent,
+    AreaPublicaIndicarComponent
   ],
   imports: [
     CommonModule,
     AreaPublicaRoutingModule,
     MatIconModule,
     MatMenuModule,
+    MatSelectModule
   ]
 })
 export class AreaPublicaModule { }
