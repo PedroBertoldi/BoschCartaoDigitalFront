@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIcon} from '@angular/material/icon';
 
-import { AreaPublicaComponent } from './area-publica.component';
+import { BeneficioTableComponent } from './beneficio-table.component';
 
+describe('BeneficioTableComponent', () => {
+  let component: BeneficioTableComponent;
+  let fixture: ComponentFixture<BeneficioTableComponent>;
 
-describe('AreaPublicaComponent', () => {
-  let component: AreaPublicaComponent;
-  let fixture: ComponentFixture<AreaPublicaComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AreaPublicaComponent ]
+      declarations: [ BeneficioTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AreaPublicaComponent);
+    fixture = TestBed.createComponent(BeneficioTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

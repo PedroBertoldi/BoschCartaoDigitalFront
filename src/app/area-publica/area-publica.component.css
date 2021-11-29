@@ -1,19 +1,17 @@
-.publictitle {
-    margin-left: 8%;
-}
-
-.beneficios {
+.center {
     width: 80%;
     margin: 5px auto 5px auto;
-    border-spacing: 0px;
 }
 
-.beneficios tr:nth-child(2n+1) {
-    background-color: #f2f2f2;
+.menuContainer {
+    display: flex;
+    justify-content: space-between;
 }
 
+.center div {
+    margin: 20px 0 20px 0;
+}
 
-.beneficios td, th {
-    border: solid #e5e8ec 1px;
-    padding: 10px;
+.blue {
+    color: #34B7F1;
 }

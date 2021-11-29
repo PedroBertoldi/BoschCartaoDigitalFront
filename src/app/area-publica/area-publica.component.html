@@ -1,30 +1,23 @@
-<h1 class="publictitle">Meus Benef&iacute;cios</h1>
-<table class="beneficios">
-    <thead>
-        <th>Status</th>
-        <th>Benef&iacute;cio</th>
-        <th>Quantidade</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>&#10003;</td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>&#10003;</td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>&#10003;</td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>&#10003;</td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-    </tbody>
-</table>
+<div class="center">
+    <div class="menuContainer">
+        <h1>Meus Benef&iacute;cios</h1>
+        <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/indicar">Indicar um Terceiro</button>
+            <button mat-menu-item routerLink="/">Sair</button>
+        </mat-menu>
+    </div>
+    <app-beneficio-table></app-beneficio-table>
+    <h1>Posso Retirar</h1>
+    <p>JOSE FERNANDES DA GRA&Ccedil;A</p>
+    <app-beneficio-table></app-beneficio-table>
+    <p>JOSE ENIELTON DOS SANTOS</p>
+    <app-beneficio-table></app-beneficio-table>
+    <div>
+        <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>Retirado&nbsp;<mat-icon aria-label="Disponivel">
+            done
+        </mat-icon>
+        Pode
+        Retirar
+    </div>
+</div>
