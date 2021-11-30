@@ -1,0 +1,43 @@
+button {
+  padding: 0.5rem;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 10rem;
+
+  border: none;
+
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button.azul {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+button.branco {
+  background-color: white;
+  color: gray;
+}
+
+mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-icon.grande {
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+mat-icon.pequeno {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+button:hover {
+  transform: scale(1.1);
+}

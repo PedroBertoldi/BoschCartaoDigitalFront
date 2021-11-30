@@ -1,0 +1,30 @@
+<div class="max-container">
+  <div class='menu-flutuante'>
+    <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+    <app-botao-flutuante tipo='submit' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+  </div>
+  <h1>Eventos</h1>
+  <div class='container'>
+    <div class='cabecalho-tabela'>
+      <h3>Formulário</h3>
+    </div>
+     <form>
+        <input type="text" placeholder="Nome *" required/>
+        <input type="text" placeholder="Descrição" />
+      <label>
+        <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
+        <div>
+          Data de Início *
+          <input type="date" />
+        </div>
+      </label>
+      <label>
+        <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
+        <div>
+          Data de Fim *
+          <input type="date" />
+        </div>
+      </label>
+    </form>
+  </div>
+</div>
