@@ -9,7 +9,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { ModalComponent } from './modal/modal.component'
+import { ModalComponent } from './modal/modal.component';
+import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component'
 
 
 
@@ -19,6 +20,7 @@ import { ModalComponent } from './modal/modal.component'
     AreaAdministrativaCadastroEventoComponent,
     BotaoFlutuanteComponent,
     ModalComponent,
+    AreaAdministrativaConsultaEventoComponent,
   ],
   imports: [
     CommonModule,
