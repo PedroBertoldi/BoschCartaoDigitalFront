@@ -8,6 +8,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { ModalComponent } from './modal/modal.component'
 
 
 
@@ -16,13 +18,15 @@ import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.compo
     AreaAdministrativaComponent,
     AreaAdministrativaCadastroEventoComponent,
     BotaoFlutuanteComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
     AreaAdministrativaRoutingModule,
     MatIconModule,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ]
 })
 export class AreaAdministrativaModule { }

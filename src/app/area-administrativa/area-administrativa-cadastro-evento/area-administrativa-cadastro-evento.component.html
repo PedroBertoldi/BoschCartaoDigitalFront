@@ -1,30 +1,31 @@
+<app-modal [aberto]='modalAberto' (confirmarData)="salvarDados()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
 <div class="max-container">
-  <div class='menu-flutuante'>
-    <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
-    <app-botao-flutuante tipo='submit' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
-  </div>
   <h1>Eventos</h1>
   <div class='container'>
     <div class='cabecalho-tabela'>
       <h3>Formulário</h3>
     </div>
-     <form>
-        <input type="text" placeholder="Nome *" required/>
-        <input type="text" placeholder="Descrição" />
+     <form [formGroup]='formCadastro'>
+        <input type="text" formControlName='nome' placeholder="Nome *" required/>
+        <input type="text" formControlName='descricao' placeholder="Descrição" />
       <label>
         <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
         <div>
           Data de Início *
-          <input type="date" />
+          <input type="date" formControlName='inicio' (input)="dataInicio = obterValor($event)"/>
         </div>
       </label>
       <label>
         <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
         <div>
           Data de Fim *
-          <input type="date" />
+          <input type="date" formControlName='fim' [min]='dataInicio' />
         </div>
       </label>
+      <div class='menu-flutuante'>
+        <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+        <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+      </div>
     </form>
   </div>
 </div>

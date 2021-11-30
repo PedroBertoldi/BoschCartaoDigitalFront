@@ -5,7 +5,8 @@ import { AreaAdministrativaComponent } from './area-administrativa.component';
 
 const routes: Routes = [
   { path: '', component: AreaAdministrativaComponent },
-  { path: 'cadastro/evento', component: AreaAdministrativaCadastroEventoComponent }
+  { path: 'evento', component: AreaAdministrativaCadastroEventoComponent },
+  { path: 'evento/cadastro', component: AreaAdministrativaCadastroEventoComponent }
 ];
 
 @NgModule({

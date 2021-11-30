@@ -1,0 +1,19 @@
+<div class="max-container" *ngIf="aberto">
+  <div class="container" *ngIf="tipoModal === 'atencao'">
+    <mat-icon class="atencao">priority_high</mat-icon>
+    <h2>Atenção</h2>
+    <p>Data antiga, tem certeza que deseja salvar?</p>
+    <div class="buttons">
+      <button (click)="fecharModal.emit()" class="neutro">Cancelar</button>
+      <button (click)="confirmarData.emit()" class="destrutivo">Ok</button>
+    </div>
+  </div>
+  <div class="container" *ngIf="tipoModal === 'confirmacao'">
+    <mat-icon class="confirmacao">done</mat-icon>
+    <h2>Sucesso</h2>
+    <p>A operação foi realizada com sucesso.</p>
+    <div class="buttons">
+      <button class="confirmar" (click)="fecharModal.emit()">Ok</button>
+    </div>
+  </div>
+</div>
