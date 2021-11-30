@@ -12,8 +12,6 @@
   font-weight: bold;
   font-size: 1rem;
 
-  margin: 0 6rem;
-
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -30,38 +28,42 @@ h3 {
   margin: 0;
 }
 
-form {
+.tabela-eventos {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
-  gap: 2rem;
+  /* padding: 2rem 1rem; */
+  margin: 2rem 1rem;
   color: gray;
+  border: 0.5px solid #cecece;
 }
 
-label {
-  display: flex;
-  align-items: center;
+.registro:nth-child(2n) {
+  background-color: #efefef;
 }
 
-label div {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2rem;
+.cabecalho-eventos,
+.registro {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.5fr 1.5fr 3fr;
 }
 
-input,
-input::placeholder {
-  font-weight: bold;
-  font-size: 1rem;
-  color: gray;
-
-  padding: 0.5rem 0;
-  border: none;
-  border-bottom: 1px solid #cecece;
+.cabecalho-eventos > span,
+.registro > span,
+.registo > div {
+  border: 0.5px solid #cecece;
 }
 
-input[type="text"] {
-  margin-top: 0.5rem;
+.cabecalho-eventos > span,
+.registro > span {
+  padding: 1rem;
+}
+
+.registo > div {
+  padding: 0.5rem;
+}
+
+.cabecalho-eventos {
+  text-align: center;
 }
 
 .menu-flutuante {

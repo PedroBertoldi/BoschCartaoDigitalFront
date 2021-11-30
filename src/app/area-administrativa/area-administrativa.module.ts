@@ -10,7 +10,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
-import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component'
+import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component';
+import { BotaoAcaoComponent } from './botao-acao/botao-acao.component'
 
 
 
@@ -21,6 +22,7 @@ import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa
     BotaoFlutuanteComponent,
     ModalComponent,
     AreaAdministrativaConsultaEventoComponent,
+    BotaoAcaoComponent,
   ],
   imports: [
     CommonModule,
