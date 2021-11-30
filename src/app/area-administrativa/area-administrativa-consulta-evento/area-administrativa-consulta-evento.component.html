@@ -7,58 +7,26 @@
     <div class='cabecalho-tabela'>
       <h3>Lista</h3>
     </div>
-     <div class='tabela-eventos'>
-       <div class="cabecalho-eventos">
-         <span>Excluir</span>
-         <span>Nome do Evento</span>
-         <span>Data de Início</span>
-         <span>Data de Fim</span>
-         <span>Ações</span>
-       </div>
-       <div class="registro">
-         <div><app-botao-acao variante='excluir'></app-botao-acao></div>
-         <span>Final de ano 2021</span>
-         <span>19-12-2021</span>
-         <span>20-12-2021</span>
-         <div>
-          <app-botao-acao variante='beneficiarios'></app-botao-acao>
-          <app-botao-acao variante='beneficios'></app-botao-acao>
-          <app-botao-acao variante='editar'></app-botao-acao>
-         </div>
+    <div class='tabela-eventos'>
+      <div class="cabecalho-eventos">
+        <span>Excluir</span>
+        <span>Nome do Evento</span>
+        <span>Data de Início</span>
+        <span>Data de Fim</span>
+        <span>Ações</span>
+      </div>
+      <div *ngFor='let evento of eventos' class="registro">
+        <div><app-botao-acao variante='excluir'></app-botao-acao></div>
+        <span>{{evento.nome}}</span>
+        <span>{{evento.inicio}}</span>
+        <span>{{evento.fim}}</span>
+        <div>
+        <app-botao-acao variante='beneficiarios'></app-botao-acao>
+        <app-botao-acao variante='beneficios'></app-botao-acao>
+        <app-botao-acao variante='editar'></app-botao-acao>
         </div>
-        <div class="registro">
-         <div><app-botao-acao variante='excluir'></app-botao-acao></div>
-         <span>Final de ano 2021</span>
-         <span>19-12-2021</span>
-         <span>20-12-2021</span>
-         <div>
-          <app-botao-acao variante='beneficiarios'></app-botao-acao>
-          <app-botao-acao variante='beneficios'></app-botao-acao>
-          <app-botao-acao variante='editar'></app-botao-acao>
-         </div>
-       </div>
-       <div class="registro">
-        <div><app-botao-acao variante='excluir'></app-botao-acao></div>
-         <span>Final de ano 2021</span>
-         <span>19-12-2021</span>
-         <span>20-12-2021</span>
-         <div>
-          <app-botao-acao variante='beneficiarios'></app-botao-acao>
-          <app-botao-acao variante='beneficios'></app-botao-acao>
-          <app-botao-acao variante='editar'></app-botao-acao>
-         </div>
-       </div>
-       <div class="registro">
-        <div><app-botao-acao variante='excluir'></app-botao-acao></div>
-         <span>Final de ano 2021</span>
-         <span>19-12-2021</span>
-         <span>20-12-2021</span>
-         <div>
-          <app-botao-acao variante='beneficiarios'></app-botao-acao>
-          <app-botao-acao variante='beneficios'></app-botao-acao>
-          <app-botao-acao variante='editar'></app-botao-acao>
-         </div>
-       </div>
-     </div>
+      </div>
+    </div>
+    <span class='numero-registros'>Mostrando de 1 até {{eventos.length}} de {{eventos.length}} registros.</span>
   </div>
 </div>

@@ -7,6 +7,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
+  eventos = [
+    {
+      id: 1,
+      nome: 'Final de ano 2021',
+      inicio: '19-12-2021',
+      fim: '20-12-2021',
+    },
+    {
+      id: 2,
+      nome: 'Páscoa 2022',
+      inicio: '17-04-2022',
+      fim: '18-04-2022',
+    },
+    {
+      id: 3,
+      nome: 'Festa Junina 2022',
+      inicio: '23-06-2022',
+      fim: '24-06-2022',
+    },
+    {
+      id: 4,
+      nome: 'Carnaval 2022',
+      inicio: '25-02-2022',
+      fim: '26-02-2022',
+    },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

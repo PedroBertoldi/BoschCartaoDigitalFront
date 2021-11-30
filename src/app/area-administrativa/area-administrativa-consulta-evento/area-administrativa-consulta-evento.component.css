@@ -31,8 +31,7 @@ h3 {
 .tabela-eventos {
   display: flex;
   flex-direction: column;
-  /* padding: 2rem 1rem; */
-  margin: 2rem 1rem;
+  margin: 2rem 1rem 1rem;
   color: gray;
   border: 0.5px solid #cecece;
 }
@@ -74,6 +73,13 @@ h3 {
 
 .cabecalho-eventos {
   text-align: center;
+}
+
+.numero-registros {
+  font-weight: normal;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  color: gray;
 }
 
 .menu-flutuante {
