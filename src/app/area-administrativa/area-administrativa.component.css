@@ -1,0 +1,119 @@
+* {
+  --sombra: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.max-container {
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #cecece;
+  border-radius: 0.25rem;
+
+  font-weight: bold;
+  font-size: 1rem;
+
+  box-shadow: var(--sombra);
+}
+
+.cabecalho-macro {
+  background-color: #cecece;
+
+  display: flex;
+  padding: 0.5rem;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.principal {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 1rem 1rem;
+  color: gray;
+}
+
+.tabela {
+  margin-top: 1rem;
+  border: 0.5px solid #cecece;
+}
+
+.registro:nth-child(2n) {
+  background-color: #efefef;
+}
+
+.cabecalho-tabela > span,
+.registro > * {
+  border: 0.5px solid #cecece;
+}
+
+.cabecalho-tabela > span,
+.registro > span {
+  padding: 1rem;
+}
+
+.registro > div {
+  padding: 0.5rem;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.registro {
+  font-weight: normal;
+}
+
+.registro > * {
+  display: flex;
+  align-items: center;
+}
+
+.cabecalho-tabela {
+  text-align: center;
+}
+
+.numero-registros {
+  font-weight: normal;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  color: gray;
+}
+
+.menu-flutuante {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+}
+
+input,
+input::placeholder {
+  font-weight: bold;
+  font-size: 1rem;
+  color: gray;
+
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid #cecece;
+}
+
+input[type="text"] {
+  margin-top: 0.5rem;
+}
