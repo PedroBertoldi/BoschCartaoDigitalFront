@@ -1,0 +1,21 @@
+button {
+  background-color: transparent;
+  color: royalblue;
+  border: 1px solid royalblue;
+  padding: 0.25rem 1rem;
+  border-radius: 20rem;
+  cursor: pointer;
+}
+
+button.destrutivo {
+  color: tomato;
+  border: 1px solid tomato;
+}
+
+mat-icon {
+  transition: transform 0.2s;
+}
+
+button:hover mat-icon {
+  transform: scale(1.15);
+}

@@ -1,1 +1,20 @@
-<p>botao-acao works!</p>
+<button *ngIf='variante === "excluir"' class='destrutivo' title="Excluir">
+  <mat-icon>
+    delete
+  </mat-icon>
+</button>
+<button *ngIf='variante === "beneficiarios"' title="Beneficiários">
+  <mat-icon>
+    person
+  </mat-icon>
+</button>
+<button *ngIf='variante === "beneficios"' title="Benefícios">
+  <mat-icon>
+    card_giftcard
+  </mat-icon>
+</button>
+<button *ngIf='variante === "editar"' title="Editar">
+  <mat-icon>
+    edit
+  </mat-icon>
+</button>
