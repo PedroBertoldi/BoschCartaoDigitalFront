@@ -1,10 +1,24 @@
 <h1 class="logintitle">Efetuar Login</h1>
 <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
-    <label for="cpf">CPF</label>
-    <input formControlName="cpf" type="text">
-    <label for="nasc">Data de Nascimento</label>
-    <input formControlName="nasc" type="date">
-    <div>Captcha</div>
+    <div>
+        <label for="cpf">CPF</label>
+        <input formControlName="cpf" type="text" [class.erro]="submitted && loginForm.controls.cpf.errors">
+        <div *ngIf="submitted && loginForm.controls.cpf.errors" class="erro">
+            <div *ngIf="loginForm.controls.cpf.errors.required">Por favor preencha o CPF</div>
+        </div>
+    </div>
+    <div>
+        <label for="nasc">Data de Nascimento</label>
+        <input formControlName="nasc" type="date" [class.erro]="submitted && loginForm.controls.nasc.errors">
+        <div *ngIf="submitted && loginForm.controls.nasc.errors" class="erro">
+            <div *ngIf="loginForm.controls.nasc.errors.required">Por favor preencha a data de nascimento</div>
+        </div>
+    </div>
+
+    <div *ngIf="submitted && wrong" class="erro">
+        CPF ou Senha incorretos
+    </div>
+    <span>Captcha <input type="checkbox"></span>
     <button type="submit">Confirmar</button>
 </form>
 

@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AreaPublicaLoginComponent implements OnInit {
   loginForm!: FormGroup;
-
+  submitted = false;
+  wrong = false;
+  
   constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router) { 
     //login redirect if already logged in
     if(this.auth.getUser()){
@@ -19,6 +21,7 @@ export class AreaPublicaLoginComponent implements OnInit {
     }
   }
 
+  
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
             cpf: ['', Validators.required],
@@ -28,16 +31,23 @@ export class AreaPublicaLoginComponent implements OnInit {
   }
 
   login(){
+    this.submitted= true;
     if (this.loginForm.invalid) {
       return;
     }
     this.auth.login(this.loginForm.controls.cpf.value,this.loginForm.controls.nasc.value)
       .pipe(first()).subscribe(
                 data => {
+                    console.log("sucesso")
                     this.router.navigate(['meus-beneficios']);
                 },
                 error => {
-                    //do stuff
+                    if(error.status == 401  || error.status == 400){
+                      this.wrong = true;
+                    }
+                    else{
+                      console.log("problemas de conexao")
+                    }
                 });;
   }
 
