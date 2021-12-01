@@ -10,6 +10,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { BeneficioTableComponent } from './beneficio-table/beneficio-table.component';
 import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
   
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     MatSelectModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ]
 })
 export class AreaPublicaModule { }

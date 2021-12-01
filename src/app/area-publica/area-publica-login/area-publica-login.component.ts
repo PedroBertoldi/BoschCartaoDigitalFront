@@ -25,13 +25,16 @@ export class AreaPublicaLoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
             cpf: ['', Validators.required],
-            nasc: ['', Validators.required]
+            nasc: ['', Validators.required],
+            captcha:['', Validators.required]
         });
 
   }
 
   login(){
     this.submitted= true;
+    console.log(
+    this.loginForm.controls)
     if (this.loginForm.invalid) {
       return;
     }
@@ -49,6 +52,9 @@ export class AreaPublicaLoginComponent implements OnInit {
                       console.log("problemas de conexao")
                     }
                 });;
+  }
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
 }
