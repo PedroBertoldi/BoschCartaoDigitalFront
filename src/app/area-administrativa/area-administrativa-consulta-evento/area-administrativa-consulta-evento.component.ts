@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-area-administrativa-consulta-evento',
   templateUrl: './area-administrativa-consulta-evento.component.html',
-  styleUrls: ['./area-administrativa-consulta-evento.component.css']
+  styleUrls: ['../area-administrativa.component.css','./area-administrativa-consulta-evento.component.css']
 })
 export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
@@ -33,6 +33,7 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
       fim: '26-02-2022',
     },
   ]
+
 
   constructor() { }
 

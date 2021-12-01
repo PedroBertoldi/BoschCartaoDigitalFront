@@ -1,0 +1,13 @@
+.principal {
+  overflow-x: auto;
+}
+
+td.produtos div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+td.produtos div span {
+  white-space: nowrap;
+}
