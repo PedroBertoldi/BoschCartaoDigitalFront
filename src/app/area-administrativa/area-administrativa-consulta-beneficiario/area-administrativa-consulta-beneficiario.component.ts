@@ -56,7 +56,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     },
     {
       id: 2,
-      evento: 2,
+      evento: 1,
       edv: 897213,
       nome: 'Valmir Seguro',
       cpf: '',
@@ -79,7 +79,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     },
     {
       id: 3,
-      evento: 1,
+      evento: 2,
       edv: 897213,
       nome: 'Julianna Risseto',
       cpf: '123.456.789-10',
@@ -143,7 +143,9 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   }
 
   buscar(): void {
-    this.buscaBeneficiarios = this.beneficiarios.filter(beneficiario => beneficiario.nome.toLowerCase().includes(this.valorBuscado.toLowerCase())) 
+    this.buscaBeneficiarios = this.beneficiarios.filter(beneficiario => {
+      return beneficiario.nome.toLowerCase().includes(this.valorBuscado.toLowerCase()) || beneficiario.terceiro.toLowerCase().includes(this.valorBuscado.toLowerCase())
+    }) 
   }
   
   limpar(): void {

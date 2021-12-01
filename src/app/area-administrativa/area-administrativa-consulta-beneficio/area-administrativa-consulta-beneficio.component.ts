@@ -43,7 +43,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     {
       id: 6,
       nome: "Kit Cesta Seca Junina",
-      evento: 3
+      evento: 2
     },
     {
       id: 7,

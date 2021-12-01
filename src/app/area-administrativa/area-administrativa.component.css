@@ -45,27 +45,19 @@ h3 {
   color: gray;
 }
 
-.tabela,
+/* TABELAS */
+
 table {
   margin-top: 1rem;
-  /* border: 0.5px solid #cecece; */
   border-collapse: collapse;
 }
 
-.registro:nth-child(2n),
 tr:nth-child(2n) {
   background-color: #efefef;
 }
 
-.cabecalho-tabela > span,
-.registro > *,
 tr > * {
   border: 0.5px solid #cecece;
-}
-
-.cabecalho-tabela > span,
-.registro > span,
-tr > * {
   padding: 1rem;
 }
 
@@ -75,18 +67,19 @@ tr > * {
   justify-content: center;
 }
 
-.registro,
-tr {
+tr:not(.cabecalho) {
   font-weight: normal;
 }
 
-.registro > * {
-  display: flex;
-  align-items: center;
+tr.cabecalho {
+  text-align: center;
 }
 
-.cabecalho-tabela {
-  text-align: center;
+td.botoes > div {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .numero-registros {
@@ -95,6 +88,8 @@ tr {
   margin-bottom: 2rem;
   color: gray;
 }
+
+/* MENU FLUTUANTE */
 
 .menu-flutuante {
   position: fixed;

@@ -15,7 +15,7 @@
         <button (click)='buscar()'>BUSCAR</button>
       </div>
       <table>
-        <tr>
+        <tr class='cabecalho'>
           <td>Excluir</td>
           <td>EDV</td>
           <td>Beneficiário</td>
@@ -39,7 +39,7 @@
             </td>
           </tr>
           <tr *ngFor='let beneficiario of buscaBeneficiarios'>
-            <td><app-botao-acao variante='excluir'></app-botao-acao></td>
+            <td class="botoes"><div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
             <td>{{beneficiario.edv}}</td>
             <td>{{beneficiario.nome}}</td>
             <td>{{beneficiario.cpf}}</td>
@@ -52,8 +52,10 @@
             </td>
             <td>{{beneficiario.dataInclusao | date : 'dd/MM/yyyy'}}</td>
             <td>{{beneficiario.terceiro}}</td>
-            <td>
-            <app-botao-acao variante='editar'></app-botao-acao>
+            <td class="botoes">
+              <div>
+                <app-botao-acao variante='editar'></app-botao-acao>
+              </div>
             </td>
           </tr>
         </ng-container>
