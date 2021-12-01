@@ -18,4 +18,8 @@ export class AuthenticationService {
                 return user;
             }));
   }
+
+  logout(){
+    localStorage.removeItem('colaboradorAtivo');
+  }
 }
