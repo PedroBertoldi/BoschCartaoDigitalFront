@@ -12,7 +12,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
 import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component';
 import { BotaoAcaoComponent } from './botao-acao/botao-acao.component';
-import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component'
+import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
+import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administrativa-consulta-beneficiario/area-administrativa-consulta-beneficiario.component'
 
 
 
@@ -25,6 +26,7 @@ import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrat
     AreaAdministrativaConsultaEventoComponent,
     BotaoAcaoComponent,
     AreaAdministrativaConsultaBeneficioComponent,
+    AreaAdministrativaConsultaBeneficiarioComponent,
   ],
   imports: [
     CommonModule,
