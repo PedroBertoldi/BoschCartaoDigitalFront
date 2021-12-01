@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { DireitoService } from '../services/direito.service';
 
 @Component({
   selector: 'app-area-publica',
@@ -9,9 +11,28 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class AreaPublicaComponent implements OnInit {
 
-  constructor(private auth:AuthenticationService, private router: Router) { }
+  direitos: any;
+  indicacoes: any;
+  user: any;
+  constructor(private auth:AuthenticationService, private direito: DireitoService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = this.auth.getUser();
+    console.log(this.user)
+    console.log(this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
+                data => {
+                    this.direitos = data.direitos;
+                    console.log(data.indicacoes)
+                    this.indicacoes = data.indicacoes;
+                },
+                error => {
+                    if(error.status == 401  || error.status == 400){
+                      console.log("erro ao buscar os dados")
+                    }
+                    else{
+                      console.log("problemas de conexao")
+                    }
+                }));
   }
 
   logout(){
