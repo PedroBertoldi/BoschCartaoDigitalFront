@@ -2,7 +2,8 @@
 <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
     <div>
         <label for="cpf">CPF</label>
-        <input formControlName="cpf" type="text" [class.erro]="submitted && loginForm.controls.cpf.errors">
+        <input mask="000.000.000-00" formControlName="cpf" type="text"
+            [class.erro]="submitted && loginForm.controls.cpf.errors">
         <div *ngIf="submitted && loginForm.controls.cpf.errors" class="erro">
             <div *ngIf="loginForm.controls.cpf.errors.required">Por favor preencha o CPF</div>
         </div>

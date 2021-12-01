@@ -11,6 +11,8 @@ import { BeneficioTableComponent } from './beneficio-table/beneficio-table.compo
 import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
   
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
     ReactiveFormsModule,
     FormsModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class AreaPublicaModule { }

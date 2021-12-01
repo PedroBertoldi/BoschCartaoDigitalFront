@@ -38,7 +38,7 @@ export class AreaPublicaLoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.auth.login(this.loginForm.controls.cpf.value,this.loginForm.controls.nasc.value)
+    this.auth.login(this.loginForm.controls.cpf.value.replace(".","").replace("-",""),this.loginForm.controls.nasc.value)
       .pipe(first()).subscribe(
                 data => {
                     console.log("sucesso")
