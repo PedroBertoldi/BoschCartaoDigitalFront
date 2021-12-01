@@ -12,13 +12,19 @@ import { Router } from '@angular/router';
 export class AreaPublicaLoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router) { 
+    //login redirect if already logged in
+    if(this.auth.getUser()){
+      this.router.navigate(['/meus-beneficios']);
+    }
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
             cpf: ['', Validators.required],
             nasc: ['', Validators.required]
         });
+
   }
 
   login(){
