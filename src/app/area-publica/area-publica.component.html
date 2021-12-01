@@ -7,12 +7,14 @@
             <button mat-menu-item (click)="logout()">Sair</button>
         </mat-menu>
     </div>
-    <app-beneficio-table></app-beneficio-table>
-    <h1>Posso Retirar</h1>
-    <p>JOSE FERNANDES DA GRA&Ccedil;A</p>
-    <app-beneficio-table></app-beneficio-table>
-    <p>JOSE ENIELTON DOS SANTOS</p>
-    <app-beneficio-table></app-beneficio-table>
+    <p>{{user.nomeCompleto}}</p>
+    <app-beneficio-table [data]="direitos"></app-beneficio-table>
+
+    <h1 *ngIf="indicacoes && indicacoes.length>0">Posso Retirar</h1>
+    <div *ngFor="let indicacao of indicacoes">
+        <p>{{indicacao.colaborador.nomeCompleto}}</p>
+        <app-beneficio-table [data]="indicacao.direitos"></app-beneficio-table>
+    </div>
     <div>
         <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>Retirado&nbsp;<mat-icon aria-label="Disponivel">
             done

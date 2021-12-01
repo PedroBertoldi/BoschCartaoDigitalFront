@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-beneficio-table',
@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./beneficio-table.component.css']
 })
 export class BeneficioTableComponent implements OnInit {
-
+  @Input() data!: any[];
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

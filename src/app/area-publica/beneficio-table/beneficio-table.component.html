@@ -5,32 +5,12 @@
         <th>Quantidade</th>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngFor="let direito of data">
             <td>
-                <mat-icon aria-label="Disponivel">done</mat-icon>
+                <mat-icon *ngIf="!direito.retirado" aria-label="Disponivel">done</mat-icon>
+                <mat-icon *ngIf="direito.retirado" aria-label="Disponivel" class="blue">done_all</mat-icon>
             </td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>
-                <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>
-            </td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>
-                <mat-icon aria-label="Disponivel">done</mat-icon>
-            </td>
-            <td>KIT Happy Hour</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>
-                <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>
-            </td>
-            <td>KIT Happy Hour</td>
+            <td>{{direito.beneficio.descricao}}</td>
             <td>1</td>
         </tr>
     </tbody>
