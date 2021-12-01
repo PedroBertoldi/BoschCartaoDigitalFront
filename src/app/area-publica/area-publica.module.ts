@@ -9,7 +9,11 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { BeneficioTableComponent } from './beneficio-table/beneficio-table.component';
 import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
+  
 @NgModule({
   declarations: [
     AreaPublicaComponent,
@@ -22,7 +26,12 @@ import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica
     AreaPublicaRoutingModule,
     MatIconModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    NgxMaskModule.forRoot(),
   ]
 })
 export class AreaPublicaModule { }

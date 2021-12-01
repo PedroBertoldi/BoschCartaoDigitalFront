@@ -16,5 +16,16 @@
     border: none;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
-    margin-left: 10px;
+    margin: 10px;
+}
+
+.loginForm div {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.erro {
+    color: red;
+    border-color: red
 }

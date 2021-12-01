@@ -1,10 +1,29 @@
 <h1 class="logintitle">Efetuar Login</h1>
-<form class="loginForm" action="/meus-beneficios">
-    <label for="cpf">CPF</label>
-    <input id="cpf" type="text">
-    <label for="nasc">Data de Nascimento</label>
-    <input id="nasc" type="text">
-    <div>Captcha</div>
+<form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
+    <div>
+        <label for="cpf">CPF</label>
+        <input mask="000.000.000-00" formControlName="cpf" type="text"
+            [class.erro]="submitted && loginForm.controls.cpf.errors">
+        <div *ngIf="submitted && loginForm.controls.cpf.errors" class="erro">
+            <div *ngIf="loginForm.controls.cpf.errors.required">Por favor preencha o CPF</div>
+        </div>
+    </div>
+    <div>
+        <label for="nasc">Data de Nascimento</label>
+        <input formControlName="nasc" type="date" [class.erro]="submitted && loginForm.controls.nasc.errors">
+        <div *ngIf="submitted && loginForm.controls.nasc.errors" class="erro">
+            <div *ngIf="loginForm.controls.nasc.errors.required">Por favor preencha a data de nascimento</div>
+        </div>
+    </div>
+
+    <div *ngIf="submitted && wrong" class="erro">
+        CPF ou Senha incorretos
+    </div>
+
+    <re-captcha formControlName="captcha" siteKey="6LfAmG8dAAAAANZLkyxiY-zTxk3XyZEaua-_ErjI"></re-captcha>
+    <div *ngIf="submitted && loginForm.controls.captcha.errors" class="erro">
+        Preencha o recaptcha.
+    </div>
     <button type="submit">Confirmar</button>
 </form>
 
