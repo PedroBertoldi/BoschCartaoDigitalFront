@@ -1,9 +1,9 @@
 <h1 class="logintitle">Efetuar Login</h1>
-<form class="loginForm" action="/meus-beneficios">
+<form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
     <label for="cpf">CPF</label>
-    <input id="cpf" type="text">
+    <input formControlName="cpf" type="text">
     <label for="nasc">Data de Nascimento</label>
-    <input id="nasc" type="text">
+    <input formControlName="nasc" type="date">
     <div>Captcha</div>
     <button type="submit">Confirmar</button>
 </form>

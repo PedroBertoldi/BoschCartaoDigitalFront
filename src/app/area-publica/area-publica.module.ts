@@ -9,7 +9,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { BeneficioTableComponent } from './beneficio-table/beneficio-table.component';
 import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+  
 @NgModule({
   declarations: [
     AreaPublicaComponent,
@@ -22,7 +23,9 @@ import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica
     AreaPublicaRoutingModule,
     MatIconModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class AreaPublicaModule { }
