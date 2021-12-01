@@ -43,7 +43,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     {
       id: 6,
       nome: "Kit Cesta Seca Junina",
-      evento: 3
+      evento: 2
     },
     {
       id: 7,
@@ -70,7 +70,6 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    // Encontra os produtos a partir do ID
     this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === idEventoFromRoute);
     this.buscaBeneficios = this.beneficios
   }

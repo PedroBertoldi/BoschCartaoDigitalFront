@@ -14,20 +14,34 @@
         <button (click)='limpar()' class='neutro'>LIMPAR</button>
         <button (click)='buscar()'>BUSCAR</button>
       </div>
-      <div class='tabela'>
-        <div class="cabecalho-tabela">
-          <span>Excluir</span>
-          <span>Nome</span>
-          <span>Ações</span>
-        </div>
-        <div *ngFor='let beneficio of buscaBeneficios' class="registro">
-          <div><app-botao-acao variante='excluir'></app-botao-acao></div>
-          <span>{{beneficio.nome}}</span>
-          <div>
-          <app-botao-acao variante='editar'></app-botao-acao>
-          </div>
-        </div>
-      </div>
+      <table>
+        <tr class='cabecalho'>
+          <td>Excluir</td>
+          <td>Nome</td>
+          <td>Ações</td>
+        </tr>
+        <tr *ngIf='beneficios.length ===  0'>
+          <td colspan="100%">
+            Ainda não foi registrado nenhum benefício.
+          </td>
+        </tr>
+        <ng-container *ngIf='beneficios.length > 0'>
+          <tr *ngIf='buscaBeneficios.length ===  0'>
+            <td colspan="100%">
+              Nenhum registro encontrado.
+            </td>
+          </tr>
+          <tr *ngFor='let beneficio of buscaBeneficios'>
+            <td class='botoes'><div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
+            <td>{{beneficio.nome}}</td>
+            <td class='botoes'>
+              <div>
+                <app-botao-acao variante='editar'></app-botao-acao>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
     </div>
     <span class='numero-registros'>Mostrando de 1 até 15 de {{buscaBeneficios.length}} registros.</span>
   </div>
