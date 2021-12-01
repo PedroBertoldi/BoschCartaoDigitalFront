@@ -70,7 +70,6 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    // Encontra os produtos a partir do ID
     this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === idEventoFromRoute);
     this.buscaBeneficios = this.beneficios
   }
