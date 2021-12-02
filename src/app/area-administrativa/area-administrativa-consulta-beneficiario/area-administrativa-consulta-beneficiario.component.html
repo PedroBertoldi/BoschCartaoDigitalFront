@@ -9,11 +9,7 @@
       <h3>Lista</h3>
     </div>
     <div class='principal'>
-      <div class='busca'>
-        <input type="text" placeholder="Nome" [value]='valorBuscado' (input)='valorBuscado = obterValor($event)' />
-        <button (click)='limpar()' class='neutro'>LIMPAR</button>
-        <button (click)='buscar()'>BUSCAR</button>
-      </div>
+      <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
       <table>
         <tr class='cabecalho'>
           <td>Excluir</td>

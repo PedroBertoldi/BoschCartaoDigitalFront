@@ -122,8 +122,6 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
   buscaBeneficiarios!:Beneficiario[]
 
-  valorBuscado: string = ''
-
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -134,18 +132,20 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     this.buscaBeneficiarios = this.beneficiarios
   }
 
-  obterValor(event: Event): string {
-    return (event.target as HTMLInputElement).value;
-  }
+  buscar(valor: string): void {
+    function buscaCompleta(buscado: any): any {
+      for(var prop in buscado) {
+        const valorProp = (JSON.stringify(buscado[prop])).toLowerCase() 
+        if(valorProp.includes(valor.toLowerCase())) {
+          return valorProp.includes(valor.toLowerCase())
+        }
+      }
+    }
 
-  buscar(): void {
-    this.buscaBeneficiarios = this.beneficiarios.filter(beneficiario => {
-      return beneficiario.nome.toLowerCase().includes(this.valorBuscado.toLowerCase()) || beneficiario.indicado.toLowerCase().includes(this.valorBuscado.toLowerCase())
-    }) 
+    this.buscaBeneficiarios = this.beneficiarios.filter(buscaCompleta) 
   }
   
   limpar(): void {
-    this.valorBuscado = ''
     this.buscaBeneficiarios = this.beneficiarios
   }
 

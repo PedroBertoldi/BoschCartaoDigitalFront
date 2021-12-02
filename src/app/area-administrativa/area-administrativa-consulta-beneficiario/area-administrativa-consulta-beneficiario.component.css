@@ -1,7 +1,3 @@
-.principal {
-  overflow-x: auto;
-}
-
 td.produtos div {
   display: flex;
   flex-direction: column;
