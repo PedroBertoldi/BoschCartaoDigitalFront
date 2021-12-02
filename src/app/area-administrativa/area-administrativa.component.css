@@ -19,7 +19,6 @@ button {
   border: 1px solid #cecece;
   border-radius: 0.25rem;
 
-  font-weight: bold;
   font-size: 1rem;
 
   box-shadow: var(--sombra);
@@ -84,10 +83,8 @@ td.botoes > div {
 }
 
 .numero-registros {
-  font-weight: normal;
   margin-left: 1rem;
   margin-bottom: 2rem;
-  color: gray;
 }
 
 /* MENU FLUTUANTE */
@@ -105,14 +102,13 @@ td.botoes > div {
   gap: 1rem;
 }
 
-input,
-input::placeholder {
+input {
   font-weight: bold;
   font-size: 1rem;
   color: gray;
 
-  padding: 0.5rem 0;
   border: none;
+  padding: 0.5rem;
   border-bottom: 1px solid #cecece;
 }
 

@@ -7,7 +7,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class BuscarComponent implements OnInit {
 
-  @Output() busca = new EventEmitter;
+  @Output() buscar = new EventEmitter;
+  @Output() limpar = new EventEmitter;
 
   valorBuscado: string = ''
 
@@ -20,13 +21,7 @@ export class BuscarComponent implements OnInit {
     return (event.target as HTMLInputElement).value;
   }
 
-  buscar(): void {
-    console.log('foi feito uma busca')
-  }
-  
-  limpar(): void {
+  limparValor(): void {
     this.valorBuscado = ''
-    console.log('foi limpado')
   }
-
 }

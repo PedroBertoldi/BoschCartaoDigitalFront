@@ -8,7 +8,7 @@
       <h3>Lista</h3>
     </div>
     <div class='principal'>
-      <app-buscar (busca)='buscar($event)'></app-buscar>
+      <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
       <table>
       <tr class='cabecalho'>
         <td>Excluir</td>
@@ -18,11 +18,11 @@
         <td>Ativo</td>
         <td>Ações</td>
       </tr>
-      <tr *ngFor='let evento of eventos'>
+      <tr *ngFor='let evento of eventosBuscados'>
         <td class="botoes"> <div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
         <td>{{evento.nome}}</td>
-        <td>{{evento.inicio}}</td>
-        <td>{{evento.fim}}</td>
+        <td>{{evento.inicio | date : 'dd/MM/yyyy'}}</td>
+        <td>{{evento.fim | date : 'dd/MM/yyyy'}}</td>
         <td class='icone'><mat-icon [class]="evento.ativo ? 'ativo' : ''">{{evento.ativo ? 'done' : 'close'}}</mat-icon></td>
         <td class="botoes">
           <div>
@@ -34,6 +34,6 @@
       </tr>
     </table>
     </div>
-    <span class='numero-registros'>Mostrando de 1 até 15 de {{eventos.length}} registros.</span>
+    <span class='numero-registros'>Mostrando de 1 até 15 de {{eventosBuscados.length}} registros.</span>
   </div>
 </div>
