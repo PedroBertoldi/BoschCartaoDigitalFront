@@ -42,12 +42,38 @@ h3 {
   flex-direction: column;
   margin: 2rem 1rem 1rem;
   color: gray;
-  overflow-x: auto;
+  /* overflow-x: auto; */
+}
+
+/* FORMULARIOS */
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  gap: 2rem;
+  color: gray;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+label div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
 }
 
 /* TABELAS */
 
+div.tabela-overflow {
+  overflow-x: auto;
+}
+
 table {
+  width: 100%;
   margin-top: 1rem;
   border-collapse: collapse;
 }
@@ -100,6 +126,8 @@ td.botoes > div {
   justify-content: center;
 
   gap: 1rem;
+
+  z-index: 1;
 }
 
 input {
@@ -112,6 +140,10 @@ input {
   border-bottom: 1px solid #cecece;
 }
 
-input[type="text"] {
-  margin-top: 0.5rem;
+input[readonly] {
+  color: #cececeee;
+}
+
+input[readonly]:focus {
+  outline: none;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-interface Beneficio {
+export interface Beneficio {
   id: number,
   evento: number,
   nome: string,
@@ -57,6 +57,8 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     },
   ];
 
+  idEventoFromRoute!: number;
+
   beneficios!: Beneficio[]
 
   buscaBeneficios!:Beneficio[]
@@ -65,9 +67,9 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idEventoFromRoute = Number(routeParams.get('idEvento'));
+    this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === idEventoFromRoute);
+    this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute);
     this.buscaBeneficios = this.beneficios
   }
 

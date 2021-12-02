@@ -1,59 +1,61 @@
 <div class="max-container">
   <div class='menu-flutuante'>
     <a routerLink='/admin/evento'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
-    <a routerLink='/admin/evento'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios/cadastro"'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
   </div>
-  <h1>Produtos</h1>
+  <h1>Beneficiários</h1>
   <div class='container'>
     <div class='cabecalho-macro'>
       <h3>Lista</h3>
     </div>
     <div class='principal'>
       <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
-      <table>
-        <tr class='cabecalho'>
-          <td>Excluir</td>
-          <td>EDV</td>
-          <td>Beneficiário</td>
-          <td>CPF</td>
-          <td>Área</td>
-          <td>Benefícios</td>
-          <td>Data de Inclusão</td>
-          <td>Indicado</td>
-          <td>Ações</td>
-        </tr>
-        <tr *ngIf='beneficiarios.length ===  0'>
-          <td colspan="100%">
-            Ainda não foi registrado nenhum beneficiário.
-          </td>
-        </tr>
-        <ng-container *ngIf='beneficiarios.length > 0'>
-          <tr *ngIf='buscaBeneficiarios.length ===  0'>
+      <div class="tabela-overflow">
+        <table>
+          <tr class='cabecalho'>
+            <td>Excluir</td>
+            <td>EDV</td>
+            <td>Beneficiário</td>
+            <td>CPF</td>
+            <td>Área</td>
+            <td>Benefícios</td>
+            <td>Data de Inclusão</td>
+            <td>Indicado</td>
+            <td>Ações</td>
+          </tr>
+          <tr *ngIf='beneficiarios.length ===  0'>
             <td colspan="100%">
-              Nenhum registro encontrado.
+              Ainda não foi registrado nenhum beneficiário.
             </td>
           </tr>
-          <tr *ngFor='let beneficiario of buscaBeneficiarios'>
-            <td class="botoes"><div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
-            <td>{{beneficiario.edv}}</td>
-            <td>{{beneficiario.nome}}</td>
-            <td>{{beneficiario.cpf}}</td>
-            <td>{{beneficiario.area}}</td>
-            <td class="produtos">
-              <div>
-                <span *ngFor='let beneficio of beneficiario.beneficios'>{{beneficio.quantidade}}x {{beneficio.nome}}</span>
-              </div>
-            </td>
-            <td>{{beneficiario.dataInclusao | date : 'dd/MM/yyyy'}}</td>
-            <td>{{beneficiario.indicado}}</td>
-            <td class="botoes">
-              <div>
-                <app-botao-acao variante='editar'></app-botao-acao>
-              </div>
-            </td>
-          </tr>
-        </ng-container>
-      </table>
+          <ng-container *ngIf='beneficiarios.length > 0'>
+            <tr *ngIf='buscaBeneficiarios.length ===  0'>
+              <td colspan="100%">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+            <tr *ngFor='let beneficiario of buscaBeneficiarios'>
+              <td class="botoes"><div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
+              <td>{{beneficiario.edv}}</td>
+              <td>{{beneficiario.nome}}</td>
+              <td>{{beneficiario.cpf}}</td>
+              <td>{{beneficiario.area}}</td>
+              <td class="produtos">
+                <div>
+                  <span *ngFor='let beneficio of beneficiario.beneficios'>{{beneficio.quantidade}}x {{beneficio.nome}}</span>
+                </div>
+              </td>
+              <td>{{beneficiario.dataInclusao | date : 'dd/MM/yyyy'}}</td>
+              <td>{{beneficiario.indicado}}</td>
+              <td class="botoes">
+                <div>
+                  <app-botao-acao variante='editar'></app-botao-acao>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
     </div>
     <span class='numero-registros'>Mostrando de 1 até 15 de {{buscaBeneficiarios.length}} registros.</span>
   </div>

@@ -14,7 +14,9 @@ import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa
 import { BotaoAcaoComponent } from './botao-acao/botao-acao.component';
 import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administrativa-consulta-beneficiario/area-administrativa-consulta-beneficiario.component';
-import { BuscarComponent } from './buscar/buscar.component'
+import { BuscarComponent } from './buscar/buscar.component';
+import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
+import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
 
 
 
@@ -29,6 +31,8 @@ import { BuscarComponent } from './buscar/buscar.component'
     AreaAdministrativaConsultaBeneficioComponent,
     AreaAdministrativaConsultaBeneficiarioComponent,
     BuscarComponent,
+    AreaAdministrativaCadastroBeneficioComponent,
+    AreaAdministrativaCadastroBeneficiariosComponent,
   ],
   imports: [
     CommonModule,
