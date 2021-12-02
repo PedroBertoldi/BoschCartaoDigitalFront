@@ -8,13 +8,13 @@ interface Beneficiario {
   cpf: string,
   area:string,
   user: string,
-  produtos: {
+  beneficios: {
       id: number,
       quantidade: number,
       nome: string
     }[],
   dataInclusao: Date,
-  terceiro: string,
+  indicado: string,
   evento: number
 }
 
@@ -34,7 +34,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       cpf: '123.456.789-10',
       area:'EXPATRIADO',
       user: 'Import Process',
-      produtos: [
+      beneficios: [
         {
           id: 1,
           quantidade: 1,
@@ -52,7 +52,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
         },
       ],
       dataInclusao: new Date,
-      terceiro: 'Valmir Seguro',
+      indicado: 'Valmir Seguro',
     },
     {
       id: 2,
@@ -62,7 +62,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       cpf: '',
       area:'EXPATRIADO',
       user: '',
-      produtos: [
+      beneficios: [
         {
           id: 1,
           quantidade: 1,
@@ -75,7 +75,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
         },
       ],
       dataInclusao: new Date,
-      terceiro: '',
+      indicado: '',
     },
     {
       id: 3,
@@ -85,7 +85,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       cpf: '123.456.789-10',
       area:'EXPATRIADO',
       user: 'Import Process',
-      produtos: [
+      beneficios: [
         {
           id: 1,
           quantidade: 1,
@@ -118,7 +118,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
         },
       ],
       dataInclusao: new Date,
-      terceiro: '',
+      indicado: '',
     },
   ]
 
@@ -144,7 +144,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
   buscar(): void {
     this.buscaBeneficiarios = this.beneficiarios.filter(beneficiario => {
-      return beneficiario.nome.toLowerCase().includes(this.valorBuscado.toLowerCase()) || beneficiario.terceiro.toLowerCase().includes(this.valorBuscado.toLowerCase())
+      return beneficiario.nome.toLowerCase().includes(this.valorBuscado.toLowerCase()) || beneficiario.indicado.toLowerCase().includes(this.valorBuscado.toLowerCase())
     }) 
   }
   
