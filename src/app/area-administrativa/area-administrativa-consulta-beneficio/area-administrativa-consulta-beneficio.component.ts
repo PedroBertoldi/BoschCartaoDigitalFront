@@ -61,9 +61,6 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
 
   buscaBeneficios!:Beneficio[]
 
-  valorBuscado: string = ''
-
-
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -74,16 +71,11 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     this.buscaBeneficios = this.beneficios
   }
 
-  obterValor(event: Event): string {
-    return (event.target as HTMLInputElement).value;
-  }
-
-  buscar(): void {
-    this.buscaBeneficios = this.beneficios.filter(beneficio => beneficio.nome.toLowerCase().includes(this.valorBuscado.toLowerCase())) 
+  buscar(valor: string): void {
+    this.buscaBeneficios = this.beneficios.filter(beneficio => beneficio.nome.toLowerCase().includes(valor.toLowerCase())) 
   }
   
   limpar(): void {
-    this.valorBuscado = ''
     this.buscaBeneficios = this.beneficios
   }
 
