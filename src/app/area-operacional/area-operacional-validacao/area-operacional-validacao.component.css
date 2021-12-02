@@ -1,0 +1,8 @@
+.MainContainer {
+    display: flex;
+    width: auto;
+    height: 75vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
