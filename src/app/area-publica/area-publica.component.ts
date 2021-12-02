@@ -18,11 +18,9 @@ export class AreaPublicaComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.getUser();
-    console.log(this.user)
-    console.log(this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
+    this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
                 data => {
                     this.direitos = data.direitos;
-                    console.log(data.indicacoes)
                     this.indicacoes = data.indicacoes;
                 },
                 error => {
@@ -32,7 +30,7 @@ export class AreaPublicaComponent implements OnInit {
                     else{
                       console.log("problemas de conexao")
                     }
-                }));
+                });
   }
 
   logout(){

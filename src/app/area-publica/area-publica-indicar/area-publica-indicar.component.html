@@ -7,15 +7,18 @@
             <button mat-menu-item (click)="logout()">Sair</button>
         </mat-menu>
     </div>
-    <div class="currentIndication">
-        <p>Usu&aacute;rio <b>JOELCIO LEANDRO BENVENUTTI</b> de <b>EDV: 92617565</b> est&aacute; indicado atualmente.</p>
-        <button>Remover Indica&ccedil;&atilde;o</button>
+    <div *ngIf="indicado" class="currentIndication">
+        <p>Usu&aacute;rio <b>{{indicado.nomeCompleto}}</b>
+            <!--de <b>EDV: {{indicado.edv}}</b>--> est&aacute; indicado
+            atualmente.
+        </p>
+        <button (click)="removeIndicacao()">Remover Indica&ccedil;&atilde;o</button>
     </div>
 
 
-    <form class="indicarForm" action="meus-beneficios">
+    <form [formGroup]="indicarForm" class="indicarForm" action="meus-beneficios" (ngSubmit)="submitIndicacao()">
         <mat-form-field>
-            <mat-select [(value)]="idType">
+            <mat-select [(value)]="idType" (selectionChange)="indicarForm.reset(); submitted=false">
                 <mat-option value="edv">
                     Colaborador Bosch
                 </mat-option>
@@ -26,17 +29,32 @@
         </mat-form-field>
         <div>
             <label for="name">Nome</label>
-            <input [class.disabled]="idType =='edv'" id="name" type="text">
+            <input [class.disabled]="idType =='edv'" [class.erro]="submitted && indicarForm.controls.name.errors"
+                formControlName="name" type="text">
+            <div *ngIf="submitted && indicarForm.controls.name.errors && idType =='cpf'" class="erro">Preencha o nome do
+                indicado!
+            </div>
         </div>
 
         <div *ngIf="idType =='cpf'">
             <label for="cpf">CPF</label>
-            <input id="cpf" type="text">
+            <input mask="000.000.000-00" [class.erro]="submitted && indicarForm.controls.cpf.errors"
+                formControlName="cpf" type="text">
+            <div *ngIf="submitted && indicarForm.controls.cpf.errors" class="erro">Preencha o CPF do
+                indicado!
+            </div>
         </div>
         <div *ngIf="idType =='edv'">
             <label for="edv">EDV</label>
-            <input id="edv" type="text">
+            <input mask="00000" [class.erro]="submitted && indicarForm.controls.edv.errors" formControlName="edv"
+                (input)="searchEdv()" type="text">
+            <div *ngIf="submitted && indicarForm.controls.edv.errors" class="erro">Preencha o EDV do
+                indicado!
+            </div>
+            <div *ngIf="notfound" class="erro">EDV inv&aacute;lido!
+            </div>
         </div>
+
         <button type="submit">Enviar</button>
     </form>
 
