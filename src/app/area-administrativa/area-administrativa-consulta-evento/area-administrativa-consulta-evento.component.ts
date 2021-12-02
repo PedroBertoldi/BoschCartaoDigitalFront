@@ -44,4 +44,8 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  buscar(valor: string): void {
+    console.log('foi feito uma busca de ' + valor)
+  }
+
 }

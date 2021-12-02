@@ -43,6 +43,7 @@ h3 {
   flex-direction: column;
   margin: 2rem 1rem 1rem;
   color: gray;
+  overflow-x: auto;
 }
 
 /* TABELAS */
@@ -117,30 +118,4 @@ input::placeholder {
 
 input[type="text"] {
   margin-top: 0.5rem;
-}
-
-.busca {
-  display: flex;
-  align-items: center;
-}
-
-.busca input {
-  margin-right: auto;
-  width: 360px;
-  max-width: 100%;
-}
-
-.busca button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  background-color: royalblue;
-  font-weight: bold;
-  color: white;
-  box-shadow: var(--sombra);
-}
-
-.busca button.neutro {
-  color: black;
-  background-color: #efefef;
-  margin-right: 1rem;
 }

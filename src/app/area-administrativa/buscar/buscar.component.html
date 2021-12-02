@@ -1,0 +1,5 @@
+<div>
+  <input type="text" placeholder="Nome" [value]='valorBuscado' (input)='valorBuscado = obterValor($event)' />
+  <button (click)='limpar()' class='neutro'>LIMPAR</button>
+  <button (click)='busca.emit(valorBuscado)'>BUSCAR</button>
+</div>
