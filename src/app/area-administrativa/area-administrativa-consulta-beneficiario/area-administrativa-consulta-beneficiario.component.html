@@ -21,7 +21,6 @@
           <td>Beneficiário</td>
           <td>CPF</td>
           <td>Área</td>
-          <td>User</td>
           <td>Benefícios</td>
           <td>Data de Inclusão</td>
           <td>Indicado</td>
@@ -44,7 +43,6 @@
             <td>{{beneficiario.nome}}</td>
             <td>{{beneficiario.cpf}}</td>
             <td>{{beneficiario.area}}</td>
-            <td>{{beneficiario.user}}</td>
             <td class="produtos">
               <div>
                 <span *ngFor='let beneficio of beneficiario.beneficios'>{{beneficio.quantidade}}x {{beneficio.nome}}</span>

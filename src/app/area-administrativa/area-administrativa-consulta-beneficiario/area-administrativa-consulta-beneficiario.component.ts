@@ -7,7 +7,6 @@ interface Beneficiario {
   nome: string,
   cpf: string,
   area:string,
-  user: string,
   beneficios: {
       id: number,
       quantidade: number,
@@ -33,7 +32,6 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       nome: 'Joelcio Leandro',
       cpf: '123.456.789-10',
       area:'EXPATRIADO',
-      user: 'Import Process',
       beneficios: [
         {
           id: 1,
@@ -61,7 +59,6 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       nome: 'Valmir Seguro',
       cpf: '',
       area:'EXPATRIADO',
-      user: '',
       beneficios: [
         {
           id: 1,
@@ -84,7 +81,6 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
       nome: 'Julianna Risseto',
       cpf: '123.456.789-10',
       area:'EXPATRIADO',
-      user: 'Import Process',
       beneficios: [
         {
           id: 1,
