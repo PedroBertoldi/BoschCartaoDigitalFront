@@ -1,9 +1,9 @@
 <div class="max-container">
   <div class='menu-flutuante'>
     <a routerLink='/admin/evento'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
-    <a routerLink='/admin/evento'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficios/cadastro"'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
   </div>
-  <h1>Produtos</h1>
+  <h1>Benefícios</h1>
   <div class='container'>
     <div class='cabecalho-macro'>
       <h3>Lista</h3>

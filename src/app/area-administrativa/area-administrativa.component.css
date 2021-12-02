@@ -45,6 +45,27 @@ h3 {
   overflow-x: auto;
 }
 
+/* FORMULARIOS */
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  gap: 2rem;
+  color: gray;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+label div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+
 /* TABELAS */
 
 table {
@@ -100,6 +121,10 @@ td.botoes > div {
   justify-content: center;
 
   gap: 1rem;
+
+  z-inds
+eeerhjklç~~]
+44= 
 }
 
 input {

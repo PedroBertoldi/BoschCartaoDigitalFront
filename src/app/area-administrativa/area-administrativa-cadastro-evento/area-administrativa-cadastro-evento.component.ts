@@ -4,7 +4,7 @@ import {FormBuilder} from '@angular/forms'
 @Component({
   selector: 'app-area-administrativa-cadastro-evento',
   templateUrl: './area-administrativa-cadastro-evento.component.html',
-  styleUrls: ['./area-administrativa-cadastro-evento.component.css']
+  styleUrls: ['../area-administrativa.component.css','./area-administrativa-cadastro-evento.component.css']
 })
 
 export class AreaAdministrativaCadastroEventoComponent implements OnInit {
