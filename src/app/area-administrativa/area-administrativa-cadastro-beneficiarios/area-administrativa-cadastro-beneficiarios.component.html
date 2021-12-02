@@ -1,1 +1,44 @@
-<p>area-administrativa-cadastro-beneficiarios works!</p>
+<app-modal
+  [aberto]='modalAberto'
+  (confirmarData)="onSubmit()"
+  (fecharModal)="fecharModal()"
+  [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"'
+  tipoModal="confirmacao"
+></app-modal>
+<div class="max-container">
+  <h1>Beneficiários</h1>
+  <div class='container'>
+    <div class='cabecalho-macro'>
+      <h3>Formulário</h3>
+    </div>
+     <form [formGroup]='formBeneficiario'>
+        <input type="text" formControlName='nome' placeholder="Nome *" required/>
+        <input type="text" formControlName='edv' placeholder="EDV *" required/>
+        <input type="text" formControlName='cpf' placeholder="CPF"/>
+        <input type="text" formControlName='area' placeholder="Área *" required/>
+        <form [formGroup]='formSelecionarBeneficios'>
+          <div class="seletor-beneficio-cabecalho">
+            Benefícios *
+            <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
+          </div>
+          <div class="seletor-beneficios">
+          <ng-container *ngIf='beneficiosEvento.length === 0'>
+            <span>Nenhum benefício cadastrado nesse evento.</span>
+          </ng-container>
+          <ng-container *ngIf='beneficiosEvento.length > 0'>
+            <div *ngFor='let beneficio of beneficiosEvento'>
+              <input type="number" [formControlName]="'beneficio'+beneficio.id"  value="0" [id]="beneficio.id" (input)='inserirBeneficio($event)'>
+              x
+              <label [for]='beneficio.id'>{{beneficio.nome}}</label>
+            </div>
+          </ng-container>
+        </div>
+      </form>
+        <input type="text" formControlName='indicado' placeholder="Indicado" />
+        <div class='menu-flutuante'>
+          <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
+          <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+      </div>
+    </form>
+  </div>
+</div>

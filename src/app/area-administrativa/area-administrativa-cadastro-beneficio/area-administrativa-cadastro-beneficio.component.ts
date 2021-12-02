@@ -9,11 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
   
-    idEventoFromRoute!: number;
-  
-    nomeEvento!: string | undefined;
-  
-    modalAberto = false;
+  idEventoFromRoute!: number;
+
+  nomeEvento!: string | undefined;
+
+  modalAberto = false;
 
   formBeneficio = this.formBuilder.group({
     nome: '',
@@ -67,10 +67,6 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
 
   abrirModal(): void {
     this.modalAberto = true
-  }
-
-  obterValor(event: Event): string {
-    return (event.target as HTMLInputElement).value;
   }
 
   onSubmit(): void {

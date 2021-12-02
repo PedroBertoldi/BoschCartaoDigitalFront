@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-interface Beneficio {
+export interface Beneficio {
   id: number,
   evento: number,
   nome: string,
