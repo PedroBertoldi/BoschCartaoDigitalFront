@@ -118,6 +118,8 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     },
   ]
 
+  idEventoFromRoute!: number;
+
   beneficiarios!: Beneficiario[]
 
   buscaBeneficiarios!:Beneficiario[]
@@ -126,9 +128,9 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idEventoFromRoute = Number(routeParams.get('idEvento'));
+    this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    this.beneficiarios = this.beneficiariosRegistrados.filter(beneficiario => beneficiario.evento === idEventoFromRoute);
+    this.beneficiarios = this.beneficiariosRegistrados.filter(beneficiario => beneficiario.evento === this.idEventoFromRoute);
     this.buscaBeneficiarios = this.beneficiarios
   }
 

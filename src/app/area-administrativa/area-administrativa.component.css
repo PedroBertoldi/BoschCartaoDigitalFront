@@ -42,7 +42,7 @@ h3 {
   flex-direction: column;
   margin: 2rem 1rem 1rem;
   color: gray;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 
 /* FORMULARIOS */
@@ -68,7 +68,12 @@ label div {
 
 /* TABELAS */
 
+div.tabela-overflow {
+  overflow-x: auto;
+}
+
 table {
+  width: 100%;
   margin-top: 1rem;
   border-collapse: collapse;
 }
