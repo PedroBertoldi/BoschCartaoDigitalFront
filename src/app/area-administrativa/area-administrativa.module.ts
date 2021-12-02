@@ -13,7 +13,8 @@ import { ModalComponent } from './modal/modal.component';
 import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component';
 import { BotaoAcaoComponent } from './botao-acao/botao-acao.component';
 import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
-import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administrativa-consulta-beneficiario/area-administrativa-consulta-beneficiario.component'
+import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administrativa-consulta-beneficiario/area-administrativa-consulta-beneficiario.component';
+import { BuscarComponent } from './buscar/buscar.component'
 
 
 
@@ -27,6 +28,7 @@ import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administ
     BotaoAcaoComponent,
     AreaAdministrativaConsultaBeneficioComponent,
     AreaAdministrativaConsultaBeneficiarioComponent,
+    BuscarComponent,
   ],
   imports: [
     CommonModule,

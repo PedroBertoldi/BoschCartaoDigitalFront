@@ -19,7 +19,6 @@ button {
   border: 1px solid #cecece;
   border-radius: 0.25rem;
 
-  font-weight: bold;
   font-size: 1rem;
 
   box-shadow: var(--sombra);
@@ -43,6 +42,7 @@ h3 {
   flex-direction: column;
   margin: 2rem 1rem 1rem;
   color: gray;
+  overflow-x: auto;
 }
 
 /* TABELAS */
@@ -83,10 +83,8 @@ td.botoes > div {
 }
 
 .numero-registros {
-  font-weight: normal;
   margin-left: 1rem;
   margin-bottom: 2rem;
-  color: gray;
 }
 
 /* MENU FLUTUANTE */
@@ -104,43 +102,16 @@ td.botoes > div {
   gap: 1rem;
 }
 
-input,
-input::placeholder {
+input {
   font-weight: bold;
   font-size: 1rem;
   color: gray;
 
-  padding: 0.5rem 0;
   border: none;
+  padding: 0.5rem;
   border-bottom: 1px solid #cecece;
 }
 
 input[type="text"] {
   margin-top: 0.5rem;
-}
-
-.busca {
-  display: flex;
-  align-items: center;
-}
-
-.busca input {
-  margin-right: auto;
-  width: 360px;
-  max-width: 100%;
-}
-
-.busca button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  background-color: royalblue;
-  font-weight: bold;
-  color: white;
-  box-shadow: var(--sombra);
-}
-
-.busca button.neutro {
-  color: black;
-  background-color: #efefef;
-  margin-right: 1rem;
 }
