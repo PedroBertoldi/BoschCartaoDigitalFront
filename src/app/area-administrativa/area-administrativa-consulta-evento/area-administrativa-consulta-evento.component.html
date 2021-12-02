@@ -14,6 +14,7 @@
         <td>Nome do Evento</td>
         <td>Data de Início</td>
         <td>Data de Fim</td>
+        <td>Ativo</td>
         <td>Ações</td>
       </tr>
       <tr *ngFor='let evento of eventos'>
@@ -21,6 +22,7 @@
         <td>{{evento.nome}}</td>
         <td>{{evento.inicio}}</td>
         <td>{{evento.fim}}</td>
+        <td class='icone'><mat-icon [class]="evento.ativo ? 'ativo' : ''">{{evento.ativo ? 'done' : 'close'}}</mat-icon></td>
         <td class="botoes">
           <div>
             <a [routerLink]="evento.id + '/beneficiarios'"><app-botao-acao variante='beneficiarios'></app-botao-acao></a>
