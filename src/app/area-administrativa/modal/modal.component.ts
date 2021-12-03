@@ -9,6 +9,8 @@ export class ModalComponent implements OnInit {
 
   @Input() aberto!: boolean;
   @Input() tipoModal: 'atencao' | 'confirmacao' = 'confirmacao'
+  @Input() redirecionar: string | undefined = undefined
+  
   @Output() fecharModal = new EventEmitter()
   @Output() confirmarData = new EventEmitter()
 

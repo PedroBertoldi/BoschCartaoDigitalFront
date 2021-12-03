@@ -13,7 +13,7 @@
     <h2>Sucesso</h2>
     <p>A operação foi realizada com sucesso.</p>
     <div class="buttons">
-      <a routerLink='/admin/evento'><button class="confirmar" (click)="fecharModal.emit()">Ok</button></a>
+      <a [routerLink]='redirecionar'><button class="confirmar" (click)="fecharModal.emit()">Ok</button></a>
     </div>
   </div>
 </div>

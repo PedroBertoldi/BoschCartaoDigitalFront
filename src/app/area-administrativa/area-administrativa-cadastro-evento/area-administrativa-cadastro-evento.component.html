@@ -1,8 +1,14 @@
-<app-modal [aberto]='modalAberto' (confirmarData)="salvarDados()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
+<app-modal
+  [aberto]='modalAberto'
+  (confirmarData)="salvarDados()"
+  (fecharModal)="fecharModal()"
+  [tipoModal]="tipoModal"
+  redirecionar='/admin/evento'
+  ></app-modal>
 <div class="max-container">
   <h1>Eventos</h1>
   <div class='container'>
-    <div class='cabecalho-tabela'>
+    <div class='cabecalho-macro'>
       <h3>Formulário</h3>
     </div>
      <form [formGroup]='formCadastro'>

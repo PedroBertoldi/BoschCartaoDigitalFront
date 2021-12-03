@@ -8,29 +8,34 @@
       <h3>Lista</h3>
     </div>
     <div class='principal'>
-      <table>
-      <tr class='cabecalho'>
-        <td>Excluir</td>
-        <td>Nome do Evento</td>
-        <td>Data de Início</td>
-        <td>Data de Fim</td>
-        <td>Ações</td>
-      </tr>
-      <tr *ngFor='let evento of eventos'>
-        <td class="botoes"> <div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
-        <td>{{evento.nome}}</td>
-        <td>{{evento.inicio}}</td>
-        <td>{{evento.fim}}</td>
-        <td class="botoes">
-          <div>
-            <a [routerLink]="evento.id + '/beneficiarios'"><app-botao-acao variante='beneficiarios'></app-botao-acao></a>
-            <a [routerLink]="evento.id + '/beneficios'"><app-botao-acao variante='beneficios'></app-botao-acao></a>
-            <app-botao-acao variante='editar'></app-botao-acao>
-          </div>
-        </td>
-      </tr>
-    </table>
+      <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
+      <div class="tabela-overflow">
+        <table>
+        <tr class='cabecalho'>
+          <td>Excluir</td>
+          <td>Nome do Evento</td>
+          <td>Data de Início</td>
+          <td>Data de Fim</td>
+          <td>Ativo</td>
+          <td>Ações</td>
+        </tr>
+        <tr *ngFor='let evento of eventosBuscados'>
+          <td class="botoes"> <div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
+          <td>{{evento.nome}}</td>
+          <td>{{evento.inicio | date : 'dd/MM/yyyy'}}</td>
+          <td>{{evento.fim | date : 'dd/MM/yyyy'}}</td>
+          <td class='icone'><mat-icon [class]="evento.ativo ? 'ativo' : ''">{{evento.ativo ? 'done' : 'close'}}</mat-icon></td>
+          <td class="botoes">
+            <div>
+              <a [routerLink]="evento.id + '/beneficiarios'"><app-botao-acao variante='beneficiarios'></app-botao-acao></a>
+              <a [routerLink]="evento.id + '/beneficios'"><app-botao-acao variante='beneficios'></app-botao-acao></a>
+              <app-botao-acao variante='editar'></app-botao-acao>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
-    <span class='numero-registros'>Mostrando de 1 até 15 de {{eventos.length}} registros.</span>
+    </div>
+    <span class='numero-registros'>Mostrando de 1 até 15 de {{eventosBuscados.length}} registros.</span>
   </div>
 </div>
