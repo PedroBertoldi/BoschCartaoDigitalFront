@@ -4,11 +4,16 @@
 
 .container > form {
   display: grid;
+  gap: 1rem;
   grid-template-areas:
     "nome edv"
     "cpf area"
     "beneficios beneficios"
     "indicado .";
+}
+
+.container > form > * {
+  margin: 0;
 }
 
 input[formControlName="nome"] {
@@ -47,9 +52,9 @@ form > form {
   gap: 1rem;
 }
 
-.seletor-beneficios input {
+.seletor-beneficios mat-form-field {
   text-align: center;
-  width: 1rem;
+  width: 2rem;
 }
 
 input::-webkit-outer-spin-button,

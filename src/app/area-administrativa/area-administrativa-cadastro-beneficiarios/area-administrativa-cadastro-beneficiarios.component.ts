@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Beneficio } from '../area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 
@@ -27,12 +27,12 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   formSelecionarBeneficios = this.formBuilder.group({})
 
   formBeneficiario = this.formBuilder.group({
-    nome: '',
-    edv: '',
-    cpf: '',
-    area: '',
+    nome: new FormControl('',Validators.required),
+    edv: new FormControl('',Validators.required),
+    cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
+    area: new FormControl('',Validators.required),
     indicado: '',
-    evento: 0,
+    evento: 0,  
     beneficios: [],
     dataInclusao: new Date,
   })
@@ -176,6 +176,8 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
       console.log(this.formBeneficiario.value)
       this.formBeneficiario.reset()
       this.abrirModal()
+    } else {
+      this.formBeneficiario.markAllAsTouched()
     }
   }
 }

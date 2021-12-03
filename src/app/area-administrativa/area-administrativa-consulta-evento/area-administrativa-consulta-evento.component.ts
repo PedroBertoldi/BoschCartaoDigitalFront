@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { AdminService } from 'src/app/services/admin.service';
 
 interface Evento {
   id: number,
   nome: string,
-  inicio: Date,
-  fim: Date,
+  dataInicio: Date,
+  dataFim: Date,
   ativo: boolean,
 }
 
@@ -15,52 +17,43 @@ interface Evento {
 })
 export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
-  eventosRegistrados: Evento[] = [
-    {
-      id: 1,
-      nome: 'Final de ano 2021',
-      inicio: new Date('2021-12-19'),
-      fim: new Date('2021-12-20'),
-      ativo: true,
-    },
-    {
-      id: 2,
-      nome: 'Páscoa 2022',
-      inicio: new Date('2022-04-17'),
-      fim: new Date('2022-04-18'),
-      ativo: false,
-    },
-    {
-      id: 3,
-      nome: 'Festa Junina 2022',
-      inicio: new Date('2022-06-23'),
-      fim: new Date('2022-06-24'),
-      ativo: false,
-    },
-    {
-      id: 4,
-      nome: 'Carnaval 2022',
-      inicio: new Date('2022-02-25'),
-      fim: new Date('2022-02-26'),
-      ativo: false,
-    },
-  ]
+  eventos: Evento[] = []
 
-  eventos!: Evento[]
+  eventosBuscados: Evento[] = []
 
-  eventosBuscados!: Evento[]
-
-
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.eventos = this.eventosRegistrados
+    this.adminService.getEventos().pipe(first()).subscribe(
+      data => {
+          this.eventos = data.map((evento: any) => {
+            let hoje = new Date
+            hoje.setDate(hoje.getDate()-1)
+
+            return {
+              id: evento.id,
+              nome: evento.nome,
+              dataInicio: new Date(evento.dataInicio),
+              dataFim: new Date(evento.dataFim),
+              ativo: hoje < new Date(evento.dataFim),
+            }
+          })
+      
     this.eventosBuscados = this.eventos
+  },
+  error => {
+      if(error.status == 401  || error.status == 400){
+        console.log("erro ao buscar os dados")
+      }
+      else{
+        console.log("problemas de conexao")
+      }
+  })
+
   }
   
   buscar(valor: string): void {
     if(valor !== '') {
-      console.log(valor)
       this.eventosBuscados = this.eventos.filter(evento => evento.nome.toLowerCase().includes(valor.toLowerCase()) )
     }
   }
