@@ -14,3 +14,14 @@
 .show {
     display: block;
 }
+
+.example-form {
+    min-width: 30vw;
+    max-width: 30vw;
+    min-height: 10vh;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+

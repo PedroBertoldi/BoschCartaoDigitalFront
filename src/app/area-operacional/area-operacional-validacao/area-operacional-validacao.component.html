@@ -1,7 +1,21 @@
 <div class="MainContainer">
     <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao>
     <app-botao-validacao variante='ValidacaoCPF' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
-    <div [ngClass]="mostraCampoCPF === 'esconder' ? 'hide' : 'show'">EDV</div>
+    <div [ngClass]="mostraCampoCPF === 'esconder' ? 'hide' : 'show'">
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Digite o CPF</mat-label>
+                <input type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
+            </mat-form-field>
+        </form>
+    </div>
     <app-botao-validacao variante='ValidacaoEDV' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
-    <div [ngClass]="mostraCampoEDV === 'esconder' ? 'hide' : 'show'">EDV</div>
+    <div [ngClass]="mostraCampoEDV === 'esconder' ? 'hide' : 'show'">
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Digite o EDV</mat-label>
+                <input type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
+            </mat-form-field>
+        </form>
+    </div>
 </div>
