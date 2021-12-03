@@ -25,3 +25,7 @@
     width: 100%;
 }
 
+.erro {
+    color: red;
+    border-color: red
+}

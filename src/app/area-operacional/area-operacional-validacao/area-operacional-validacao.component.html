@@ -2,19 +2,41 @@
     <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao>
     <app-botao-validacao variante='ValidacaoCPF' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
     <div [ngClass]="mostraCampoCPF === 'esconder' ? 'hide' : 'show'">
-        <form class="example-form">
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Digite o CPF</mat-label>
-                <input type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
-            </mat-form-field>
-        </form>
+        
+        <!-- <form>
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Digite o CPF</mat-label>
+                    <input type="text" matInput class="form-control" id="cpf">
+                </mat-form-field>
+            </div>
+
+            <button type="submit">Validar</button>
+        </form> -->
+
+        <!-- <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
+            <div>
+                <label for="cpf">CPF</label>
+                <input mask="000.000.000-00" formControlName="cpf" type="text"
+                    [class.erro]="submitted && loginForm.controls.cpf.errors">
+                <div *ngIf="submitted && loginForm.controls.cpf.errors" class="erro">
+                    <div *ngIf="loginForm.controls.cpf.errors.required">Por favor preencha o CPF</div>
+                </div>
+            </div>
+        
+            <div *ngIf="submitted && wrong" class="erro">
+                CPF incorreto
+            </div>
+            <button type="submit">Confirmar</button>
+        </form> -->
+        
     </div>
     <app-botao-validacao variante='ValidacaoEDV' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
     <div [ngClass]="mostraCampoEDV === 'esconder' ? 'hide' : 'show'">
         <form class="example-form">
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Digite o EDV</mat-label>
-                <input type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
+                <input mask="00000" type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
             </mat-form-field>
         </form>
     </div>
