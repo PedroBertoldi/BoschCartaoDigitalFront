@@ -1,4 +1,4 @@
-<h1 class="logintitle">Efetuar Login</h1>
+<h1 class="logintitle">Efetuar Login<span *ngIf="adminLogin"> Adminstrativo</span></h1>
 <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
     <div>
         <label for="cpf">CPF</label>

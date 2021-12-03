@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -13,18 +13,18 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
   wrong = false;
+  adminLogin= false;
   
-  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router, ) { 
+  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router, private active: ActivatedRoute) { 
+    this.adminLogin= this.router.routerState.snapshot.url=='/admin';
     //login redirect if already logged in
     if(this.auth.getUser()){
-      this.router.navigate(['/meus-beneficios']);
+      this.redirect();
     }
   }
 
   
   ngOnInit(): void {
-
-    
     this.loginForm = this.formBuilder.group({
             cpf: ['', Validators.required],
             nasc: ['', Validators.required],
@@ -33,10 +33,16 @@ export class LoginComponent implements OnInit {
 
   }
 
+  redirect(){
+    if(this.adminLogin){
+        this.router.navigate(['admin/evento']);
+      }else{
+        this.router.navigate(['/meus-beneficios']);
+      }
+  }
+
   login(){
     this.submitted= true;
-    console.log(
-    this.loginForm.controls)
     if (this.loginForm.invalid) {
       return;
     }
@@ -44,7 +50,7 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(
                 data => {
                     console.log("sucesso")
-                    this.router.navigate(['meus-beneficios']);
+                    this.redirect();
                 },
                 error => {
                     if(error.status == 401  || error.status == 400){

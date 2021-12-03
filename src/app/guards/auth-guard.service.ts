@@ -8,9 +8,9 @@ import { AuthenticationService } from '../services/authentication.service';
 export class AuthGuardService implements CanActivate{
 
   constructor(private router: Router,
-        private authenticationService: AuthenticationService) { }
+        private auth: AuthenticationService) { }
         canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = this.authenticationService.getUser();
+        const currentUser = this.auth.getUser();
         if (currentUser) {
             return true;
         }

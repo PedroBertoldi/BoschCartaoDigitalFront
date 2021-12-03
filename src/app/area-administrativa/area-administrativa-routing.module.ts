@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../common/login/login.component';
+import { AdminGuardService } from '../guards/admin-guard.service';
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component';
 import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
 import { AreaAdministrativaCadastroEventoComponent } from './area-administrativa-cadastro-evento/area-administrativa-cadastro-evento.component';
@@ -11,12 +12,12 @@ import { AreaAdministrativaComponent } from './area-administrativa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'evento', component: AreaAdministrativaConsultaEventoComponent },
-  { path: 'evento/cadastro', component: AreaAdministrativaCadastroEventoComponent },
-  { path: 'evento/:idEvento/beneficios', component: AreaAdministrativaConsultaBeneficioComponent },
-  { path: 'evento/:idEvento/beneficios/cadastro', component: AreaAdministrativaCadastroBeneficioComponent },
-  { path: 'evento/:idEvento/beneficiarios', component: AreaAdministrativaConsultaBeneficiarioComponent },
-  { path: 'evento/:idEvento/beneficiarios/cadastro', component: AreaAdministrativaCadastroBeneficiariosComponent }
+  { path: 'evento', component: AreaAdministrativaConsultaEventoComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/cadastro', component: AreaAdministrativaCadastroEventoComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/:idEvento/beneficios', component: AreaAdministrativaConsultaBeneficioComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/:idEvento/beneficios/cadastro', component: AreaAdministrativaCadastroBeneficioComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/:idEvento/beneficiarios', component: AreaAdministrativaConsultaBeneficiarioComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/:idEvento/beneficiarios/cadastro', component: AreaAdministrativaCadastroBeneficiariosComponent, canActivate:[AdminGuardService] }
 ];
 
 @NgModule({
