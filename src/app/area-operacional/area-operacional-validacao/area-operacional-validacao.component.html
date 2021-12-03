@@ -1,43 +1,29 @@
 <div class="MainContainer">
-    <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao>
-    <app-botao-validacao variante='ValidacaoCPF' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
-    <div [ngClass]="mostraCampoCPF === 'esconder' ? 'hide' : 'show'">
-        
-        <!-- <form>
-            <div class="form-group">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Digite o CPF</mat-label>
-                    <input type="text" matInput class="form-control" id="cpf">
-                </mat-form-field>
-            </div>
+    <!-- <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao> -->
+    <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf'"></app-botao-validacao>
+    <div *ngIf="mostrar === 'cpf'">
+        <form class="validacao-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Digite o CPF</mat-label>
+                <input mask="000-000-000-00" type="text" matInput onkeypress="return event.charCode >= 48" maxlength="14">
+            </mat-form-field>
 
-            <button type="submit">Validar</button>
-        </form> -->
-
-        <!-- <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="login()">
-            <div>
-                <label for="cpf">CPF</label>
-                <input mask="000.000.000-00" formControlName="cpf" type="text"
-                    [class.erro]="submitted && loginForm.controls.cpf.errors">
-                <div *ngIf="submitted && loginForm.controls.cpf.errors" class="erro">
-                    <div *ngIf="loginForm.controls.cpf.errors.required">Por favor preencha o CPF</div>
-                </div>
-            </div>
-        
-            <div *ngIf="submitted && wrong" class="erro">
-                CPF incorreto
-            </div>
-            <button type="submit">Confirmar</button>
-        </form> -->
-        
+            <button type="submit" class="confirmar" routerLink="/retirar">
+                <mat-icon class="blue" aria-label="Próximo">navigate_next</mat-icon>
+            </button>
+        </form>
     </div>
-    <app-botao-validacao variante='ValidacaoEDV' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
-    <div [ngClass]="mostraCampoEDV === 'esconder' ? 'hide' : 'show'">
-        <form class="example-form">
+    <app-botao-validacao variante='ValidacaoEDV' (click)="mostrar = 'edv'"></app-botao-validacao>
+    <div *ngIf="mostrar === 'edv'">
+        <form class="validacao-form">
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Digite o EDV</mat-label>
-                <input mask="00000" type="text" matInput onkeypress="return event.charCode >= 48" maxlength="11">
+                <input type="text" matInput>
             </mat-form-field>
+
+            <button type="submit" class="confirmar" routerLink="/retirar">
+                <mat-icon class="blue" aria-label="Próximo">navigate_next</mat-icon>
+            </button>
         </form>
     </div>
 </div>

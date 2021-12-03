@@ -9,6 +9,7 @@ import { AreaOperacionalValidacaoComponent } from './area-operacional-validacao/
 import { BotaoValidacaoComponent } from './area-operacional-validacao/botao-validacao/botao-validacao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    MatIconModule
   ]
 })
 export class AreaOperacionalModule { }

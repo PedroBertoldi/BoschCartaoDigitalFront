@@ -8,8 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AreaOperacionalValidacaoComponent implements OnInit {
 
-  mostraCampoCPF: string = "esconder";
-  mostraCampoEDV: string = "esconder";
+  mostrar: string = "";
   formulario!: FormGroup;
 
   constructor(
@@ -25,13 +24,7 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
   }
 
   mostrarDiv(resposta: any): void {
-    if (resposta === 'selecionadoCPF') {
-      this.mostraCampoCPF = "mostrar";
-      this.mostraCampoEDV = "esconder";
-    } else if (resposta === 'selecionadoEDV') {
-      this.mostraCampoEDV = "mostrar";
-      this.mostraCampoCPF = "esconder";
-    }
+
   }
 
   login(){

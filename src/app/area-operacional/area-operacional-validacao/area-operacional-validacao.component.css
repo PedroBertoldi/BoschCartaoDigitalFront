@@ -7,25 +7,20 @@
     justify-content: space-around;
 }
 
-.hide {
-    display: none;
+.validacao-form {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
 }
 
-.show {
-    display: block;
+.validacao-form mat-form-field {
+    width: 30vw;
+    margin-bottom: auto;
 }
 
-.example-form {
-    min-width: 30vw;
-    max-width: 30vw;
-    min-height: 10vh;
-}
-  
-.example-full-width {
-    width: 100%;
-}
-
-.erro {
-    color: red;
-    border-color: red
+.validacao-form button {
+    margin-bottom: auto;
+    margin-left: 5px;
+    background-color: #3f51b5;
+    color: white;
 }

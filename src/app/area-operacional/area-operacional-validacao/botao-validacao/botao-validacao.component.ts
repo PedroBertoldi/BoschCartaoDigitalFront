@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-botao-validacao',
@@ -8,8 +8,6 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class BotaoValidacaoComponent implements OnInit {
 
   @Input() variante!: 'ValidacaoCracha' | 'ValidacaoCPF' | 'ValidacaoEDV'
-
-  @Output() buttonClick = new EventEmitter();
   
   constructor() { }
 
