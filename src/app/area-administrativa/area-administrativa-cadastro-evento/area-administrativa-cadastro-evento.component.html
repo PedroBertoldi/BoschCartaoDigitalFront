@@ -12,8 +12,17 @@
       <h3>Formulário</h3>
     </div>
      <form [formGroup]='formCadastro'>
-        <input type="text" formControlName='nome' placeholder="Nome *" required/>
-        <input type="text" formControlName='descricao' placeholder="Descrição" />
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName='nome' placeholder="Ex: Natal 2021" required/>
+        <mat-error *ngIf='formCadastro.get("nome")?.hasError("required")'>
+          Nome é <strong>obrigatório</strong>
+         </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput type="text" formControlName='descricao' placeholder="Ex: Evento especial" />
+      </mat-form-field>
       <label>
         <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
         <div>

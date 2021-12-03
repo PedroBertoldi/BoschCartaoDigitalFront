@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms'
+import {FormBuilder, FormControl, Validators} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AdminService } from 'src/app/services/admin.service';
@@ -13,10 +13,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   formCadastro = this.formBuilder.group({
-    nome: '',
+    nome: new FormControl('',Validators.required),
     descricao: '',
-    inicio: '',
-    fim: ''
+    inicio: new FormControl('',Validators.required),
+    fim: new FormControl('',Validators.required)
   })
 
   dataInicio = ''
@@ -79,7 +79,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.formCadastro.value.nome !== '' || this.formCadastro.value.inicio !== '' || this.formCadastro.value.fim !== ''){
+    if(this.formCadastro.valid){
       let hoje = new Date
       hoje.setDate(hoje.getDate()-1)
 
@@ -89,6 +89,8 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
       } else {
         this.salvarDados()
       }
+    } else {
+      this.formCadastro.markAllAsTouched()
     }
   }
 

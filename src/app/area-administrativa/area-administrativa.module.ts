@@ -17,6 +17,7 @@ import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administ
 import { BuscarComponent } from './buscar/buscar.component';
 import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -40,7 +41,8 @@ import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-adminis
     MatIconModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule
   ]
 })
 export class AreaAdministrativaModule { }
