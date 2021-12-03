@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AreaPublicaRoutingModule } from './area-publica-routing.module';
 import { AreaPublicaComponent } from './area-publica.component';
-import { AreaPublicaLoginComponent } from './area-publica-login/area-publica-login.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
@@ -17,7 +16,6 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 @NgModule({
   declarations: [
     AreaPublicaComponent,
-    AreaPublicaLoginComponent,
     BeneficioTableComponent,
     AreaPublicaIndicarComponent
   ],

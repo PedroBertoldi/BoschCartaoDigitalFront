@@ -32,7 +32,7 @@ import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-adminis
     AreaAdministrativaConsultaBeneficiarioComponent,
     BuscarComponent,
     AreaAdministrativaCadastroBeneficioComponent,
-    AreaAdministrativaCadastroBeneficiariosComponent,
+    AreaAdministrativaCadastroBeneficiariosComponent
   ],
   imports: [
     CommonModule,

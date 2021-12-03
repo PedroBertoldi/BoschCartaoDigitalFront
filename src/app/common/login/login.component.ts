@@ -5,16 +5,16 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-area-publica-login',
-  templateUrl: './area-publica-login.component.html',
-  styleUrls: ['./area-publica-login.component.css']
+  selector: 'login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AreaPublicaLoginComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
   wrong = false;
   
-  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router, ) { 
     //login redirect if already logged in
     if(this.auth.getUser()){
       this.router.navigate(['/meus-beneficios']);
@@ -23,6 +23,8 @@ export class AreaPublicaLoginComponent implements OnInit {
 
   
   ngOnInit(): void {
+
+    
     this.loginForm = this.formBuilder.group({
             cpf: ['', Validators.required],
             nasc: ['', Validators.required],
