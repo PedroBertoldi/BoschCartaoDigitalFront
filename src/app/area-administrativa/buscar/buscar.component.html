@@ -1,0 +1,8 @@
+<div>
+  <mat-form-field>
+    <mat-label>Pesquisa</mat-label>
+    <input matInput type="text" placeholder="Ex: Nome" [value]='valorBuscado' (input)='valorBuscado = obterValor($event)' />
+  </mat-form-field>
+  <button (click)='limparValor()' (click)='limpar.emit()' class='neutro'>LIMPAR</button>
+  <button (click)='buscar.emit(valorBuscado)'>BUSCAR</button>
+</div>

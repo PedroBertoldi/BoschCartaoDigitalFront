@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { AdminService } from 'src/app/services/admin.service';
+
+interface Evento {
+  id: number,
+  nome: string,
+  dataInicio: Date,
+  dataFim: Date,
+  ativo: boolean,
+}
 
 @Component({
   selector: 'app-area-administrativa-consulta-evento',
@@ -7,37 +17,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
-  eventos = [
-    {
-      id: 1,
-      nome: 'Final de ano 2021',
-      inicio: '19-12-2021',
-      fim: '20-12-2021',
-    },
-    {
-      id: 2,
-      nome: 'Páscoa 2022',
-      inicio: '17-04-2022',
-      fim: '18-04-2022',
-    },
-    {
-      id: 3,
-      nome: 'Festa Junina 2022',
-      inicio: '23-06-2022',
-      fim: '24-06-2022',
-    },
-    {
-      id: 4,
-      nome: 'Carnaval 2022',
-      inicio: '25-02-2022',
-      fim: '26-02-2022',
-    },
-  ]
+  eventos: Evento[] = []
 
+  eventosBuscados: Evento[] = []
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.adminService.getEventos().pipe(first()).subscribe(
+      data => {
+          this.eventos = data.map((evento: any) => {
+            let hoje = new Date
+            hoje.setDate(hoje.getDate()-1)
+
+            return {
+              id: evento.id,
+              nome: evento.nome,
+              dataInicio: new Date(evento.dataInicio),
+              dataFim: new Date(evento.dataFim),
+              ativo: hoje < new Date(evento.dataFim),
+            }
+          })
+      
+    this.eventosBuscados = this.eventos
+  },
+  error => {
+      if(error.status == 401  || error.status == 400){
+        console.log("erro ao buscar os dados")
+      }
+      else{
+        console.log("problemas de conexao")
+      }
+  })
+
+  }
+  
+  buscar(valor: string): void {
+    if(valor !== '') {
+      this.eventosBuscados = this.eventos.filter(evento => evento.nome.toLowerCase().includes(valor.toLowerCase()) )
+    }
+  }
+  
+  limpar(): void {
+    this.eventosBuscados = this.eventos
   }
 
 }

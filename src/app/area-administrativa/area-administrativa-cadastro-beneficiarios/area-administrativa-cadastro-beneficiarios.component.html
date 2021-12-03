@@ -1,0 +1,73 @@
+<app-modal
+  [aberto]='modalAberto'
+  (confirmarData)="onSubmit()"
+  (fecharModal)="fecharModal()"
+  [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"'
+  tipoModal="confirmacao"
+></app-modal>
+<div class="max-container">
+  <h1>Beneficiários</h1>
+  <div class='container'>
+    <div class='cabecalho-macro'>
+      <h3>Formulário</h3>
+    </div>
+     <form [formGroup]='formBeneficiario'>
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName='nome' placeholder="Ex: Maria Souza" required/>
+        <mat-error *ngIf='formBeneficiario.get("nome")?.hasError("required")'>
+          Nome é <strong>obrigatório</strong>
+         </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>EDV</mat-label>
+          <input matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required/>
+          <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
+            EDV é <strong>obrigatório</strong>
+           </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input mask="000.000.000-00" matInput type="text" formControlName='cpf' placeholder="Ex: 999.999.999-99"/>
+            <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
+              Use apenas os <strong>11 números</strong> do CPF
+             </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Área</mat-label>
+            <input matInput type="text" formControlName='area' placeholder="Ex: CtP/MFO21" required/>
+            <mat-error *ngIf='formBeneficiario.get("area")?.hasError("required")'>
+              Área é <strong>obrigatório</strong>
+             </mat-error>
+      </mat-form-field>
+        <form [formGroup]='formSelecionarBeneficios'>
+          <div class="seletor-beneficio-cabecalho">
+            Benefícios *
+            <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
+          </div>
+          <div class="seletor-beneficios">
+          <ng-container *ngIf='beneficiosEvento.length === 0'>
+            <span>Nenhum benefício cadastrado nesse evento.</span>
+          </ng-container>
+          <ng-container *ngIf='beneficiosEvento.length > 0'>
+            <div *ngFor='let beneficio of beneficiosEvento'>
+              <mat-form-field>
+                <input matInput type="number" [formControlName]="'beneficio'+beneficio.id" value="0" [id]="(beneficio.id).toString()" (input)='inserirBeneficio($event)'>
+              </mat-form-field>
+              <span>x</span>
+              <label [for]='beneficio.id'>{{beneficio.nome}}</label>
+            </div>
+          </ng-container>
+        </div>
+      </form>
+      <mat-form-field>
+        <mat-label>Indicado</mat-label>
+        <input matInput type="text" formControlName='indicado' placeholder="Ex: João Silva" />
+      </mat-form-field>
+    </form>
+  </div>
+</div>
+<div class='menu-flutuante'>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
+    <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+</div>

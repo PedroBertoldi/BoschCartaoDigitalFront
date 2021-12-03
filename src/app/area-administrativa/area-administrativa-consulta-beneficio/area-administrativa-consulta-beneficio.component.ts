@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-interface Beneficio {
-  id: number,
+export interface Beneficio {
+  id: number | string,
   evento: number,
   nome: string,
 }
@@ -57,33 +57,27 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     },
   ];
 
+  idEventoFromRoute!: number;
+
   beneficios!: Beneficio[]
 
   buscaBeneficios!:Beneficio[]
-
-  valorBuscado: string = ''
-
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
-    const idEventoFromRoute = Number(routeParams.get('idEvento'));
+    this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === idEventoFromRoute);
+    this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute);
     this.buscaBeneficios = this.beneficios
   }
 
-  obterValor(event: Event): string {
-    return (event.target as HTMLInputElement).value;
-  }
-
-  buscar(): void {
-    this.buscaBeneficios = this.beneficios.filter(beneficio => beneficio.nome.toLowerCase().includes(this.valorBuscado.toLowerCase())) 
+  buscar(valor: string): void {
+    this.buscaBeneficios = this.beneficios.filter(beneficio => beneficio.nome.toLowerCase().includes(valor.toLowerCase())) 
   }
   
   limpar(): void {
-    this.valorBuscado = ''
     this.buscaBeneficios = this.beneficios
   }
 

@@ -1,0 +1,85 @@
+.container {
+  margin: 0 6rem;
+}
+
+.container > form {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "nome edv"
+    "cpf area"
+    "beneficios beneficios"
+    "indicado .";
+}
+
+.container > form > * {
+  margin: 0;
+}
+
+input[formControlName="nome"] {
+  grid-area: nome;
+}
+
+input[formControlName="edv"] {
+  grid-area: edv;
+}
+
+input[formControlName="cpf"] {
+  grid-area: cpf;
+}
+
+input[formControlName="area"] {
+  grid-area: area;
+}
+
+input[formControlName="indicado"] {
+  grid-area: indicado;
+}
+
+form > form {
+  grid-area: beneficios;
+  display: block;
+  padding: 0;
+}
+
+.seletor-beneficios {
+  background-color: #efefef;
+  border-radius: 0.25rem;
+  padding: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.seletor-beneficios mat-form-field {
+  text-align: center;
+  width: 2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.seletor-beneficios label {
+  margin-left: 1rem;
+  display: inline;
+}
+
+.seletor-beneficio-cabecalho {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button.neutro {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  box-shadow: var(--sombra);
+  color: black;
+  background-color: #efefef;
+}
