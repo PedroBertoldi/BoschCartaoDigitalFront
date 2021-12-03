@@ -70,13 +70,13 @@ export class AreaPublicaIndicarComponent implements OnInit {
 
 
   searchEdv(){
-    if(this.indicarForm.controls.edv.value.length==7){
+    if(this.indicarForm.controls.edv.value.length>2){
       this.indicar.getColaborador(this.indicarForm.controls.edv.value).pipe(first()).subscribe(data => {
                     this.indicarForm.controls.name.setValue(data.nomeCompleto);
                     this.notfound = false;
-                }, error=>{
-                  this.notfound = true;
-                  this.indicarForm.controls.edv.setValue('');
+                  }, error=>{
+                    this.notfound = true;
+                    this.indicarForm.controls.name.setValue('');
                 });
     }else{
       this.indicarForm.controls.name.setValue('');
