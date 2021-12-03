@@ -6,3 +6,11 @@
     align-items: center;
     justify-content: space-around;
 }
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

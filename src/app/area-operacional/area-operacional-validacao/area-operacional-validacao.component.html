@@ -1,5 +1,7 @@
 <div class="MainContainer">
     <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao>
-    <app-botao-validacao variante='ValidacaoCpf'></app-botao-validacao>
-    <app-botao-validacao variante='ValidacaoEdv'></app-botao-validacao>
+    <app-botao-validacao variante='ValidacaoCPF' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
+    <div [ngClass]="mostraCampoCPF === 'esconder' ? 'hide' : 'show'">EDV</div>
+    <app-botao-validacao variante='ValidacaoEDV' (buttonClick)="mostrarDiv($event)"></app-botao-validacao>
+    <div [ngClass]="mostraCampoEDV === 'esconder' ? 'hide' : 'show'">EDV</div>
 </div>

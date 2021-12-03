@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-botao-validacao',
@@ -7,8 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BotaoValidacaoComponent implements OnInit {
 
-  @Input() variante!: 'ValidacaoCracha' | 'ValidacaoCpf' | 'ValidacaoEdv'
+  @Input() variante!: 'ValidacaoCracha' | 'ValidacaoCPF' | 'ValidacaoEDV'
 
+  @Output() buttonClick = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit(): void {
