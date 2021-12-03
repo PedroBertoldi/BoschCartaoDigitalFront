@@ -11,4 +11,8 @@ export class AdminService {
   getEventos(){
     return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/Evento');
   }
+
+  getEventoById(eventoId: number){
+    return this.http.get<any>(`http://localhost:5000/api/AreaAdministrativa/Evento/${eventoId}`);
+  }
 }

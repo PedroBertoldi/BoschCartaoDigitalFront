@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: '', component: AreaAdministrativaComponent },
   { path: 'evento', component: AreaAdministrativaConsultaEventoComponent },
   { path: 'evento/cadastro', component: AreaAdministrativaCadastroEventoComponent },
+  { path: 'evento/:idEvento/editar', component: AreaAdministrativaCadastroEventoComponent },
   { path: 'evento/:idEvento/beneficios', component: AreaAdministrativaConsultaBeneficioComponent },
   { path: 'evento/:idEvento/beneficios/cadastro', component: AreaAdministrativaCadastroBeneficioComponent },
   { path: 'evento/:idEvento/beneficiarios', component: AreaAdministrativaConsultaBeneficiarioComponent },

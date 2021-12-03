@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-area-administrativa-cadastro-evento',
@@ -22,9 +25,38 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   tipoModal!: 'confirmacao' | 'atencao' 
 
-  constructor(private formBuilder: FormBuilder) { }
+  idEventoFromRoute!: number
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private adminService: AdminService) { }
 
   ngOnInit(): void {
+    if(this.router.url !== '/admin/evento/cadastro') {
+      const routeParams = this.route.snapshot.paramMap;
+      this.idEventoFromRoute = Number(routeParams.get('idEvento'));
+
+      this.adminService.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
+        data => {
+            this.formCadastro.setValue({
+              nome: data.nome,
+              descricao: data.descricao,
+              inicio: this.formatarData(new Date(data.dataInicio)),
+              fim: this.formatarData(new Date(data.dataFim))
+            })
+          },
+        error => {
+            if(error.status == 401  || error.status == 400){
+              console.log("erro ao buscar os dados")
+            }
+            else{
+              console.log("problemas de conexao")
+            }
+        })
+      
+      }
+  }
+
+  formatarData(data: Date): string {
+    return new Intl.DateTimeFormat('fr-CA').format(data)
   }
 
   fecharModal() {
