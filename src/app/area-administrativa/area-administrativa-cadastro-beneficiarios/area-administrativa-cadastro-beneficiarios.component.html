@@ -29,6 +29,9 @@
           <mat-form-field>
             <mat-label>CPF</mat-label>
             <input mask="000.000.000-00" matInput type="text" formControlName='cpf' placeholder="Ex: 999.999.999-99"/>
+            <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
+              Use apenas os <strong>11 números</strong> do CPF
+             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Área</mat-label>

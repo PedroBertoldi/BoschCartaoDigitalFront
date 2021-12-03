@@ -29,7 +29,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   formBeneficiario = this.formBuilder.group({
     nome: new FormControl('',Validators.required),
     edv: new FormControl('',Validators.required),
-    cpf: '',
+    cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
     area: new FormControl('',Validators.required),
     indicado: '',
     evento: 0,  
