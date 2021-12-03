@@ -31,7 +31,7 @@ mat-form-field {
     border-radius: 5px;
 }
 
-.currentIndication p {
+.currentIndication span {
     margin: auto auto auto 0;
 }
 

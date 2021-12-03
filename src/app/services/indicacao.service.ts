@@ -12,12 +12,11 @@ export class IndicacaoService {
     return this.http.get<any>('http://localhost:5000/api/AreaPublica/buscar-colaborador/'+ edv);
   }
 
-  removeIndicar(colaboradorId: number, direitos: number[]){
+  removeIndicar(colaboradorId: number){
     return this.http.put<any>('http://localhost:5000/api/AreaPublica/remover-indicacoes',
     {
       colaboradorId: colaboradorId,
-      eventoId:1,
-      direitosId:direitos
+      direitosId:[]
     })
   }
 
@@ -28,7 +27,6 @@ export class IndicacaoService {
       nomeCompleto: nomeCompleto,
       cpf: cpf,
       edv: edv,
-      eventoId: 1,
       direitosId: []
     });
   }

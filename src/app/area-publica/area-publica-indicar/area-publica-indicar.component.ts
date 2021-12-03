@@ -31,10 +31,15 @@ export class AreaPublicaIndicarComponent implements OnInit {
         });
 
     this.user= this.auth.getUser();
+    this.updateIndicado();
+  }
+
+  updateIndicado(){
     this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
-                data => {
-                    this.indicado = (data.direitos[0].indicado);
-                });
+                      data => {
+                          this.indicado = (data.direitos[0].indicado);      
+                          console.log(this.indicado)
+                     });
   }
 
   logout(){
@@ -43,23 +48,11 @@ export class AreaPublicaIndicarComponent implements OnInit {
   }
 
   removeIndicacao(){
-    this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
-                data => {
-                    let direitos: number[] =[];
-                    console.log(data.direitos)
-                    data.direitos.forEach((element: any) => {
-                      direitos.push(element.id)
-                    });
-                    this.indicar.removeIndicar(this.user.id,direitos).pipe(first()).subscribe(data=>{
-                        this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
-                          data => {
-                              this.indicado = (data.direitos[0].indicado);
-                              this.indicarForm.reset();
-                              this.submitted= false;
-                        });
-                    });
-                });
-
+    this.indicar.removeIndicar(this.user.id).pipe(first()).subscribe(data=>{
+      this.updateIndicado();
+      this.indicarForm.reset();
+      this.submitted= false;
+    });
   }
 
   submitIndicacao(){
@@ -67,19 +60,17 @@ export class AreaPublicaIndicarComponent implements OnInit {
     if(this.indicarForm.controls.cpf.invalid && this.indicarForm.controls.edv.invalid){
       return;
     }
-    this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(data => {
-                    this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
-                      data => {
-                          this.indicado = (data.direitos[0].indicado);
-                          this.indicarForm.reset();
-                          this.submitted= false;
-                     });
-                })
+    this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(
+                data => {
+                  this.updateIndicado();
+                });
+    this.indicarForm.reset();
+    this.submitted= false;
   }
 
 
   searchEdv(){
-    if(this.indicarForm.controls.edv.value.length==5){
+    if(this.indicarForm.controls.edv.value.length==7){
       this.indicar.getColaborador(this.indicarForm.controls.edv.value).pipe(first()).subscribe(data => {
                     this.indicarForm.controls.name.setValue(data.nomeCompleto);
                     this.notfound = false;

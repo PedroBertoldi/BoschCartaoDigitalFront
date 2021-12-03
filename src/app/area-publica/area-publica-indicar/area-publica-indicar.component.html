@@ -8,10 +8,15 @@
         </mat-menu>
     </div>
     <div *ngIf="indicado" class="currentIndication">
-        <p>Usu&aacute;rio <b>{{indicado.nomeCompleto}}</b>
-            <!--de <b>EDV: {{indicado.edv}}</b>--> est&aacute; indicado
+        <span>
+            <span *ngIf="indicado.edv">Colaborador</span>
+            <span *ngIf="!indicado.edv && indicado.cpf">Terceiro</span>
+            <b> {{indicado.nomeCompleto}}</b>
+            <span *ngIf="indicado.edv"> de <b>EDV: {{indicado.edv}}</b></span>
+            <span *ngIf="!indicado.edv && indicado.cpf"> de <b>CPF: {{indicado.cpf | mask:'000.000.000-00'}}</b></span>
+            est&aacute; indicado
             atualmente.
-        </p>
+        </span>
         <button (click)="removeIndicacao()">Remover Indica&ccedil;&atilde;o</button>
     </div>
 
@@ -46,7 +51,7 @@
         </div>
         <div *ngIf="idType =='edv'">
             <label for="edv">EDV</label>
-            <input mask="00000" [class.erro]="submitted && indicarForm.controls.edv.errors" formControlName="edv"
+            <input mask="0000000" [class.erro]="submitted && indicarForm.controls.edv.errors" formControlName="edv"
                 (input)="searchEdv()" type="text">
             <div *ngIf="submitted && indicarForm.controls.edv.errors" class="erro">Preencha o EDV do
                 indicado!
