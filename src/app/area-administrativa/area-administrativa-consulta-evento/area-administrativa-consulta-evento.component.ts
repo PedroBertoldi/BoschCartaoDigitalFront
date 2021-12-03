@@ -27,12 +27,15 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 this.adminService.getEventos().pipe(first()).subscribe(
   data => {
       this.eventos = data.map((evento: any) => {
+        let hoje = new Date
+        hoje.setDate(hoje.getDate()-1)
+
         return {
           id: evento.id,
           nome: evento.nome,
           dataInicio: new Date(evento.dataInicio),
           dataFim: new Date(evento.dataFim),
-          ativo: new Date < new Date(evento.dataFim),
+          ativo: hoje < new Date(evento.dataFim),
         }
       })
       
