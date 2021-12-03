@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms'
+import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AdminService } from 'src/app/services/admin.service';
@@ -12,13 +12,6 @@ import { AdminService } from 'src/app/services/admin.service';
 
 export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
-  formCadastro = this.formBuilder.group({
-    nome: new FormControl('',Validators.required),
-    descricao: '',
-    inicio: new FormControl('',Validators.required),
-    fim: new FormControl('',Validators.required)
-  })
-
   dataInicio = ''
 
   modalAberto = false
@@ -26,6 +19,24 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   tipoModal!: 'confirmacao' | 'atencao' 
 
   idEventoFromRoute!: number
+
+  validarDataFim(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      console.log(new Date(control.value))
+      
+
+      const anterior = new Date(control.value) < new Date(this.dataInicio);
+      console.log('dentro do return ' + anterior)
+      return anterior ? {dataAnterior: {value: control.value}} : null;
+    };
+  }
+
+  formCadastro = this.formBuilder.group({
+    nome: new FormControl('',Validators.required),
+    descricao: '',
+    inicio: new FormControl('',Validators.required),
+    fim: new FormControl('',[Validators.required,this.validarDataFim()])
+  })
 
   constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private adminService: AdminService) { }
 
@@ -55,6 +66,8 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
       }
   }
 
+
+
   formatarData(data: Date): string {
     return new Intl.DateTimeFormat('fr-CA').format(data)
   }
@@ -79,6 +92,8 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.formCadastro.valid)
+
     if(this.formCadastro.valid){
       let hoje = new Date
       hoje.setDate(hoje.getDate()-1)

@@ -18,29 +18,38 @@
         <mat-error *ngIf='formCadastro.get("nome")?.hasError("required")'>
           Nome é <strong>obrigatório</strong>
          </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Descrição</mat-label>
-        <input matInput type="text" formControlName='descricao' placeholder="Ex: Evento especial" />
-      </mat-form-field>
-      <label>
-        <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Descrição</mat-label>
+          <input matInput type="text" formControlName='descricao' placeholder="Ex: Evento especial" />
+        </mat-form-field>
         <div>
-          Data de Início *
-          <input type="date" formControlName='inicio' (input)="dataInicio = obterValor($event)"/>
-        </div>
-      </label>
-      <label>
-        <mat-icon aria-hidden="false" aria-label="Data de Fim">today</mat-icon>
-        <div>
-          Data de Fim *
-          <input type="date" formControlName='fim' [min]='dataInicio' />
-        </div>
-      </label>
-      <div class='menu-flutuante'>
-        <a routerLink='/admin/evento'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
-        <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+          <mat-icon>today</mat-icon>
+          <mat-form-field>
+            <mat-label>Data de Início</mat-label>
+            <input matInput type="date" placeholder="" formControlName='inicio' (input)="dataInicio = obterValor($event)" required/>
+            <mat-error *ngIf='formCadastro.get("inicio")?.hasError("required")'>
+              Data de Início é <strong>obrigatório</strong>
+             </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-icon>today</mat-icon>
+            <mat-form-field>
+              <mat-label>Data de Fim</mat-label>
+              <input matInput type="date" placeholder="" formControlName='fim' [min]='dataInicio' required/>
+              <mat-error *ngIf='formCadastro.get("fim")?.hasError("required")'>
+                Data de Fim é <strong>obrigatório</strong>
+               </mat-error>
+              <mat-error *ngIf='formCadastro.get("fim")?.hasError("dataAnterior")'>
+                Data de Fim não pode ser <strong>anterior</strong> à Data de Início 
+               </mat-error>
+            </mat-form-field>
       </div>
     </form>
   </div>
 </div>
+  <div class='menu-flutuante'>
+    <a routerLink='/admin/evento'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
+    <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+  </div>
