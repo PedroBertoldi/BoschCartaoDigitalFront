@@ -42,10 +42,6 @@ export class AreaPublicaIndicarComponent implements OnInit {
                      });
   }
 
-  logout(){
-    this.auth.logout();
-    this.router.navigate(['']);
-  }
 
   removeIndicacao(){
     this.indicar.removeIndicar(this.user.id).pipe(first()).subscribe(data=>{

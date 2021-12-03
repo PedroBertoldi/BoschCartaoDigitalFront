@@ -1,15 +1,7 @@
 <div class="center">
     <div class="menuContainer">
         <h1>Meus Benef&iacute;cios</h1>
-        <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
-        <mat-menu #menu="matMenu">
-            <button *ngIf="user.cargos.includes('HRL')" mat-menu-item routerLink="/admin/evento">Administrar
-                Eventos</button>
-            <button *ngIf="user.cargos.includes('Entrega')" mat-menu-item routerLink="/operacional">Configurar
-                Ilha</button>
-            <button mat-menu-item routerLink="/indicar">Indicar um Terceiro</button>
-            <button mat-menu-item (click)="logout()">Sair</button>
-        </mat-menu>
+        <app-menu></app-menu>
     </div>
     <p>{{user.nomeCompleto}}</p>
     <app-beneficio-table [data]="direitos"></app-beneficio-table>

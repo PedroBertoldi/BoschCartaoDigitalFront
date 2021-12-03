@@ -10,14 +10,16 @@ import { BeneficioTableComponent } from './beneficio-table/beneficio-table.compo
 import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica-indicar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MenuComponent } from './menu/menu.component'
 
   
 @NgModule({
   declarations: [
     AreaPublicaComponent,
     BeneficioTableComponent,
-    AreaPublicaIndicarComponent
+    AreaPublicaIndicarComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
