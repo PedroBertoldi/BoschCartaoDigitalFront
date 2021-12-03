@@ -51,19 +51,11 @@ form {
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
-  gap: 2rem;
   color: gray;
 }
 
-label {
-  display: flex;
-  align-items: center;
-}
-
-label div {
-  display: flex;
-  flex-direction: column;
-  margin-left: 2rem;
+form > *:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 /* TABELAS */
@@ -130,7 +122,7 @@ td.botoes > div {
   z-index: 1;
 }
 
-input {
+/* input {
   font-weight: bold;
   font-size: 1rem;
   color: gray;
@@ -146,4 +138,4 @@ input[readonly] {
 
 input[readonly]:focus {
   outline: none;
-}
+} */

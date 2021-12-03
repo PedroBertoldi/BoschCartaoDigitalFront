@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
   modalAberto = false;
 
   formBeneficio = this.formBuilder.group({
-    nome: '',
+    nome: new FormControl('',Validators.required),
     evento: 0,
   })
 
@@ -75,10 +75,13 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
       evento: this.idEventoFromRoute
     })
 
+    
     if(this.formBeneficio.valid){
       console.log(this.formBeneficio.value)
       this.formBeneficio.reset()
       this.abrirModal()
+    } else {
+      this.formBeneficio.markAllAsTouched()
     }
   }
 }

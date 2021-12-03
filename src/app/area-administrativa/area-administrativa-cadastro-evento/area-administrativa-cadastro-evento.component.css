@@ -1,3 +1,13 @@
 .container {
   margin: 0 6rem;
 }
+
+form div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}

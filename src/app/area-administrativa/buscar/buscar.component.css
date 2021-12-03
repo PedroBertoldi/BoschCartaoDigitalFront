@@ -3,7 +3,7 @@ div {
   align-items: center;
 }
 
-input {
+mat-form-field {
   margin-right: auto;
   width: 360px;
   max-width: 100%;

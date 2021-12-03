@@ -12,13 +12,21 @@
       <h3>Formulário</h3>
     </div>
      <form [formGroup]='formBeneficio'>
-        <input type="text" formControlName='nome' placeholder="Nome *" required/>
-        <label for='evento'>Evento</label>
-        <input type="text" name='evento' [value]="nomeEvento" readonly name='evento' />
-        <div class='menu-flutuante'>
-          <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficios"'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
-          <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
-      </div>
-    </form>
+       <mat-form-field>
+         <mat-label>Nome</mat-label>
+         <input matInput type="text" formControlName='nome' placeholder="Ex: Cesta Fria" required/>
+         <mat-error *ngIf='formBeneficio.get("nome")?.hasError("required")'>
+           Nome é <strong>obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Evento</mat-label>
+          <input matInput type="text" name='evento' [value]="nomeEvento" disabled name='evento' />
+        </mat-form-field>
+      </form>
+    </div>
   </div>
-</div>
+  <div class='menu-flutuante'>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficios"'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
+    <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+  </div>

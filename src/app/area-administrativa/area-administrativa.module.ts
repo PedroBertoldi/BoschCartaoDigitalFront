@@ -5,7 +5,6 @@ import { AreaAdministrativaRoutingModule } from './area-administrativa-routing.m
 import { AreaAdministrativaComponent } from './area-administrativa.component';
 import { AreaAdministrativaCadastroEventoComponent } from './area-administrativa-cadastro-evento/area-administrativa-cadastro-evento.component';
 import {MatIconModule} from '@angular/material/icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -17,7 +16,7 @@ import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administ
 import { BuscarComponent } from './buscar/buscar.component';
 import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
-
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -38,9 +37,9 @@ import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-adminis
     CommonModule,
     AreaAdministrativaRoutingModule,
     MatIconModule,
-    MatDatepickerModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
   ]
 })
 export class AreaAdministrativaModule { }
