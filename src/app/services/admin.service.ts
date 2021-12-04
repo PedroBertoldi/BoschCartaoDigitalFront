@@ -46,4 +46,13 @@ export class AdminService {
     }))
   }
 
+  createEvento(evento:any){
+      return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Evento',evento);
+  }
+
+  updateEvento(enventoId: number, evento:any){
+      return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+enventoId,evento);
+  }
+
+
 }
