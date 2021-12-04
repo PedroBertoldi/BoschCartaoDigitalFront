@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AdminService } from 'src/app/services/admin.service';
+import { BeneficioService } from 'src/app/services/beneficio.service';
 
 export interface Beneficio {
   id: number | string,
@@ -23,7 +23,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
 
   buscaBeneficios!:any 
 
-  constructor(private route: ActivatedRoute, private admin:AdminService) { }
+  constructor(private route: ActivatedRoute, private beneficioService:BeneficioService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -33,7 +33,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   }
 
   updateBeneficioList(){
-    this.admin.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+    this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
       data => {
           this.beneficios=data;
           this.buscaBeneficios = this.beneficios
@@ -41,7 +41,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   }
 
   deleteBeneficio(beneficio : any){
-    this.admin.deleteBeneficio(beneficio.id).pipe(first()).subscribe(
+    this.beneficioService.deleteBeneficio(beneficio.id).pipe(first()).subscribe(
       data =>{
         this.updateBeneficioList();
       }

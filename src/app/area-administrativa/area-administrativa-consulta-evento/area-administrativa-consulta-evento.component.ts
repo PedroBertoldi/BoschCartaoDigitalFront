@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { AdminService } from 'src/app/services/admin.service';
+import { EventoService } from 'src/app/services/evento.service';
 
 interface Evento {
   id: number,
@@ -21,14 +21,14 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
   eventosBuscados: Evento[] = []
 
-  constructor(private adminService: AdminService) { }
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit(): void {
     this.updateList();
   }
   
   updateList(){
-    this.adminService.getEventos().pipe(first()).subscribe(
+    this.eventoService.getEventos().pipe(first()).subscribe(
       data => {
           this.eventos = data.map((evento: any) => {
             let hoje = new Date
@@ -55,7 +55,7 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
   }
 
   deleteEvento(evento:any){
-    this.adminService.deleteEvento(evento.id).pipe(first()).subscribe(data=>{
+    this.eventoService.deleteEvento(evento.id).pipe(first()).subscribe(data=>{
         this.updateList();
     })
   }

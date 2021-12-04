@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AdminService } from 'src/app/services/admin.service';
+import { BeneficioService } from 'src/app/services/beneficio.service';
+import { EventoService } from 'src/app/services/evento.service';
 
 @Component({
   selector: 'app-area-administrativa-cadastro-beneficio',
@@ -21,20 +22,20 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
   })
   repeated: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private admin : AdminService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private eventoService : EventoService, private beneficioService : BeneficioService) { }
 
   ngOnInit(): void {
   
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
     this.idBeneficioFromRoute = Number(routeParams.get('idBeneficio'));
-    this.admin.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
+    this.eventoService.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
       data=>{
         this.nomeEvento = data.nome;
       });
 
     //todo use specific endpoint get beneficio by id
-      this.admin.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+      this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
       data=>{
         if(this.idBeneficioFromRoute){
           this.formBeneficio.controls.nome.setValue(data.filter((beneficio:any)=> beneficio.id == this.idBeneficioFromRoute)[0].descricao);
@@ -61,7 +62,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
           this.formBeneficio.reset()
           this.abrirModal()
         }else{
-          this.admin.updateBeneficio( this.idBeneficioFromRoute, this.formBeneficio.value.nome).pipe(first()).subscribe(
+          this.beneficioService.updateBeneficio( this.idBeneficioFromRoute, this.formBeneficio.value.nome).pipe(first()).subscribe(
             data=>{
               this.repeated=false;
               this.formBeneficio.reset()
@@ -75,7 +76,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
           });
         }
       }else{
-        this.admin.createBeneficio(this.idEventoFromRoute, this.formBeneficio.value.nome).pipe(first()).subscribe(
+        this.beneficioService.createBeneficio(this.idEventoFromRoute, this.formBeneficio.value.nome).pipe(first()).subscribe(
           data=>{
             this.repeated=false;
             this.formBeneficio.reset()
