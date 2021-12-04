@@ -22,17 +22,13 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   validarDataFim(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      console.log(new Date(control.value))
-      
-
       const anterior = new Date(control.value) < new Date(this.dataInicio);
-      console.log('dentro do return ' + anterior)
       return anterior ? {dataAnterior: {value: control.value}} : null;
     };
   }
 
   formCadastro = this.formBuilder.group({
-    nome: new FormControl('',Validators.required),
+    nomeEvento: new FormControl('',Validators.required),
     descricao: '',
     inicio: new FormControl('',Validators.required),
     fim: new FormControl('',[Validators.required,this.validarDataFim()])
@@ -48,7 +44,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
       this.adminService.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
         data => {
             this.formCadastro.setValue({
-              nome: data.nome,
+              nomeEvento: data.nome,
               descricao: data.descricao,
               inicio: this.formatarData(new Date(data.dataInicio)),
               fim: this.formatarData(new Date(data.dataFim))
@@ -85,15 +81,31 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   }
 
   salvarDados(): void {
-    console.log(this.formCadastro.value)
-    this.formCadastro.reset()
-    this.tipoModal = 'confirmacao'
-    this.abrirModal()
+    if(this.idEventoFromRoute){
+      this.adminService.updateEvento(this.idEventoFromRoute, this.formCadastro.value).pipe(first()).subscribe(
+              data=>{
+                this.formCadastro.reset()
+                this.tipoModal = 'confirmacao'
+                this.abrirModal()
+              },
+              error=>{
+                console.log(error.error.errors[0].message)
+            });
+    }else{
+      this.adminService.createEvento(this.formCadastro.value).pipe(first()).subscribe(
+              data=>{
+                this.formCadastro.reset()
+                this.tipoModal = 'confirmacao'
+                this.abrirModal()
+              },
+              error=>{
+                console.log(error.error.errors[0].message)
+            });
+    }
+    
   }
 
   onSubmit(): void {
-    console.log(this.formCadastro.valid)
-
     if(this.formCadastro.valid){
       let hoje = new Date
       hoje.setDate(hoje.getDate()-1)

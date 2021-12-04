@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AdminService } from 'src/app/services/admin.service';
 
 export interface Beneficio {
   id: number | string,
@@ -14,67 +16,32 @@ export interface Beneficio {
 })
 export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
 
-  beneficiosRegistrados:Beneficio[] = [
-    {
-      id: 1,
-      nome: "Kit Cesta Fria de Natal",
-      evento: 1
-    },
-    {
-      id: 2,
-      nome: "Kit Material Escolar de Natal",
-      evento: 1
-    },
-    {
-      id: 3,
-      nome: "Kit Cesta Seca de Natal",
-      evento: 1
-    },
-    {
-      id: 4,
-      nome: "Kit Cesta Fria de Páscoa",
-      evento: 2
-    },
-    {
-      id: 5,
-      nome: "Kit Material Escolar de Páscoa",
-      evento: 2
-    },
-    {
-      id: 6,
-      nome: "Kit Cesta Seca Junina",
-      evento: 2
-    },
-    {
-      id: 7,
-      nome: "Kit Material Escolar de Carnaval",
-      evento: 4
-    },
-    {
-      id: 8,
-      nome: "Kit Cesta Seca de Carnaval",
-      evento: 4
-    },
-  ];
 
   idEventoFromRoute!: number;
 
-  beneficios!: Beneficio[]
+  beneficios!: any
 
-  buscaBeneficios!:Beneficio[]
+  buscaBeneficios!:any 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private admin:AdminService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-    this.beneficios = this.beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute);
-    this.buscaBeneficios = this.beneficios
+    this.admin.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+      data => {
+          this.beneficios=data;
+          this.buscaBeneficios = this.beneficios
+          })
+  }
+
+  deleteBeneficio(beneficio : any){
+    this.admin.deleteBeneficioById(beneficio.id);
   }
 
   buscar(valor: string): void {
-    this.buscaBeneficios = this.beneficios.filter(beneficio => beneficio.nome.toLowerCase().includes(valor.toLowerCase())) 
+    this.buscaBeneficios = this.beneficios.filter((beneficio :any) => beneficio.descricaoNormalizada.includes(valor.toUpperCase())) 
   }
   
   limpar(): void {

@@ -1,9 +1,10 @@
-:host{
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 100%;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100%;
 }
-app-footer{
-    margin-top: auto;
+
+app-footer {
+  margin-top: auto;
 }

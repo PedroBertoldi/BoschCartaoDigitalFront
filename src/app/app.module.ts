@@ -11,6 +11,7 @@ import { LoginComponent } from './common/login/login.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgxMaskModule } from 'ngx-mask';
     ReactiveFormsModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

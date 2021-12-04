@@ -1,31 +1,49 @@
-.logintitle {
-    margin-left: 8%;
+.container {
+  width: 360px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+div.re-captcha {
+  padding-bottom: 1.3rem;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+div.re-captcha mat-error {
+  position: absolute;
+  bottom: 0;
+  font-size: 75%;
+}
+
+button {
+  font-size: 1rem;
 }
 
 .loginForm {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 5px auto 5px auto;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 5px auto 5px auto;
 }
 
 .loginForm button {
-    background-color: #007bff;
-    color: #cee8ff;
-    width: fit-content;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px 5px 10px;
-    margin: 10px;
+  background-color: #007bff;
+  color: #cee8ff;
+  width: fit-content;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  margin: 10px;
 }
 
 .loginForm div {
-    margin: 5px;
-    display: flex;
-    flex-direction: column;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .erro {
-    color: red;
-    border-color: red
+  color: red;
+  border-color: red;
 }
