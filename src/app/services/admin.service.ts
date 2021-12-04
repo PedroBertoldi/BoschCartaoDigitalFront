@@ -34,16 +34,8 @@ export class AdminService {
     return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Beneficio/'+beneficioId, {beneficio: nome})
   }
 
-  //todo change to single post alternative to be developed ind back end
   createBeneficio(eventoId:number, nome:string){
-    return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Beneficio', {beneficio: nome})
-    .pipe(map(data => {
-        this.http.post<any>(`http://localhost:5000/api/AreaAdministrativa/Beneficio/criar-relacao`,
-        {
-          beneficioId: data.id,
-          eventoId: eventoId
-        }).pipe(first()).subscribe();
-    }))
+    return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Evento/criar-beneficio-no-evento', {beneficio: nome,eventoId:eventoId})
   }
 
   createEvento(evento:any){
