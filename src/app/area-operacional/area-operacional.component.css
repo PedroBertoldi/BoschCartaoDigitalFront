@@ -9,10 +9,6 @@ h1 {
     text-align: center;
 }
 
-.container {
-    
-}
-
 .containerCards {
     display: inline-flex;
     justify-content: start;
@@ -21,8 +17,15 @@ h1 {
 
 .card {
     width: 20%;
-    border: solid 1px #000;
-    margin: 5px;
+    margin: 10px 7px;
     padding: 20px;
     text-align: center;
+    background-color: rgba(88, 88, 88, 0.144);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
+}
+
+.beneficios {
+    margin-bottom: 15px;
 }
