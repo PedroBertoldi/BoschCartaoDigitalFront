@@ -9,23 +9,13 @@ h1 {
     text-align: center;
 }
 
-.containerCards {
-    display: inline-flex;
-    justify-content: start;
-    flex-wrap: wrap;
-}
-
-.card {
-    width: 20%;
-    margin: 10px 7px;
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(88, 88, 88, 0.144);
-    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
-}
-
 .beneficios {
     margin-bottom: 15px;
+}
+
+button {
+    margin: 0 auto;
+    margin-bottom: 50px;
+    width: 20vw;
+    height: 7vh;
 }

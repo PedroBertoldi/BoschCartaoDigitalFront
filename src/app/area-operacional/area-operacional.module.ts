@@ -10,12 +10,14 @@ import { BotaoValidacaoComponent } from './area-operacional-validacao/botao-vali
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatIconModule } from '@angular/material/icon';
+import { CardColaboradorComponent } from './card-colaborador/card-colaborador.component';
 
 @NgModule({
   declarations: [
     AreaOperacionalComponent,
     AreaOperacionalValidacaoComponent,
-    BotaoValidacaoComponent
+    BotaoValidacaoComponent,
+    CardColaboradorComponent
   ],
   imports: [
     CommonModule,
