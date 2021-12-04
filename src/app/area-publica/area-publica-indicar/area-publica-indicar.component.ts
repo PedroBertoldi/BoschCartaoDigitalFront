@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { DireitoService } from 'src/app/services/direito.service';
 import { IndicacaoService } from 'src/app/services/indicacao.service';
 @Component({
   selector: 'app-area-publica-indicar',
@@ -12,7 +11,7 @@ import { IndicacaoService } from 'src/app/services/indicacao.service';
 })
 export class AreaPublicaIndicarComponent implements OnInit {
   
-  constructor(private auth:AuthenticationService, private direito:DireitoService, 
+  constructor(private auth:AuthenticationService, 
     private router: Router, private formBuilder:FormBuilder, private indicar: IndicacaoService) { }
     idType= "edv";
     user: any;
@@ -35,10 +34,9 @@ export class AreaPublicaIndicarComponent implements OnInit {
   }
 
   updateIndicado(){
-    this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
-                      data => {
-                          this.indicado = (data.direitos[0].indicado);      
-                          console.log(this.indicado)
+    this.indicar.getIndicado(this.user.id, this.user.nasc).pipe(first()).subscribe(
+                    data => {
+                          this.indicado = data;      
                      });
   }
 
