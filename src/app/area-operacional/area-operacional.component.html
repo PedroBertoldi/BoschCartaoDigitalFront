@@ -4,8 +4,10 @@
     <h3>{{ beneficio.nome }}</h3>
 
     <div class="container">
-        <div *ngFor="let beneficiario of beneficiarios" class="card">
-            <span>{{ beneficiario.nome }}</span>
+        <div class="containerCards">
+            <div *ngFor="let beneficiario of beneficiarios" class="card">
+                <span>{{ beneficiario.nome }}</span>
+            </div>
         </div>
     </div>
 </div>

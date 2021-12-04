@@ -10,11 +10,19 @@ h1 {
 }
 
 .container {
-    display: flex;
+    
+}
+
+.containerCards {
+    display: inline-flex;
+    justify-content: start;
+    flex-wrap: wrap;
 }
 
 .card {
+    width: 20%;
     border: solid 1px #000;
     margin: 5px;
     padding: 20px;
+    text-align: center;
 }
