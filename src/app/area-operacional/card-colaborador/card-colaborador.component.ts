@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardColaboradorComponent implements OnInit {
 
+  check: boolean = false;
+
   beneficiarios: any[] = [
     {
       id: 1,
@@ -188,6 +190,10 @@ export class CardColaboradorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selecionarColaborador() {
+    this.check = !this.check;
   }
 
 }

@@ -5,12 +5,47 @@
 }
 
 .card {
-    width: 20%;
+    width: 19%;
     margin: 10px 7px;
-    padding: 20px;
-    text-align: center;
+    padding: 0px 20px 20px 20px;
+    text-align: left;
     background-color: rgba(88, 88, 88, 0.144);
     box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+
+.card:hover .selection {
+    opacity: 1;
+}
+
+.card.mat-elevation-z4 .selection {
+    opacity: 1;
+}
+
+.card-selected {
+    border: 2px solid #289328;
+    box-shadow: 6px 6px 5px 0px rgba(40,147,40,0.75);
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(40,147,40,0.75);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(40,147,40,0.75);
+}
+
+.selection {
+    opacity: 0;
+    cursor: pointer;
+    color: #289328;
+    position: relative;
+    background: #fff;
+    right:-105%;
+    top:-1vh;
+    border-radius: 100%;
+    height: 24px;
+    width: 24px;
+    float: right;
+}
+
+.elementos-card {
+    display: flex;
+    flex-direction: column;
 }
