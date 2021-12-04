@@ -82,7 +82,9 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   salvarDados(): void {
     if(this.idEventoFromRoute){
-      this.adminService.updateEvento(this.idEventoFromRoute, this.formCadastro.value).pipe(first()).subscribe(
+      let event = this.formCadastro.value;
+      event.id= this.idEventoFromRoute;
+      this.adminService.updateEvento(event).pipe(first()).subscribe(
               data=>{
                 this.formCadastro.reset()
                 this.tipoModal = 'confirmacao'

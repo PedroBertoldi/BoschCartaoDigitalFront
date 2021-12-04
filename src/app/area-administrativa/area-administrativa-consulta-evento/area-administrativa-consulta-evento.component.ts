@@ -24,6 +24,10 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
+    this.updateList();
+  }
+  
+  updateList(){
     this.adminService.getEventos().pipe(first()).subscribe(
       data => {
           this.eventos = data.map((evento: any) => {
@@ -38,20 +42,24 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
               ativo: hoje < new Date(evento.dataFim),
             }
           })
-      
-    this.eventosBuscados = this.eventos
-  },
-  error => {
-      if(error.status == 400){
-        console.log("erro ao buscar os dados")
-      }
-      else{
-        console.log("problemas de conexao")
-      }
-  })
-
+          this.eventosBuscados = this.eventos
+      },
+      error => {
+            if(error.status == 400){
+              console.log("erro ao buscar os dados")
+            }
+            else{
+              console.log("problemas de conexao")
+            }
+        });
   }
-  
+
+  deleteEvento(evento:any){
+    this.adminService.deleteEvento(evento.id).pipe(first()).subscribe(data=>{
+        this.updateList();
+    })
+  }
+
   buscar(valor: string): void {
     if(valor !== '') {
       this.eventosBuscados = this.eventos.filter(evento => evento.nome.toLowerCase().includes(valor.toLowerCase()) )

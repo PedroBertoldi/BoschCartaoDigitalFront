@@ -42,8 +42,13 @@ export class AdminService {
       return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Evento',evento);
   }
 
-  updateEvento(enventoId: number, evento:any){
-      return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+enventoId,evento);
+  updateEvento(evento:any){
+      return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+evento.id,evento);
+  }
+
+  //todo this method is broken at the backend, wait for solution
+  deleteEvento(eventoId:number){
+    return this.http.delete<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+eventoId);
   }
 
 

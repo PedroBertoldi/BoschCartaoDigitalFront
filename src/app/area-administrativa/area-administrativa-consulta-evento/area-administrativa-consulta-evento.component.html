@@ -1,6 +1,8 @@
 <div class="max-container">
   <div class='menu-flutuante'>
-    <a routerLink='/admin/evento/cadastro'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
+    <a routerLink='/admin/evento/cadastro'>
+      <app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante>
+    </a>
   </div>
   <h1>Eventos</h1>
   <div class='container'>
@@ -11,42 +13,54 @@
       <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
       <div class="tabela-overflow">
         <table>
-        <tr class='cabecalho'>
-          <td>Excluir</td>
-          <td>Nome do Evento</td>
-          <td>Data de Início</td>
-          <td>Data de Fim</td>
-          <td>Ativo</td>
-          <td>Ações</td>
-        </tr>
-        <tr *ngIf='eventos.length ===  0'>
-          <td colspan="100%">
-            Ainda não foi registrado nenhum evento.
-          </td>
-        </tr>
-        <ng-container *ngIf='eventos.length > 0'>
-          <tr *ngIf='eventosBuscados.length ===  0'>
+          <tr class='cabecalho'>
+            <td>Excluir</td>
+            <td>Nome do Evento</td>
+            <td>Data de Início</td>
+            <td>Data de Fim</td>
+            <td>Ativo</td>
+            <td>Ações</td>
+          </tr>
+          <tr *ngIf='eventos.length ===  0'>
             <td colspan="100%">
-              Nenhum registro encontrado.
+              Ainda não foi registrado nenhum evento.
             </td>
           </tr>
-        <tr *ngFor='let evento of eventosBuscados'>
-          <td class="botoes"> <div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
-          <td>{{evento.nome}}</td>
-          <td>{{evento.dataInicio | date : 'dd/MM/yyyy'}}</td>
-          <td>{{evento.dataFim | date : 'dd/MM/yyyy'}}</td>
-          <td class='icone'><mat-icon [class]="evento.ativo ? 'ativo' : ''">{{evento.ativo ? 'done' : 'close'}}</mat-icon></td>
-          <td class="botoes">
-            <div>
-              <a [routerLink]="evento.id + '/beneficiarios'"><app-botao-acao variante='beneficiarios'></app-botao-acao></a>
-              <a [routerLink]="evento.id + '/beneficios'"><app-botao-acao variante='beneficios'></app-botao-acao></a>
-              <a [routerLink]="evento.id + '/editar'"><app-botao-acao variante='editar'></app-botao-acao></a>
-            </div>
-          </td>
-        </tr>
-      </ng-container>
-      </table>
-    </div>
+          <ng-container *ngIf='eventos.length > 0'>
+            <tr *ngIf='eventosBuscados.length ===  0'>
+              <td colspan="100%">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+            <tr *ngFor='let evento of eventosBuscados'>
+              <td class="botoes">
+                <div>
+                  <app-botao-acao (click)="deleteEvento(evento)" variante='excluir'></app-botao-acao>
+                </div>
+              </td>
+              <td>{{evento.nome}}</td>
+              <td>{{evento.dataInicio | date : 'dd/MM/yyyy'}}</td>
+              <td>{{evento.dataFim | date : 'dd/MM/yyyy'}}</td>
+              <td class='icone'>
+                <mat-icon [class]="evento.ativo ? 'ativo' : ''">{{evento.ativo ? 'done' : 'close'}}</mat-icon>
+              </td>
+              <td class="botoes">
+                <div>
+                  <a [routerLink]="evento.id + '/beneficiarios'">
+                    <app-botao-acao variante='beneficiarios'></app-botao-acao>
+                  </a>
+                  <a [routerLink]="evento.id + '/beneficios'">
+                    <app-botao-acao variante='beneficios'></app-botao-acao>
+                  </a>
+                  <a [routerLink]="evento.id + '/editar'">
+                    <app-botao-acao variante='editar'></app-botao-acao>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
     </div>
     <span class='numero-registros'>Mostrando de 1 até 15 de {{eventosBuscados.length}} registros.</span>
   </div>
