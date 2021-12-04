@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 
 @Component({
   selector: 'login',
@@ -13,10 +14,15 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
   wrong = false;
-  adminLogin= false;
+  area:"public"|"admin"|"ops"= "public";
   
   constructor(private formBuilder: FormBuilder, private auth :AuthenticationService, private router: Router, private active: ActivatedRoute) { 
-    this.adminLogin= this.router.routerState.snapshot.url=='/admin';
+    if(this.router.routerState.snapshot.url=='/admin'){
+      this.area = "admin" ;
+    }
+    else if(this.router.routerState.snapshot.url =="/operacional"){
+      this.area= "ops";
+    }
     //login redirect if already logged in
     if(this.auth.getUser()){
       this.redirect();
@@ -34,11 +40,13 @@ export class LoginComponent implements OnInit {
   }
 
   redirect(){
-    if(this.adminLogin){
+    if(this.area == "admin"){
         this.router.navigate(['admin/evento']);
+      } else if(this.area =="ops"){
+        this.router.navigate(['operacional/validacao']);
       }else{
         this.router.navigate(['/meus-beneficios']);
-      }
+    }
   }
 
   login(){
@@ -60,9 +68,6 @@ export class LoginComponent implements OnInit {
                       console.log("problemas de conexao")
                     }
                 });;
-  }
-  resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
 }

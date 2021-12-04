@@ -1,32 +1,36 @@
 <div class="max-container">
-<form [formGroup]="loginForm" class="container" (ngSubmit)="login()">
-    <h1 class="logintitle">Efetuar Login<span *ngIf="adminLogin"> Adminstrativo</span></h1>
-    <div *ngIf="submitted && wrong" class="erro">
-        CPF ou Senha incorretos
-    </div>
-    <mat-form-field>
-        <mat-label>CPF</mat-label>
-        <input matInput mask="000.000.000-00" formControlName="cpf" type="text"
-            [class.erro]="submitted && loginForm.controls.cpf.errors">
-        <mat-error *ngIf='submitted && loginForm.controls.cpf.errors'>
-            Por favor <strong>preencha</strong> o CPF
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Data de Nascimento</mat-label>
-        <input matInput formControlName="nasc" type="date" [class.erro]="submitted && loginForm.controls.nasc.errors">
-        <mat-error *ngIf='submitted && loginForm.controls.nasc.errors'>
-            Por favor <strong>preencha</strong> a Data de Nascimento
-        </mat-error>
-    </mat-form-field>
-    <div class='re-captcha'>
+    <form [formGroup]="loginForm" class="container" (ngSubmit)="login()">
+        <h1 class="logintitle">Efetuar Login
+            <span *ngIf="area == 'admin'"> Adminstrativo</span>
+            <span *ngIf="area == 'ops'"> Operacional</span>
+        </h1>
+        <div *ngIf="submitted && wrong" class="erro">
+            CPF ou Senha incorretos
+        </div>
+        <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input matInput mask="000.000.000-00" formControlName="cpf" type="text"
+                [class.erro]="submitted && loginForm.controls.cpf.errors">
+            <mat-error *ngIf='submitted && loginForm.controls.cpf.errors'>
+                Por favor <strong>preencha</strong> o CPF
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput formControlName="nasc" type="date"
+                [class.erro]="submitted && loginForm.controls.nasc.errors">
+            <mat-error *ngIf='submitted && loginForm.controls.nasc.errors'>
+                Por favor <strong>preencha</strong> a Data de Nascimento
+            </mat-error>
+        </mat-form-field>
+        <div class='re-captcha'>
             <re-captcha formControlName="captcha" siteKey="6LfAmG8dAAAAANZLkyxiY-zTxk3XyZEaua-_ErjI"></re-captcha>
             <mat-error *ngIf='submitted && loginForm.controls.captcha.errors'>
                 Por favor <strong>preencha</strong> o reCAPTCHA
             </mat-error>
-    </div>
-    <button type="submit">Confirmar</button>
-</form>
+        </div>
+        <button type="submit">Confirmar</button>
+    </form>
 </div>
 
 <script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
