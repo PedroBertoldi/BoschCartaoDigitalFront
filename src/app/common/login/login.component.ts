@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
                     this.redirect();
                 },
                 error => {
-                    if(error.status == 401  || error.status == 400){
+                    if(error.status == 400){
                       this.wrong = true;
                     }
                     else{

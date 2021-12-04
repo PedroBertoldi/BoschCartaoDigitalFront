@@ -51,7 +51,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
             })
           },
         error => {
-            if(error.status == 401  || error.status == 400){
+            if(error.status == 400){
               console.log("erro ao buscar os dados")
             }
             else{
