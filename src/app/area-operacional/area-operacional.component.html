@@ -1,1 +1,14 @@
-<p>area-operacional works!</p>
+<h1>Titulo</h1>
+
+<div *ngFor="let beneficio of beneficios" class="beneficios"> 
+    <h3>{{ beneficio.nome }}</h3>
+
+    <div class="container">
+        <div class="containerCards">
+            <div *ngFor="let beneficiario of beneficiarios" class="card">
+                <span>{{ beneficiario.nome }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="submit">Confirmar</button>
