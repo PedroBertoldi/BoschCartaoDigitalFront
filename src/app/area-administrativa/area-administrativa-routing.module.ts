@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'evento/:idEvento/editar', component: AreaAdministrativaCadastroEventoComponent, canActivate:[AdminGuardService]  },
   { path: 'evento/:idEvento/beneficios', component: AreaAdministrativaConsultaBeneficioComponent, canActivate:[AdminGuardService] },
   { path: 'evento/:idEvento/beneficios/cadastro', component: AreaAdministrativaCadastroBeneficioComponent, canActivate:[AdminGuardService] },
+  { path: 'evento/:idEvento/beneficios/:idBeneficio/editar', component: AreaAdministrativaCadastroBeneficioComponent, canActivate:[AdminGuardService] },
   { path: 'evento/:idEvento/beneficiarios', component: AreaAdministrativaConsultaBeneficiarioComponent, canActivate:[AdminGuardService] },
   { path: 'evento/:idEvento/beneficiarios/cadastro', component: AreaAdministrativaCadastroBeneficiariosComponent, canActivate:[AdminGuardService] }
 ];

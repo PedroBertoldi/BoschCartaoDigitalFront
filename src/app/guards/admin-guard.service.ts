@@ -12,7 +12,6 @@ export class AdminGuardService implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.auth.getUser();
         if (currentUser) {
-          console.log(currentUser.cargos)
           if(currentUser.cargos.includes('HRL')){
             return true;
           } else{
