@@ -29,6 +29,10 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
+    this.updateBeneficioList();
+  }
+
+  updateBeneficioList(){
     this.admin.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
       data => {
           this.beneficios=data;
@@ -37,7 +41,11 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   }
 
   deleteBeneficio(beneficio : any){
-    this.admin.deleteBeneficioById(beneficio.id);
+    this.admin.deleteBeneficio(beneficio.id).pipe(first()).subscribe(
+      data =>{
+        this.updateBeneficioList();
+      }
+    );
   }
 
   buscar(valor: string): void {

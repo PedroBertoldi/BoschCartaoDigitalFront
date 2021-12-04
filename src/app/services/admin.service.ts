@@ -21,12 +21,13 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:5000/api/AreaAdministrativa/Evento/${eventoId}/listar-beneficios`);
   }
 
-  deleteBeneficioById(beneficioId: number){
-    console.log("should delete beneficio :"+beneficioId);
-  }
 
   getBeneficioById(beneficioId: number){
     console.log("should return beneficio by id")
+  }
+
+  deleteBeneficio(beneficioId:number){
+    return this.http.delete<any>('http://localhost:5000/api/AreaAdministrativa/Beneficio/'+beneficioId);
   }
 
 
@@ -46,7 +47,6 @@ export class AdminService {
       return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+evento.id,evento);
   }
 
-  //todo this method is broken at the backend, wait for solution
   deleteEvento(eventoId:number){
     return this.http.delete<any>('http://localhost:5000/api/AreaAdministrativa/Evento/'+eventoId);
   }
