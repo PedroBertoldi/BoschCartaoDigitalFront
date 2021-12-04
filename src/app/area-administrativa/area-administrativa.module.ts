@@ -17,6 +17,8 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
 import {MatInputModule} from '@angular/material/input';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthTokenInterceptor } from '../interceptor/auth-token.interceptor';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-  ]
+  ],
+  
 })
 export class AreaAdministrativaModule { }
