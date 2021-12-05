@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { BeneficiarioService } from 'src/app/services/beneficiario.service';
+import { BeneficioService } from 'src/app/services/beneficio.service';
 import { Beneficio } from '../area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 
 @Component({
@@ -16,7 +19,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   modalAberto = false;
 
-  beneficiosEvento!: Beneficio[]
+  beneficiosEvento!: any[]
 
   beneficiosSelecionados: {
     id: number,
@@ -31,105 +34,71 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     edv: new FormControl('',Validators.required),
     cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
     area: new FormControl('',Validators.required),
-    indicado: '',
-    evento: 0,  
+    newBeneficio: new FormControl(''),
     beneficios: [],
-    dataInclusao: new Date,
   })
+  idColaboradorFromRoute!: number;
+  colaborador: any;
+  evento: any;
+  direitos: any;
+  newBeneficio!:any;
+  areas: any;
+  area: any;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService) { }
 
   ngOnInit(): void {
-    const eventosRegistrados = [
-      {
-        id: 1,
-        nome: 'Final de ano 2021',
-        inicio: new Date('2021-12-19'),
-        fim: new Date('2021-12-20'),
-        ativo: true,
-      },
-      {
-        id: 2,
-        nome: 'Páscoa 2022',
-        inicio: new Date('2022-04-17'),
-        fim: new Date('2022-04-18'),
-        ativo: false,
-      },
-      {
-        id: 3,
-        nome: 'Festa Junina 2022',
-        inicio: new Date('2022-06-23'),
-        fim: new Date('2022-06-24'),
-        ativo: false,
-      },
-      {
-        id: 4,
-        nome: 'Carnaval 2022',
-        inicio: new Date('2022-02-25'),
-        fim: new Date('2022-02-26'),
-        ativo: false,
-      },
-    ]
 
-    const beneficiosRegistrados = [
-      {
-        id: 1,
-        nome: "Kit Cesta Fria de Natal",
-        evento: 1
-      },
-      {
-        id: 2,
-        nome: "Kit Material Escolar de Natal",
-        evento: 1
-      },
-      {
-        id: 3,
-        nome: "Kit Cesta Seca de Natal",
-        evento: 1
-      },
-      {
-        id: 4,
-        nome: "Kit Cesta Fria de Páscoa",
-        evento: 2
-      },
-      {
-        id: 5,
-        nome: "Kit Material Escolar de Páscoa",
-        evento: 2
-      },
-      {
-        id: 6,
-        nome: "Kit Cesta Seca Junina",
-        evento: 2
-      },
-      {
-        id: 7,
-        nome: "Kit Material Escolar de Carnaval",
-        evento: 4
-      },
-      {
-        id: 8,
-        nome: "Kit Cesta Seca de Carnaval",
-        evento: 4
-      },
-    ];
-
+    
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
-    if(eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)) {
-      this.nomeEvento = eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)?.nome
-      this.beneficiosEvento = beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute)
+    this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
+    
+    
+    if(this.idColaboradorFromRoute){
+      this.beneficiarioService.getBeneficiarioById(this.idEventoFromRoute,this.idColaboradorFromRoute).pipe(first()).subscribe(
+        data=>{
+          this.colaborador = data.colaborador;
+          this.evento = data.evento;
+          this.direitos = data.direitos;
+          this.formSelecionarBeneficios = this.formBuilder.group(this.construtorFormGroup())
+          this.formBeneficiario.setValue({
+            ...(this.formBeneficiario.value),
+            nome: this.colaborador.nomeCompleto,
+            edv: this.colaborador.edv,
+            cpf: this.colaborador.cpf,
+          })
+          this.area = this.colaborador.unidadeOrganizacional.id;
+        }
+        )
+        this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+          data=>{
+            this.beneficiosEvento = data;
+          }
+          )
+        this.beneficiarioService.getAreas().pipe(first()).subscribe(
+          data=>{
+            this.areas =data;
+          }
+        )
+          
+
     }
 
-    this.formSelecionarBeneficios = this.formBuilder.group(this.construtorFormGroup())
+
+    // if(eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)) {
+    //   this.nomeEvento = eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)?.nome
+    //   this.beneficiosEvento = beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute)
+    // }
+
+    
   }
 
   construtorFormGroup(): any {
     let grupo: any = {};
-
-    for(let beneficio of this.beneficiosEvento) {
-      const key = 'beneficio' + beneficio.id
-      grupo[key] = 0
+    for(let direito of this.direitos) {
+      const key = 'direito' + direito.id
+      grupo[key] = 1
     }
 
     return grupo;
@@ -164,12 +133,16 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     }
   }
 
+  adicionarBeneficio(){
+    this.direitos.push({beneficio:this.newBeneficio})
+    this.formSelecionarBeneficios = this.formBuilder.group(this.construtorFormGroup());
+  }
+
   onSubmit(): void {
     this.formBeneficiario.setValue({
       ...(this.formBeneficiario.value),
       evento: this.idEventoFromRoute,
       beneficios: this.beneficiosSelecionados,
-      dataInclusao: new Date,
     })
 
     if(this.formBeneficiario.valid){

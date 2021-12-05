@@ -2,7 +2,7 @@
   margin: 0 6rem;
 }
 
-.container > form {
+.container>form {
   display: grid;
   gap: 1rem;
   grid-template-areas:
@@ -12,7 +12,7 @@
     "indicado .";
 }
 
-.container > form > * {
+.container>form>* {
   margin: 0;
 }
 
@@ -36,7 +36,7 @@ input[formControlName="indicado"] {
   grid-area: indicado;
 }
 
-form > form {
+form>form {
   grid-area: beneficios;
   display: block;
   padding: 0;
@@ -70,9 +70,17 @@ input::-webkit-inner-spin-button {
 
 .seletor-beneficio-cabecalho {
   margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex
+}
+
+
+.seletor-beneficio-cabecalho mat-form-field {
+  margin-left: auto;
+}
+
+.seletor-beneficio-cabecalho button {
+  height: fit-content;
+  margin-bottom: auto;
 }
 
 button.neutro {
@@ -82,4 +90,5 @@ button.neutro {
   box-shadow: var(--sombra);
   color: black;
   background-color: #efefef;
+  margin: 2px
 }

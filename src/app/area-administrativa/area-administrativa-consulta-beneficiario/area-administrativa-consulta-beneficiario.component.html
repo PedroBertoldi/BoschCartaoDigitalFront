@@ -46,14 +46,14 @@
               <td>{{beneficiario.colaborador.edv}}</td>
               <td>{{beneficiario.colaborador.nomeCompleto}}</td>
               <td>{{beneficiario.colaborador.cpf | mask:"000.000.000-00"}}</td>
-              <td>{{beneficiario.colaborador.unidadeOrganizacional.descricao}}</td>
+              <td>{{beneficiario.colaborador.unidadeOrganizacional?.descricao}}</td>
               <td class="produtos">
                 <div>
                   <span *ngFor='let beneficio of beneficiario.direitos'>1x
                     {{beneficio.beneficio.descricao}}</span>
                 </div>
               </td>
-              <td>{{beneficiario.direitos.Indicado}}</td>
+              <td>{{beneficiario.indicado?.nomeCompleto}}</td>
               <td class="botoes">
                 <div>
                   <app-botao-acao variante='editar' [routerLink]="beneficiario.colaborador.id+'/editar' ">

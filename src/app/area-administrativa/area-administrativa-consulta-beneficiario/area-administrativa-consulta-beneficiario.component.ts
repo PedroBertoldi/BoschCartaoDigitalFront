@@ -23,7 +23,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
-    this.beneficiarioService.getBeneficiario(this.idEventoFromRoute).pipe(first()).subscribe(
+    this.beneficiarioService.getBeneficiarios(this.idEventoFromRoute).pipe(first()).subscribe(
       data=>{
         this.beneficiarios= data.colaboradoresDireitos;
         this.buscaBeneficiarios = this.beneficiarios

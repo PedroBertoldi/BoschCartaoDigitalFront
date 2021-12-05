@@ -18,6 +18,7 @@ import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrat
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
 import {MatInputModule} from '@angular/material/input';
 import { NgxMaskModule } from 'ngx-mask';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatIconModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatSelectModule,
     MatInputModule,
     NgxMaskModule.forRoot(),
   ],
