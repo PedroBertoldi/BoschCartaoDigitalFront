@@ -70,26 +70,19 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
           })
           this.area = this.colaborador.unidadeOrganizacional.id;
         }
+        )  
+      }
+      this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+        data=>{
+          this.beneficiosEvento = data;
+        }
         )
-        this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
-          data=>{
-            this.beneficiosEvento = data;
-          }
-          )
-        this.beneficiarioService.getAreas().pipe(first()).subscribe(
-          data=>{
-            this.areas =data;
-          }
-        )
-          
+      this.beneficiarioService.getAreas().pipe(first()).subscribe(
+        data=>{
+          this.areas =data;
+        }
+      )
 
-    }
-
-
-    // if(eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)) {
-    //   this.nomeEvento = eventosRegistrados.find(evento => evento.id === this.idEventoFromRoute)?.nome
-    //   this.beneficiosEvento = beneficiosRegistrados.filter(beneficio => beneficio.evento === this.idEventoFromRoute)
-    // }
 
     
   }
