@@ -49,7 +49,7 @@
               <td>{{beneficiario.colaborador.unidadeOrganizacional?.descricao}}</td>
               <td class="produtos">
                 <div>
-                  <span *ngFor='let beneficio of beneficiario.direitos'>1x
+                  <span *ngFor='let beneficio of beneficiario.direitos'>{{beneficio.quantidade}}x
                     {{beneficio.beneficio.descricao}}</span>
                 </div>
               </td>
