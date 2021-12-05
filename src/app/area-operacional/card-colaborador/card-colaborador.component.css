@@ -49,3 +49,9 @@
     display: flex;
     flex-direction: column;
 }
+
+@media (min-width: 1220px) {
+    .selection {
+       right:-102%;
+    }
+}
