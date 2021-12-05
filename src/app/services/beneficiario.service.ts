@@ -17,6 +17,16 @@ export class BeneficiarioService {
     return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/buscar-direitos', {params:{EventoId:idEvento, idColaborador: idColaborador}});
   }
   
+  
+  createBeneficiario(beneficiario:any){
+    return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Beneficiarios', beneficiario);
+  }
+
+
+  updateBeneficiario(beneficiarioId:number, beneficiario:any){
+    return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Beneficiarios/'+beneficiarioId, beneficiario);
+  }
+
 
   getAreas(){
     return this.http.get<any>('https://localhost:5001/api/AreaAdministrativa/listar-unidade-organizacional')

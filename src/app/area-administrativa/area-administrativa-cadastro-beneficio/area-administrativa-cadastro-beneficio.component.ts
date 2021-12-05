@@ -34,11 +34,10 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
         this.nomeEvento = data.nome;
       });
 
-    //todo use specific endpoint get beneficio by id
-      this.beneficioService.getBeneficiosByEventoId(this.idEventoFromRoute).pipe(first()).subscribe(
+      this.beneficioService.getBeneficioById(this.idBeneficioFromRoute).pipe(first()).subscribe(
       data=>{
         if(this.idBeneficioFromRoute){
-          this.formBeneficio.controls.nome.setValue(data.filter((beneficio:any)=> beneficio.id == this.idBeneficioFromRoute)[0].descricao);
+          this.formBeneficio.controls.nome.setValue(data.descricao);
         }
       });
 

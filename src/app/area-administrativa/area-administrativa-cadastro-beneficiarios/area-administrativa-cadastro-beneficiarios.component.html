@@ -8,16 +8,24 @@
     </div>
     <form [formGroup]='formBeneficiario'>
       <mat-form-field>
-        <mat-label>Nome</mat-label>
-        <input matInput type="text" formControlName='nome' placeholder="Ex: Maria Souza" required />
+        <mat-label>Nome Completo</mat-label>
+        <input matInput type="text" formControlName='nomeCompleto' placeholder="Ex: Maria Souza" required />
         <mat-error *ngIf='formBeneficiario.get("nome")?.hasError("required")'>
           Nome é <strong>obrigatório</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>EDV</mat-label>
-        <input matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required />
+        <input matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required (input)="edvInput()"
+          [readonly]="idColaboradorFromRoute>0" />
         <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
+          EDV é <strong>obrigatório</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput type="date" formControlName='dataNascimento' placeholder="Ex: 19/02/1993" required />
+        <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("required")'>
           EDV é <strong>obrigatório</strong>
         </mat-error>
       </mat-form-field>
@@ -30,15 +38,19 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Área</mat-label>
-        <mat-select [(value)]="area">
+        <mat-select formControlName='unidadeOrganizacionalId'>
           <mat-option *ngFor="let area of areas" [value]="area.id">
             {{area.descricao}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <form [formGroup]='formSelecionarBeneficios'>
+
+      <form>
         <div class="seletor-beneficio-cabecalho">
           Benefícios *
+          <mat-error *ngIf='beneficiosError'>
+            (Adicione pelo menos 1 Benefício)
+          </mat-error>
           <mat-form-field appearance="fill">
             <mat-label>Novo Benefício</mat-label>
             <mat-select [(value)]="newBeneficio">
@@ -47,6 +59,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+
           <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
           <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
         </div>
@@ -57,11 +70,10 @@
           <ng-container *ngIf='direitos &&direitos.length > 0'>
             <div *ngFor='let direito of direitos'>
               <mat-form-field>
-                <input matInput type="number" [formControlName]="'direito'+direito.id" value="0" [id]="(direito?.id)"
-                  (input)='inserirBeneficio($event)'>
+                <input matInput type="number" [(value)]="direito.quantidade" [id]="(direito?.id)">
               </mat-form-field>
               <span>x</span>
-              <label [for]='direito.id'>{{direito.beneficio.descricao}}</label>
+              <label [for]='direito.id'>{{ direito.beneficio.descricao}}</label>
             </div>
           </ng-container>
         </div>

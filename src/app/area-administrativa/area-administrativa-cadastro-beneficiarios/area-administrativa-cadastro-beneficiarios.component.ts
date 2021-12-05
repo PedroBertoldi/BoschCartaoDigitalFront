@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
+import { IndicacaoService } from 'src/app/services/indicacao.service';
 import { Beneficio } from '../area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 
 @Component({
@@ -15,7 +16,6 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   idEventoFromRoute!: number;
 
-  nomeEvento!: string | undefined;
 
   modalAberto = false;
 
@@ -27,25 +27,23 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     nome: string | undefined 
   }[] = []
 
-  formSelecionarBeneficios = this.formBuilder.group({})
 
   formBeneficiario = this.formBuilder.group({
-    nome: new FormControl('',Validators.required),
+    nomeCompleto: new FormControl('',Validators.required),
     edv: new FormControl('',Validators.required),
     cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
-    area: new FormControl('',Validators.required),
-    newBeneficio: new FormControl(''),
-    beneficios: [],
+    unidadeOrganizacionalId: new FormControl('',Validators.required),
+    dataNascimento: new FormControl('', Validators.required)
   })
   idColaboradorFromRoute!: number;
   colaborador: any;
   evento: any;
-  direitos: any;
-  newBeneficio!:any;
+  direitos: any=[];
   areas: any;
-  area: any;
+  newBeneficio: any;
+  beneficiosError: boolean =false;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService) { }
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService, private indicacaoService:IndicacaoService) { }
 
   ngOnInit(): void {
 
@@ -55,20 +53,38 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
     
     
+
     if(this.idColaboradorFromRoute){
       this.beneficiarioService.getBeneficiarioById(this.idEventoFromRoute,this.idColaboradorFromRoute).pipe(first()).subscribe(
         data=>{
           this.colaborador = data.colaborador;
           this.evento = data.evento;
-          this.direitos = data.direitos;
-          this.formSelecionarBeneficios = this.formBuilder.group(this.construtorFormGroup())
+
+
+
+          data.direitos.forEach((direitoUnitario: any) => {
+            let rep = false;
+            this.direitos.forEach((direito:any) => {
+              if(direitoUnitario.beneficio.id == direito.beneficio.id){
+                direito.quantidade++;
+                rep = true;
+              }
+            });
+            if(!rep){
+              direitoUnitario.quantidade =1;
+              this.direitos.push(direitoUnitario);
+            }
+          });
+          
+          
           this.formBeneficiario.setValue({
             ...(this.formBeneficiario.value),
-            nome: this.colaborador.nomeCompleto,
+            nomeCompleto: this.colaborador.nomeCompleto,
             edv: this.colaborador.edv,
             cpf: this.colaborador.cpf,
+            unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id,
+            dataNascimento: this.colaborador.dataNascimento.substr(0,10)
           })
-          this.area = this.colaborador.unidadeOrganizacional.id;
         }
         )  
       }
@@ -82,18 +98,16 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
           this.areas =data;
         }
       )
-
-
-    
   }
 
   construtorFormGroup(): any {
-    let grupo: any = {};
+    let grupo: any = {
+      newBeneficio: new FormControl(''),
+    };
     for(let direito of this.direitos) {
-      const key = 'direito' + direito.id
-      grupo[key] = 1
+      const key = 'direito' + direito.beneficio.id
+      grupo[key] = new FormControl('');
     }
-
     return grupo;
   }
 
@@ -105,43 +119,78 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     this.modalAberto = true
   }
 
-  limparBeneficios(): void {
-    this.formSelecionarBeneficios.setValue(this.construtorFormGroup())
-  }
-
-
-  inserirBeneficio(event: Event): void {
-    const quantidade = Number((event.target as HTMLInputElement).value)
-    const beneficioId = Number((event.target as HTMLInputElement).id)
-
-
-    if(quantidade > 0) {
-      this.beneficiosSelecionados.push({
-        id: beneficioId,
-        nome: (this.beneficiosEvento.find(beneficio => beneficio.id === beneficioId))?.nome,
-        quantidade
-      })
-    } else {
-      this.beneficiosSelecionados = this.beneficiosSelecionados.filter(beneficio => beneficio.id !== beneficioId)
-    }
+  limparBeneficios(){
+    this.direitos = []
   }
 
   adicionarBeneficio(){
-    this.direitos.push({beneficio:this.newBeneficio})
-    this.formSelecionarBeneficios = this.formBuilder.group(this.construtorFormGroup());
+    if(this.newBeneficio){
+      this.beneficiosError=false;
+      const found = this.direitos.find(( direito:any) => direito.beneficio.id == this.newBeneficio.id);
+      if(found){
+        found.quantidade++;
+      }else{
+        this.direitos.push({beneficio:this.newBeneficio, quantidade:1})
+      }
+      this.newBeneficio="";
+    }
   }
 
-  onSubmit(): void {
-    this.formBeneficiario.setValue({
-      ...(this.formBeneficiario.value),
-      evento: this.idEventoFromRoute,
-      beneficios: this.beneficiosSelecionados,
-    })
+  organizeData(beneficiario:any, direitos:any){
 
+    let filteredDireitos: any[]=[];
+    direitos.forEach((direito:any) => {
+      filteredDireitos.push({eventoId: this.idEventoFromRoute, beneficioId:direito.beneficio.id, qtdBeneficio:direito.quantidade})
+    });
+    return {
+      ...beneficiario,
+      beneficios: filteredDireitos
+    }
+  }
+
+  edvInput(){
+    if(this.formBeneficiario.value.edv?.length>2){
+      this.indicacaoService.getColaborador(this.formBeneficiario.value.edv).pipe(first()).subscribe(
+        data=>{
+          this.colaborador = data;
+          console.log(this.colaborador)
+          this.formBeneficiario.setValue({
+            ...(this.formBeneficiario.value),
+            nomeCompleto: this.colaborador.nomeCompleto,
+            edv: this.colaborador.edv,
+            cpf: this.colaborador.cpf,
+            //unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id, //todo this info is not working in the back end
+            dataNascimento: this.colaborador.dataNascimento.substr(0,10)
+          })
+        }
+        )
+    }
+  }
+
+
+  onSubmit(): void {
+    if(this.direitos.length==0){
+      console.log('error')
+      this.beneficiosError =true;
+      return;
+    }
     if(this.formBeneficiario.valid){
-      console.log(this.formBeneficiario.value)
-      this.formBeneficiario.reset()
-      this.abrirModal()
+      console.log(this.organizeData(this.formBeneficiario.value, this.direitos))
+      if(this.idColaboradorFromRoute){
+        this.beneficiarioService.updateBeneficiario(this.idColaboradorFromRoute,this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
+          data=>{
+            this.formBeneficiario.reset()
+            this.abrirModal()
+          }
+        )
+      }else{
+        this.beneficiarioService.createBeneficiario(this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
+          data=>{
+            this.formBeneficiario.reset()
+            this.abrirModal()
+          }
+        )
+      }
     } else {
       this.formBeneficiario.markAllAsTouched()
     }
