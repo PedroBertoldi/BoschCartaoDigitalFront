@@ -1,29 +1,21 @@
 <div class="MainContainer">
     <!-- <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao> -->
-    <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf'"></app-botao-validacao>
-    <div *ngIf="mostrar === 'cpf'">
-        <form class="validacao-form">
-            <mat-form-field class="example-full-width" appearance="fill">
+    <form [formGroup]="validacaoForm" class="validacao-form">
+        <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf'"></app-botao-validacao>
+        <div *ngIf="mostrar === 'cpf'">
+            <mat-form-field>
                 <mat-label>Digite o CPF</mat-label>
-                <input mask="000-000-000-00" type="text" matInput onkeypress="return event.charCode >= 48" maxlength="14">
+                <input formControlName="cpf" mask="000-000-000-00" size="15" (value)="cpf" type="text" matInput>
             </mat-form-field>
-
-            <button type="submit" class="confirmar" routerLink="/retirar">
-                <mat-icon class="blue" aria-label="Próximo">navigate_next</mat-icon>
-            </button>
-        </form>
-    </div>
-    <app-botao-validacao variante='ValidacaoEDV' (click)="mostrar = 'edv'"></app-botao-validacao>
-    <div *ngIf="mostrar === 'edv'">
-        <form class="validacao-form">
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
+        </div>
+        <app-botao-validacao variante='ValidacaoEDV' (click)="mostrar = 'edv'"></app-botao-validacao>
+        <div *ngIf="mostrar === 'edv'">
+            <mat-form-field>
                 <mat-label>Digite o EDV</mat-label>
-                <input type="text" matInput>
+                <input formControlName="edv" mask="00000000" type="text" matInput>
             </mat-form-field>
-
-            <button type="submit" class="confirmar" routerLink="/retirar">
-                <mat-icon class="blue" aria-label="Próximo">navigate_next</mat-icon>
-            </button>
-        </form>
-    </div>
+            <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
+        </div>
+    </form>
 </div>

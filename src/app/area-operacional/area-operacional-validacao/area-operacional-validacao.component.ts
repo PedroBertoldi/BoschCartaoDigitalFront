@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-area-operacional-validacao',
@@ -9,44 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AreaOperacionalValidacaoComponent implements OnInit {
 
   mostrar: string = "";
-  formulario!: FormGroup;
+  validacaoForm!: FormGroup;
+  cpf!:string;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  constructor(private formBuilder:FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-
-    this.formulario = this.formBuilder.group({
-      cpf: [null, [Validators.nullValidator, Validators.maxLength(14), Validators.pattern("/^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/")]]
-    });
-
+    this.validacaoForm = this.formBuilder.group({
+            cpf: [''],
+            edv: [''],
+        });
   }
 
-  mostrarDiv(resposta: any): void {
-
+  submit(){
+    console.log(this.validacaoForm.value)
+    this.router.navigate(['operacional/retirar/1'])
   }
 
-  login(){
-    /* this.submitted= true;
-    console.log(
-    this.loginForm.controls)
-    if (this.loginForm.invalid) {
-      return;
-    }
-    this.auth.login(this.loginForm.controls.cpf.value.replace(".","").replace("-",""),this.loginForm.controls.nasc.value)
-      .pipe(first()).subscribe(
-                data => {
-                    console.log("sucesso")
-                    this.router.navigate(['meus-beneficios']);
-                },
-                error => {
-                    if(error.status == 401  || error.status == 400){
-                      this.wrong = true;
-                    }
-                    else{
-                      console.log("problemas de conexao")
-                    }
-                });; */
-  }
 }
