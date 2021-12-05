@@ -5,13 +5,13 @@
         <th>Quantidade</th>
     </thead>
     <tbody>
-        <tr *ngFor="let direito of data">
+        <tr *ngFor="let direito of direitos">
             <td>
                 <mat-icon *ngIf="!direito.retirado" aria-label="Disponivel">done</mat-icon>
                 <mat-icon *ngIf="direito.retirado" aria-label="Disponivel" class="blue">done_all</mat-icon>
             </td>
             <td>{{direito.beneficio.descricao}}</td>
-            <td>1</td>
+            <td>{{direito.quantidade}}</td>
         </tr>
     </tbody>
 </table>
