@@ -23,6 +23,10 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
+    this.updateBeneficiarioList();
+  }
+
+  updateBeneficiarioList(){
     this.beneficiarioService.getBeneficiarios(this.idEventoFromRoute).pipe(first()).subscribe(
       (data:any)=>{
         this.beneficiarios= data.colaboradoresDireitos;
@@ -60,6 +64,14 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     }
 
     this.buscaBeneficiarios = this.beneficiarios.filter(buscaCompleta) 
+  }
+
+  deleteColaborador(beneficiario:any){
+    this.beneficiarioService.deleteBeneficiario(this.idEventoFromRoute, beneficiario.colaborador.id).pipe(first()).subscribe(
+      data=>{
+        this.updateBeneficiarioList();
+      }
+    );
   }
   
   limpar(): void {

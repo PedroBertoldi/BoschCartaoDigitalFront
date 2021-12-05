@@ -40,7 +40,7 @@
             <tr *ngFor='let beneficiario of buscaBeneficiarios'>
               <td class="botoes">
                 <div>
-                  <app-botao-acao variante='excluir'></app-botao-acao>
+                  <app-botao-acao variante='excluir' (click)="deleteColaborador(beneficiario)"></app-botao-acao>
                 </div>
               </td>
               <td>{{beneficiario.colaborador.edv}}</td>

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BeneficiarioService {
+ 
 
   constructor(private http:HttpClient) { }
 
@@ -27,6 +28,9 @@ export class BeneficiarioService {
     return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Beneficiarios/'+beneficiarioId, beneficiario);
   }
 
+  deleteBeneficiario(eventoId: number, colaboradorId: any) {
+    return this.http.delete<any>('http://localhost:5000/api/AreaAdministrativa/Direito/ColaboradorEvento/'+ colaboradorId+'/'+eventoId);
+  }
 
   getAreas(){
     return this.http.get<any>('https://localhost:5001/api/AreaAdministrativa/listar-unidade-organizacional')
