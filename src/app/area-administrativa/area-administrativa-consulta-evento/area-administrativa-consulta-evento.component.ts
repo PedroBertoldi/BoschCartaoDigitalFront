@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { AdminService } from 'src/app/services/admin.service';
+import { EventoService } from 'src/app/services/evento.service';
 
 interface Evento {
   id: number,
@@ -21,10 +21,14 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
   eventosBuscados: Evento[] = []
 
-  constructor(private adminService: AdminService) { }
+  constructor(private eventoService: EventoService) { }
 
   ngOnInit(): void {
-    this.adminService.getEventos().pipe(first()).subscribe(
+    this.updateList();
+  }
+  
+  updateList(){
+    this.eventoService.getEventos().pipe(first()).subscribe(
       data => {
           this.eventos = data.map((evento: any) => {
             let hoje = new Date
@@ -38,20 +42,24 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
               ativo: hoje < new Date(evento.dataFim),
             }
           })
-      
-    this.eventosBuscados = this.eventos
-  },
-  error => {
-      if(error.status == 400){
-        console.log("erro ao buscar os dados")
-      }
-      else{
-        console.log("problemas de conexao")
-      }
-  })
-
+          this.eventosBuscados = this.eventos
+      },
+      error => {
+            if(error.status == 400){
+              console.log("erro ao buscar os dados")
+            }
+            else{
+              console.log("problemas de conexao")
+            }
+        });
   }
-  
+
+  deleteEvento(evento:any){
+    this.eventoService.deleteEvento(evento.id).pipe(first()).subscribe(data=>{
+        this.updateList();
+    })
+  }
+
   buscar(valor: string): void {
     if(valor !== '') {
       this.eventosBuscados = this.eventos.filter(evento => evento.nome.toLowerCase().includes(valor.toLowerCase()) )

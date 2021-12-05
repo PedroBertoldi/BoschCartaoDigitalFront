@@ -12,6 +12,10 @@ export class IndicacaoService {
     return this.http.get<any>('http://localhost:5000/api/AreaPublica/buscar-colaborador/'+ edv);
   }
 
+  getIndicado(id:number, nascimento: string){
+    return this.http.get<any>('http://localhost:5000/api/AreaPublica/buscar-indicado',{params:{"ColaboradorId":id,DataNascimento:nascimento}} );
+  }
+
   removeIndicar(colaboradorId: number){
     return this.http.put<any>('http://localhost:5000/api/AreaPublica/remover-indicacoes',
     {

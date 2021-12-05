@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AdminService } from 'src/app/services/admin.service';
+import { EventoService } from 'src/app/services/evento.service';
 
 @Component({
   selector: 'app-area-administrativa-cadastro-evento',
@@ -34,14 +34,14 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
     fim: new FormControl('',[Validators.required,this.validarDataFim()])
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private adminService: AdminService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, private eventoService: EventoService) { }
 
   ngOnInit(): void {
     if(this.router.url !== '/admin/evento/cadastro') {
       const routeParams = this.route.snapshot.paramMap;
       this.idEventoFromRoute = Number(routeParams.get('idEvento'));
 
-      this.adminService.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
+      this.eventoService.getEventoById(this.idEventoFromRoute).pipe(first()).subscribe(
         data => {
             this.formCadastro.setValue({
               nomeEvento: data.nome,
@@ -82,7 +82,9 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   salvarDados(): void {
     if(this.idEventoFromRoute){
-      this.adminService.updateEvento(this.idEventoFromRoute, this.formCadastro.value).pipe(first()).subscribe(
+      let event = this.formCadastro.value;
+      event.id= this.idEventoFromRoute;
+      this.eventoService.updateEvento(event).pipe(first()).subscribe(
               data=>{
                 this.formCadastro.reset()
                 this.tipoModal = 'confirmacao'
@@ -92,7 +94,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
                 console.log(error.error.errors[0].message)
             });
     }else{
-      this.adminService.createEvento(this.formCadastro.value).pipe(first()).subscribe(
+      this.eventoService.createEvento(this.formCadastro.value).pipe(first()).subscribe(
               data=>{
                 this.formCadastro.reset()
                 this.tipoModal = 'confirmacao'
