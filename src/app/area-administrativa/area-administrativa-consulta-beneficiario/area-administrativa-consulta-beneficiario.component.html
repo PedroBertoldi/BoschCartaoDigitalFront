@@ -1,7 +1,11 @@
 <div class="max-container">
   <div class='menu-flutuante'>
-    <a routerLink='/admin/evento'><app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante></a>
-    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios/cadastro"'><app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante></a>
+    <a routerLink='/admin/evento'>
+      <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+    </a>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios/cadastro"'>
+      <app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante>
+    </a>
   </div>
   <h1>Beneficiários</h1>
   <div class='container'>
@@ -19,37 +23,41 @@
             <td>CPF</td>
             <td>Área</td>
             <td>Benefícios</td>
-            <td>Data de Inclusão</td>
             <td>Indicado</td>
             <td>Ações</td>
           </tr>
-          <tr *ngIf='beneficiarios.length ===  0'>
+          <tr *ngIf='beneficiarios && beneficiarios.length ===  0'>
             <td colspan="100%">
               Ainda não foi registrado nenhum beneficiário.
             </td>
           </tr>
-          <ng-container *ngIf='beneficiarios.length > 0'>
-            <tr *ngIf='buscaBeneficiarios.length ===  0'>
+          <ng-container *ngIf='beneficiarios && beneficiarios.length > 0'>
+            <tr *ngIf='buscaBeneficiarios && buscaBeneficiarios.length ===  0'>
               <td colspan="100%">
                 Nenhum registro encontrado.
               </td>
             </tr>
             <tr *ngFor='let beneficiario of buscaBeneficiarios'>
-              <td class="botoes"><div><app-botao-acao variante='excluir'></app-botao-acao></div></td>
-              <td>{{beneficiario.edv}}</td>
-              <td>{{beneficiario.nome}}</td>
-              <td>{{beneficiario.cpf}}</td>
-              <td>{{beneficiario.area}}</td>
-              <td class="produtos">
-                <div>
-                  <span *ngFor='let beneficio of beneficiario.beneficios'>{{beneficio.quantidade}}x {{beneficio.nome}}</span>
-                </div>
-              </td>
-              <td>{{beneficiario.dataInclusao | date : 'dd/MM/yyyy'}}</td>
-              <td>{{beneficiario.indicado}}</td>
               <td class="botoes">
                 <div>
-                  <app-botao-acao variante='editar'></app-botao-acao>
+                  <app-botao-acao variante='excluir'></app-botao-acao>
+                </div>
+              </td>
+              <td>{{beneficiario.colaborador.edv}}</td>
+              <td>{{beneficiario.colaborador.nomeCompleto}}</td>
+              <td>{{beneficiario.colaborador.cpf | mask:"000.000.000-00"}}</td>
+              <td>{{beneficiario.colaborador.unidadeOrganizacional.descricao}}</td>
+              <td class="produtos">
+                <div>
+                  <span *ngFor='let beneficio of beneficiario.direitos'>1x
+                    {{beneficio.beneficio.descricao}}</span>
+                </div>
+              </td>
+              <td>{{beneficiario.direitos.Indicado}}</td>
+              <td class="botoes">
+                <div>
+                  <app-botao-acao variante='editar' [routerLink]="beneficiario.colaborador.id+'/editar' ">
+                  </app-botao-acao>
                 </div>
               </td>
             </tr>
@@ -57,6 +65,5 @@
         </table>
       </div>
     </div>
-    <span class='numero-registros'>Mostrando de 1 até 15 de {{buscaBeneficiarios.length}} registros.</span>
   </div>
 </div>

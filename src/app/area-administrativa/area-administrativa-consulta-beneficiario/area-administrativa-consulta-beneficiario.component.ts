@@ -1,21 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 
-interface Beneficiario {
-  id: number,
-  edv: number,
-  nome: string,
-  cpf: string,
-  area:string,
-  beneficios: {
-      id: number,
-      quantidade: number,
-      nome: string
-    }[],
-  dataInclusao: Date,
-  indicado: string,
-  evento: number
-}
 
 @Component({
   selector: 'app-area-administrativa-consulta-beneficiario',
@@ -24,114 +11,24 @@ interface Beneficiario {
 })
 export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
-  beneficiariosRegistrados: Beneficiario[] = [
-    {
-      id: 1,
-      evento:1,
-      edv: 897213,
-      nome: 'Joelcio Leandro',
-      cpf: '123.456.789-10',
-      area:'EXPATRIADO',
-      beneficios: [
-        {
-          id: 1,
-          quantidade: 1,
-          nome: 'Kit Happy Hour'
-        },
-        {
-          id: 2,
-          quantidade: 2,
-          nome: 'Cesta Fria'
-        },
-        {
-          id: 1,
-          quantidade: 5,
-          nome: 'Kit Cesta Seca'
-        },
-      ],
-      dataInclusao: new Date,
-      indicado: 'Valmir Seguro',
-    },
-    {
-      id: 2,
-      evento: 1,
-      edv: 897213,
-      nome: 'Valmir Seguro',
-      cpf: '',
-      area:'EXPATRIADO',
-      beneficios: [
-        {
-          id: 1,
-          quantidade: 1,
-          nome: 'Kit Happy Hour'
-        },
-        {
-          id: 1,
-          quantidade: 5,
-          nome: 'Kit Cesta Seca'
-        },
-      ],
-      dataInclusao: new Date,
-      indicado: '',
-    },
-    {
-      id: 3,
-      evento: 2,
-      edv: 897213,
-      nome: 'Julianna Risseto',
-      cpf: '123.456.789-10',
-      area:'EXPATRIADO',
-      beneficios: [
-        {
-          id: 1,
-          quantidade: 1,
-          nome: 'Kit Happy Hour'
-        },
-        {
-          id: 2,
-          quantidade: 2,
-          nome: 'Cesta Fria'
-        },
-        {
-          id: 1,
-          quantidade: 5,
-          nome: 'Kit Cesta Seca'
-        },
-        {
-          id: 1,
-          quantidade: 1,
-          nome: 'Kit Happy Hour'
-        },
-        {
-          id: 2,
-          quantidade: 2,
-          nome: 'Cesta Fria'
-        },
-        {
-          id: 1,
-          quantidade: 5,
-          nome: 'Kit Cesta Seca'
-        },
-      ],
-      dataInclusao: new Date,
-      indicado: '',
-    },
-  ]
 
   idEventoFromRoute!: number;
 
-  beneficiarios!: Beneficiario[]
+  beneficiarios!: any[]
 
-  buscaBeneficiarios!:Beneficiario[]
+  buscaBeneficiarios!:any[]
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private beneficiarioService:BeneficiarioService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
-
-    this.beneficiarios = this.beneficiariosRegistrados.filter(beneficiario => beneficiario.evento === this.idEventoFromRoute);
-    this.buscaBeneficiarios = this.beneficiarios
+    this.beneficiarioService.getBeneficiario(this.idEventoFromRoute).pipe(first()).subscribe(
+      data=>{
+        this.beneficiarios= data.colaboradoresDireitos;
+        this.buscaBeneficiarios = this.beneficiarios
+      }
+    )
   }
 
   buscar(valor: string): void {

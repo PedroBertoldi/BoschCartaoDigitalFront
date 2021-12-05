@@ -17,8 +17,7 @@ import { BuscarComponent } from './buscar/buscar.component';
 import { AreaAdministrativaCadastroBeneficioComponent } from './area-administrativa-cadastro-beneficio/area-administrativa-cadastro-beneficio.component';
 import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-administrativa-cadastro-beneficiarios/area-administrativa-cadastro-beneficiarios.component'
 import {MatInputModule} from '@angular/material/input';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthTokenInterceptor } from '../interceptor/auth-token.interceptor';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -42,6 +41,7 @@ import { AuthTokenInterceptor } from '../interceptor/auth-token.interceptor';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    NgxMaskModule.forRoot(),
   ],
   
 })
