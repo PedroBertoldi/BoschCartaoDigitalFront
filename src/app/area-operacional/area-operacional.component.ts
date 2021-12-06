@@ -37,7 +37,6 @@ export class AreaOperacionalComponent implements OnInit {
       this.operacionalService.getDireitos(request).pipe(first()).subscribe(data => {
         this.evento = data.evento
         this.colaborador = data.colaborador
-        console.log(data)
 
         let beneficios: any = [];
         data.direitosColaborador.filter((direito: any) => { return direito.retirado == null}).forEach((direito: any)=> {
@@ -92,8 +91,6 @@ export class AreaOperacionalComponent implements OnInit {
     });
     let request: any = {eventoId: this.evento.id, colaboradorId: this.colaborador.id, direitosEntregues: direitosEntregues};
     
-    console.log(request)
-    console.log(this.colaborador)
 
     this.operacionalService.receberDireitos(request).pipe(first()).subscribe(data => {
       this.router.navigate(['operacional/validacao']);

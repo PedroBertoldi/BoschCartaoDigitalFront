@@ -15,7 +15,6 @@ export class BeneficioTableComponent implements OnInit {
 
   ngOnChanges():void{
     if(this.data){
-      console.log(this.data);
       
       this.data.forEach(direitoIndividual => {
         let rep = false;

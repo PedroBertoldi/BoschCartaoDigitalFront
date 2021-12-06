@@ -152,7 +152,6 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     if(this.formBeneficiario.value.edv?.length>2){
       this.beneficiarioService.getBeneficiarioByEdv(this.idEventoFromRoute,this.formBeneficiario.value.edv).pipe(first()).subscribe(
         data=>{
-          console.log(data)
           this.colaborador= data.colaborador;
           this.direitos = [];
             data.direitos.forEach((direitoUnitario: any) => {
@@ -185,12 +184,10 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   onSubmit(): void {
     if(this.direitos.length==0){
-      console.log('error')
       this.beneficiosError =true;
       return;
     }
     if(this.formBeneficiario.valid){
-      console.log(this.organizeData(this.formBeneficiario.value, this.direitos))
       if(this.idColaboradorFromRoute){
         this.beneficiarioService.updateBeneficiario(this.idColaboradorFromRoute,this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
           data=>{

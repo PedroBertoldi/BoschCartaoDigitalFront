@@ -57,17 +57,13 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.controls.cpf.value.replace(".","").replace("-",""),this.loginForm.controls.nasc.value)
       .pipe(first()).subscribe(
                 data => {
-                    console.log("sucesso")
                     this.redirect();
                 },
                 error => {
                     if(error.status == 400){
                       this.wrong = true;
                     }
-                    else{
-                      console.log("problemas de conexao")
-                    }
-                });;
+                });
   }
 
 }
