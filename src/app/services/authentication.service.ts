@@ -20,7 +20,6 @@ export class AuthenticationService {
   }
 
   login(cpf: string, nascimento: string){
-    console.log("login attempt "+cpf)
     return this.http.post<any>('http://localhost:5000/api/Autenticacao/Login', { cpf: cpf, dataNascimento: nascimento})
             .pipe(map(user => {
                 user.cpf = cpf;

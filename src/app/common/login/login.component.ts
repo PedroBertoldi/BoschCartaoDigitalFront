@@ -63,10 +63,7 @@ export class LoginComponent implements OnInit {
                     if(error.status == 400){
                       this.wrong = true;
                     }
-                    else{
-                      console.log("problemas de conexao")
-                    }
-                });;
+                });
   }
 
 }

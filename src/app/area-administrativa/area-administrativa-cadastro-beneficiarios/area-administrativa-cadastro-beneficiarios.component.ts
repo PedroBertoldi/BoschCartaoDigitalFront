@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
 import { IndicacaoService } from 'src/app/services/indicacao.service';
-import { Beneficio } from '../area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 
 @Component({
   selector: 'app-area-administrativa-cadastro-beneficiarios',
@@ -28,13 +27,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   }[] = []
 
 
-  formBeneficiario = this.formBuilder.group({
-    nomeCompleto: new FormControl('',Validators.required),
-    edv: new FormControl('',Validators.required),
-    cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
-    unidadeOrganizacionalId: new FormControl('',Validators.required),
-    dataNascimento: new FormControl('', Validators.required)
-  })
+ 
   idColaboradorFromRoute!: number;
   colaborador: any;
   evento: any;
@@ -42,15 +35,23 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   areas: any;
   newBeneficio: any;
   beneficiosError: boolean =false;
+  formBeneficiario: any;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService, private indicacaoService:IndicacaoService) { }
 
   ngOnInit(): void {
-
     
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
     this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
+    
+    this.formBeneficiario = this.formBuilder.group({
+      nomeCompleto: new FormControl('',Validators.required),
+      edv: new FormControl({value:'', disabled:this.idColaboradorFromRoute>0},Validators.required),
+      cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
+      unidadeOrganizacionalId: new FormControl('',Validators.required),
+      dataNascimento: new FormControl('', Validators.required)
+    })
     
     
 
@@ -150,33 +151,46 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   edvInput(){
     if(this.formBeneficiario.value.edv?.length>2){
-      this.indicacaoService.getColaborador(this.formBeneficiario.value.edv).pipe(first()).subscribe(
+      this.beneficiarioService.getBeneficiarioByEdv(this.idEventoFromRoute,this.formBeneficiario.value.edv).pipe(first()).subscribe(
         data=>{
-          this.colaborador = data;
-          console.log(this.colaborador)
-          this.formBeneficiario.setValue({
-            ...(this.formBeneficiario.value),
-            nomeCompleto: this.colaborador.nomeCompleto,
-            edv: this.colaborador.edv,
-            cpf: this.colaborador.cpf,
-            //unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id, //todo this info is not working in the back end
-            dataNascimento: this.colaborador.dataNascimento.substr(0,10)
-          })
+          this.colaborador= data.colaborador;
+          this.direitos = [];
+            data.direitos.forEach((direitoUnitario: any) => {
+              let rep = false;
+              this.direitos.forEach((direito:any) => {
+                if(direitoUnitario.beneficio.id == direito.beneficio.id){
+                  direito.quantidade++;
+                  rep = true;
+                }
+              });
+              if(!rep){
+                direitoUnitario.quantidade =1;
+                this.direitos.push(direitoUnitario);
+              }
+            });
+            this.formBeneficiario.setValue({
+              ...(this.formBeneficiario.value),
+              nomeCompleto: this.colaborador.nomeCompleto,
+              edv: this.colaborador.edv,
+              cpf: this.colaborador.cpf,
+              unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id,
+              dataNascimento: this.colaborador.dataNascimento.substr(0,10)
+            }
+          )
         }
-        )
+      )
     }
   }
 
 
   onSubmit(): void {
     if(this.direitos.length==0){
-      console.log('error')
       this.beneficiosError =true;
       return;
     }
     if(this.formBeneficiario.valid){
-      console.log(this.organizeData(this.formBeneficiario.value, this.direitos))
       if(this.idColaboradorFromRoute){
+        this.formBeneficiario.controls.edv.enable();
         this.beneficiarioService.updateBeneficiario(this.idColaboradorFromRoute,this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
           data=>{
             this.formBeneficiario.reset()

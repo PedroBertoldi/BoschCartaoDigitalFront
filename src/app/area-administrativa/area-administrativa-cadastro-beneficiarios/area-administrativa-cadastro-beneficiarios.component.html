@@ -16,8 +16,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>EDV</mat-label>
-        <input matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required (input)="edvInput()"
-          [readonly]="idColaboradorFromRoute>0" />
+        <input mask="9999999999" maxlength="10" matInput type="text" formControlName='edv' placeholder="Ex: 0544460"
+          required (input)="edvInput()" />
         <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
           EDV é <strong>obrigatório</strong>
         </mat-error>
@@ -70,7 +70,8 @@
           <ng-container *ngIf='direitos &&direitos.length > 0'>
             <div *ngFor='let direito of direitos'>
               <mat-form-field>
-                <input matInput type="number" [(value)]="direito.quantidade" [id]="(direito?.id)">
+                <input matInput type="number" [name]="direito.id" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="direito.quantidade">
               </mat-form-field>
               <span>x</span>
               <label [for]='direito.id'>{{ direito.beneficio.descricao}}</label>

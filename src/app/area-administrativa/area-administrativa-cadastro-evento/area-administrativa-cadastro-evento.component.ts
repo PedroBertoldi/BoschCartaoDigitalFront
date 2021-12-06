@@ -49,15 +49,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
               inicio: this.formatarData(new Date(data.dataInicio)),
               fim: this.formatarData(new Date(data.dataFim))
             })
-          },
-        error => {
-            if(error.status == 400){
-              console.log("erro ao buscar os dados")
-            }
-            else{
-              console.log("problemas de conexao")
-            }
-        })
+          })
       
       }
   }
@@ -89,20 +81,14 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
                 this.formCadastro.reset()
                 this.tipoModal = 'confirmacao'
                 this.abrirModal()
-              },
-              error=>{
-                console.log(error.error.errors[0].message)
-            });
+              });
     }else{
       this.eventoService.createEvento(this.formCadastro.value).pipe(first()).subscribe(
               data=>{
                 this.formCadastro.reset()
                 this.tipoModal = 'confirmacao'
                 this.abrirModal()
-              },
-              error=>{
-                console.log(error.error.errors[0].message)
-            });
+              });
     }
     
   }

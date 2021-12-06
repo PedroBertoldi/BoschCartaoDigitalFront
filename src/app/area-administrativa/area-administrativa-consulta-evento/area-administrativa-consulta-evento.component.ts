@@ -43,15 +43,7 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
             }
           })
           this.eventosBuscados = this.eventos
-      },
-      error => {
-            if(error.status == 400){
-              console.log("erro ao buscar os dados")
-            }
-            else{
-              console.log("problemas de conexao")
-            }
-        });
+      });
   }
 
   deleteEvento(evento:any){

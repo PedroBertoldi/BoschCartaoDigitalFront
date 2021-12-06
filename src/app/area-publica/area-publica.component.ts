@@ -22,14 +22,6 @@ export class AreaPublicaComponent implements OnInit {
                 data => {
                     this.direitos = data.direitos;
                     this.indicacoes = data.indicacoes;
-                },
-                error => {
-                    if(error.status == 400){
-                      console.log("erro ao buscar os dados")
-                    }
-                    else{
-                      console.log("problemas de conexao")
-                    }
                 });
   }
 
