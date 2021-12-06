@@ -17,6 +17,12 @@ interface Evento {
 })
 export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
+  modalAberto = false
+
+  tipoModal!: 'confirmacao' | 'exclusao' 
+
+  eventoExclusao: any
+
   eventos: Evento[] = []
 
   eventosBuscados: Evento[] = []
@@ -55,7 +61,14 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
   }
 
   deleteEvento(evento:any){
-    this.eventoService.deleteEvento(evento.id).pipe(first()).subscribe(data=>{
+    this.eventoExclusao = evento
+    this.tipoModal = 'exclusao'
+    this.abrirModal()
+  }
+  
+  confirmarDelete() {
+    this.tipoModal = 'confirmacao'
+    this.eventoService.deleteEvento(this.eventoExclusao.id).pipe(first()).subscribe(data=>{
         this.updateList();
     })
   }
@@ -68,6 +81,14 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
   
   limpar(): void {
     this.eventosBuscados = this.eventos
+  }
+
+  fecharModal() {
+    this.modalAberto = false
+  }
+
+  abrirModal(): void {
+    this.modalAberto = true
   }
 
 }
