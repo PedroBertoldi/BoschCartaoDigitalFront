@@ -23,8 +23,10 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.validacaoForm.value)
-    this.router.navigate(['operacional/retirar/1'])
+    if (this.mostrar == 'cpf') {
+      this.router.navigate(['operacional/retirar/', this.validacaoForm.value.cpf, '0']);
+    } else {
+      this.router.navigate(['operacional/retirar/', '0', this.validacaoForm.value.edv]);
+    }
   }
-
 }

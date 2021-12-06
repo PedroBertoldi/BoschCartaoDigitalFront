@@ -1,6 +1,6 @@
 <div class="MainContainer">
     <!-- <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao> -->
-    <form [formGroup]="validacaoForm" class="validacao-form">
+    <form [formGroup]="validacaoForm" class="validacao-form" >
         <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf'"></app-botao-validacao>
         <div *ngIf="mostrar === 'cpf'">
             <mat-form-field>
@@ -13,7 +13,7 @@
         <div *ngIf="mostrar === 'edv'">
             <mat-form-field>
                 <mat-label>Digite o EDV</mat-label>
-                <input formControlName="edv" mask="00000000" type="text" matInput>
+                <input formControlName="edv" mask="0000000000" type="text" matInput>
             </mat-form-field>
             <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
         </div>

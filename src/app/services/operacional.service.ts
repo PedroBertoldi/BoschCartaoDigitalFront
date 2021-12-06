@@ -8,7 +8,7 @@ export class OperacionalService {
 
   constructor(private http :HttpClient) { }
 
-  getDireitos(colaborador:{Cpf?:string, Edv?:string, EventoId?:number}){
+  getDireitos(colaborador:any){
     return this.http.get<any>(`http://localhost:5000/api/AreaOperacional/Direitos`, {params:colaborador} );
   }
 

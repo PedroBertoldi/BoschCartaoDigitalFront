@@ -1,8 +1,8 @@
-<h1>Titulo</h1>
+<h1>{{ evento?.nome }}</h1>
 
 <div *ngFor="let beneficio of beneficios" class="beneficios">
-    <h3>{{ beneficio.nome }}</h3>
+    <h3>{{ beneficio.beneficio.descricao }}</h3>
 
-    <app-card-colaborador [beneficiarios]="beneficio.beneficiarios"></app-card-colaborador>
+    <app-card-colaborador [beneficiarios]="beneficio.beneficiario"></app-card-colaborador>
 </div>
 <button (click)="send()">Confirmar</button>
