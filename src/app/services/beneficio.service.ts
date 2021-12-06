@@ -14,7 +14,7 @@ export class BeneficioService {
 
 
   getBeneficioById(beneficioId: number){
-    console.log("should return beneficio by id")
+    return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/Beneficio/'+beneficioId);
   }
 
   deleteBeneficio(beneficioId:number){

@@ -7,7 +7,7 @@ import { AreaAdministrativaCadastroEventoComponent } from './area-administrativa
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BotaoFlutuanteComponent } from './botao-flutuante/botao-flutuante.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ModalComponent } from './modal/modal.component';
 import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component';
 import { BotaoAcaoComponent } from './botao-acao/botao-acao.component';
@@ -19,6 +19,7 @@ import { AreaAdministrativaCadastroBeneficiariosComponent } from './area-adminis
 import {MatInputModule} from '@angular/material/input';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatSelectModule } from '@angular/material/select';
+import {  MatOptionModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -41,7 +42,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSelectModule,
+    MatOptionModule,
     MatInputModule,
     NgxMaskModule.forRoot(),
   ],

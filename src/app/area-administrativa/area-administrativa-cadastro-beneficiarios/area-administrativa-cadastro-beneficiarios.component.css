@@ -8,6 +8,7 @@
   grid-template-areas:
     "nome edv"
     "cpf area"
+    "data nascimento"
     "beneficios beneficios"
     "indicado .";
 }
@@ -30,6 +31,10 @@ input[formControlName="cpf"] {
 
 input[formControlName="area"] {
   grid-area: area;
+}
+
+input[formControlName="dataNascimento"] {
+  grid-area: dataNascimento;
 }
 
 input[formControlName="indicado"] {

@@ -14,18 +14,40 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
   idEventoFromRoute!: number;
 
-  beneficiarios!: any[]
+  beneficiarios!: any
 
-  buscaBeneficiarios!:any[]
+  buscaBeneficiarios!:any
 
   constructor(private route: ActivatedRoute, private beneficiarioService:BeneficiarioService) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
+    this.updateBeneficiarioList();
+  }
+
+  updateBeneficiarioList(){
     this.beneficiarioService.getBeneficiarios(this.idEventoFromRoute).pipe(first()).subscribe(
-      data=>{
+      (data:any)=>{
         this.beneficiarios= data.colaboradoresDireitos;
+        this.beneficiarios.forEach((beneficiario:any) => {
+          let direitos: any[] = [];
+          beneficiario.direitos.forEach((direitoUnitario: any) => {
+            let rep = false;
+            direitos.forEach((direito:any) => {
+              if(direitoUnitario.beneficio.id == direito.beneficio.id){
+                direito.quantidade++;
+                rep = true;
+              }
+            });
+            if(!rep){
+              direitoUnitario.quantidade =1;
+              direitos.push(direitoUnitario);
+            }
+          });
+          beneficiario.direitos = direitos;
+        });
+        
         this.buscaBeneficiarios = this.beneficiarios
       }
     )
@@ -42,6 +64,14 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     }
 
     this.buscaBeneficiarios = this.beneficiarios.filter(buscaCompleta) 
+  }
+
+  deleteColaborador(beneficiario:any){
+    this.beneficiarioService.deleteBeneficiario(this.idEventoFromRoute, beneficiario.colaborador.id).pipe(first()).subscribe(
+      data=>{
+        this.updateBeneficiarioList();
+      }
+    );
   }
   
   limpar(): void {
