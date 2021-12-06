@@ -7,7 +7,7 @@ import { OpsGuardService } from '../guards/ops-guard.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'retirar/:cpf/:edv', component: AreaOperacionalComponent, canActivate:[OpsGuardService]},
+  { path: 'retirar', component: AreaOperacionalComponent, canActivate:[OpsGuardService]},
   { path: 'validacao', component: AreaOperacionalValidacaoComponent,canActivate:[OpsGuardService]},
 ];
 

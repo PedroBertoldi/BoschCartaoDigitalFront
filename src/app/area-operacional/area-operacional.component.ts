@@ -16,30 +16,36 @@ export class AreaOperacionalComponent implements OnInit {
   evento!: any
   colaborador!: any
 
-  constructor(private router: Router, private route: ActivatedRoute, private operacionalService: OperacionalService) { }
-
-  ngOnInit(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    
-    this.cpf = routeParams.get('cpf');
-    this.edv = routeParams.get('edv');
-
-    if (!this.cpf && !this.edv) {
+  constructor(private router: Router, private route: ActivatedRoute, private operacionalService: OperacionalService) { 
+    let state = this.router.getCurrentNavigation()?.extras.state;
+    if (!state) {
       this.router.navigate(['operacional/validacao']);
     } else {
-      let request: any = {};
-      if (this.cpf != '0') {
-        request.Cpf = this.cpf;
-      } else {
-        request.Edv = this.edv;
+      if(!state.cpf){
+        delete state.cpf;
       }
-
-      this.operacionalService.getDireitos(request).pipe(first()).subscribe(data => {
+      if(!state.edv){
+        delete state.edv
+      }
+      this.operacionalService.getDireitos(state).pipe(first()).subscribe(data => {
         this.evento = data.evento
         this.colaborador = data.colaborador
-        console.log(data)
+        this.beneficios = this.formatBeneficios(data);
+      }, error=>{
+        this.router.navigate(['operacional/validacao'], {state: error});
+      })
+    }
 
-        let beneficios: any = [];
+  }
+
+  ngOnInit(): void {
+    
+    
+  }
+
+
+  formatBeneficios(data:any){
+    let beneficios: any = [];
         data.direitosColaborador.filter((direito: any) => { return direito.retirado == null}).forEach((direito: any)=> {
           let rep = false;
           beneficios.forEach((beneficio: any)=> {
@@ -74,10 +80,7 @@ export class AreaOperacionalComponent implements OnInit {
             
             });
         });
-
-        this.beneficios = beneficios;
-      })
-    }
+        return beneficios;
   }
 
   send(){
