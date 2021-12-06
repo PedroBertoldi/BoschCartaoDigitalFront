@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatIconModule } from '@angular/material/icon';
 import { CardColaboradorComponent } from './card-colaborador/card-colaborador.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CardColaboradorComponent } from './card-colaborador/card-colaborador.co
     FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatSelectModule
   ]
 })
 export class AreaOperacionalModule { }

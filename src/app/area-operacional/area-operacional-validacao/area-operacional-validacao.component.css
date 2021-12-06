@@ -6,6 +6,7 @@
     justify-content: space-around;
 }
 
+
 .validacao-form {
     display: flex;
     flex-direction: column;
@@ -17,10 +18,10 @@
     display: flex;
 }
 
-.validacao-form div mat-form-field {
-    margin-left: auto;
+.validacao-form mat-form-field {
+    width: 40vw;
+    margin: 5px;
 }
-
 
 .validacao-form mat-icon {
     transform: scale(2);
@@ -30,4 +31,17 @@
 
 .error {
     color: red;
+}
+
+::ng-deep.mat-menu-panel {
+    max-width: none !important;
+    width: 50vw;
+}
+
+.settings {
+    width: 100%;
+}
+
+app-botao-validacao {
+    margin: 5px;
 }
