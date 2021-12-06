@@ -5,7 +5,6 @@ import { first } from 'rxjs/operators';
 import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
 import { IndicacaoService } from 'src/app/services/indicacao.service';
-import { Beneficio } from '../area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 
 @Component({
   selector: 'app-area-administrativa-cadastro-beneficiarios',
@@ -28,13 +27,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   }[] = []
 
 
-  formBeneficiario = this.formBuilder.group({
-    nomeCompleto: new FormControl('',Validators.required),
-    edv: new FormControl('',Validators.required),
-    cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
-    unidadeOrganizacionalId: new FormControl('',Validators.required),
-    dataNascimento: new FormControl('', Validators.required)
-  })
+ 
   idColaboradorFromRoute!: number;
   colaborador: any;
   evento: any;
@@ -42,15 +35,23 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   areas: any;
   newBeneficio: any;
   beneficiosError: boolean =false;
+  formBeneficiario: any;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService, private indicacaoService:IndicacaoService) { }
 
   ngOnInit(): void {
-
     
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
     this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
+    
+    this.formBeneficiario = this.formBuilder.group({
+      nomeCompleto: new FormControl('',Validators.required),
+      edv: new FormControl({value:'', disabled:this.idColaboradorFromRoute>0},Validators.required),
+      cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
+      unidadeOrganizacionalId: new FormControl('',Validators.required),
+      dataNascimento: new FormControl('', Validators.required)
+    })
     
     
 
@@ -189,6 +190,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     }
     if(this.formBeneficiario.valid){
       if(this.idColaboradorFromRoute){
+        this.formBeneficiario.controls.edv.enable();
         this.beneficiarioService.updateBeneficiario(this.idColaboradorFromRoute,this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
           data=>{
             this.formBeneficiario.reset()
