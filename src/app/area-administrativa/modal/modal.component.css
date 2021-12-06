@@ -1,5 +1,5 @@
 .max-container {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
 
@@ -42,35 +42,30 @@ mat-icon {
 }
 
 mat-icon.atencao {
-  outline: 0.25rem solid tomato;
-  color: tomato;
+  outline: 0.25rem solid var(--vermelho-50);
+  color: var(--vermelho-50);
 }
 
 mat-icon.confirmacao {
-  outline: 0.25rem solid rgba(153, 238, 153, 0.5);
-  color: rgba(78, 219, 78, 1);
+  outline: 0.25rem solid var(--verde-100);
+  color: var(--verde-50);
 }
 
 button {
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
+  box-shadow: none;
 }
 
 button.neutro {
-  background-color: #dfdfdf;
+  background-color: var(--cinza-100);
+  color: var(--cinza-900);
 }
 
 button.destrutivo {
-  color: white;
-  background-color: orangered;
+  background-color: var(--vermelho-100);
 }
 
 button.confirmar {
-  color: white;
-  background-color: royalblue;
+  background-color: var(--azul-50);
 }
 
 .buttons {

@@ -1,15 +1,15 @@
 button {
   background-color: transparent;
-  color: royalblue;
-  border: 1px solid royalblue;
+  color: var(--azul-50);
+  border: 1px solid var(--azul-50);
   padding: 0.25rem 1rem;
   border-radius: 20rem;
-  cursor: pointer;
+  box-shadow: none;
 }
 
 button.destrutivo {
-  color: tomato;
-  border: 1px solid tomato;
+  color: var(--vermelho-50);
+  border: 1px solid var(--vermelho-50);
 }
 
 mat-icon {

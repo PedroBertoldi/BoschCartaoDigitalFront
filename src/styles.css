@@ -1,9 +1,13 @@
 :root {
-  --vermelho: tomato;
+  --vermelho-50: tomato;
+  --vermelho-100: orangered;
   --azul-50: cornflowerblue;
   --azul-100: #5a86d5;
+  --verde-50: rgba(78, 219, 78, 1);
+  --verde-100: rgba(153, 238, 153, 0.5);
   --cinza-50: #efefef;
   --cinza-100: #cecece;
+  --cinza-900: #121212;
   --texto: gray;
 
   --sombra: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
