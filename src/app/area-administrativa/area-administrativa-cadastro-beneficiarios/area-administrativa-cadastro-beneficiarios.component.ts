@@ -150,20 +150,35 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   edvInput(){
     if(this.formBeneficiario.value.edv?.length>2){
-      this.indicacaoService.getColaborador(this.formBeneficiario.value.edv).pipe(first()).subscribe(
+      this.beneficiarioService.getBeneficiarioByEdv(this.idEventoFromRoute,this.formBeneficiario.value.edv).pipe(first()).subscribe(
         data=>{
-          this.colaborador = data;
-          console.log(this.colaborador)
-          this.formBeneficiario.setValue({
-            ...(this.formBeneficiario.value),
-            nomeCompleto: this.colaborador.nomeCompleto,
-            edv: this.colaborador.edv,
-            cpf: this.colaborador.cpf,
-            //unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id, //todo this info is not working in the back end
-            dataNascimento: this.colaborador.dataNascimento.substr(0,10)
-          })
+          console.log(data)
+          this.colaborador= data.colaborador;
+          this.direitos = [];
+            data.direitos.forEach((direitoUnitario: any) => {
+              let rep = false;
+              this.direitos.forEach((direito:any) => {
+                if(direitoUnitario.beneficio.id == direito.beneficio.id){
+                  direito.quantidade++;
+                  rep = true;
+                }
+              });
+              if(!rep){
+                direitoUnitario.quantidade =1;
+                this.direitos.push(direitoUnitario);
+              }
+            });
+            this.formBeneficiario.setValue({
+              ...(this.formBeneficiario.value),
+              nomeCompleto: this.colaborador.nomeCompleto,
+              edv: this.colaborador.edv,
+              cpf: this.colaborador.cpf,
+              unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id,
+              dataNascimento: this.colaborador.dataNascimento.substr(0,10)
+            }
+          )
         }
-        )
+      )
     }
   }
 

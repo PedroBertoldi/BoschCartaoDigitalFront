@@ -70,7 +70,7 @@
           <ng-container *ngIf='direitos &&direitos.length > 0'>
             <div *ngFor='let direito of direitos'>
               <mat-form-field>
-                <input matInput type="number" [(value)]="direito.quantidade" [id]="(direito?.id)">
+                <input matInput type="number" [(ngModel)]="direito.quantidade" [name]="(direito?.id)">
               </mat-form-field>
               <span>x</span>
               <label [for]='direito.id'>{{ direito.beneficio.descricao}}</label>

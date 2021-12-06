@@ -17,6 +17,12 @@ export class BeneficiarioService {
   getBeneficiarioById(idEvento:number,idColaborador: number){
     return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/buscar-direitos', {params:{EventoId:idEvento, idColaborador: idColaborador}});
   }
+
+
+  getBeneficiarioByEdv(eventoID:number,colaboradorEDV: string){
+    return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/Direito/Buscar/'+eventoID+'/'+colaboradorEDV);
+  }
+
   
   
   createBeneficiario(beneficiario:any){
