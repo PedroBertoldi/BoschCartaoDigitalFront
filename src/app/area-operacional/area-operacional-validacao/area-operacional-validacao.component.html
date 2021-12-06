@@ -2,7 +2,8 @@
     <mat-icon mat-button [matMenuTriggerFor]="menu">settings</mat-icon>
     <mat-menu #menu="matMenu">
         <mat-form-field class="settings" appearance="fill">
-            <mat-select placeholder="Selecione os Benefícios da Ilha" formControlName="beneficiosSelecionados" multiple>
+            <mat-select (selectionChange)="selected()" placeholder="Selecione os Benefícios da Ilha"
+                formControlName="beneficiosSelecionados" multiple>
                 <mat-option *ngFor="let beneficio of beneficios" [value]="beneficio.id">
                     {{beneficio.descricao}}
                 </mat-option>

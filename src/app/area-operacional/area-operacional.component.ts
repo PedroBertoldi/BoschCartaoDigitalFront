@@ -15,6 +15,7 @@ export class AreaOperacionalComponent implements OnInit {
   beneficios: any = []
   evento!: any
   colaborador!: any
+  beneficiosSelecionados!: number[];
 
   constructor(private router: Router, private route: ActivatedRoute, private operacionalService: OperacionalService) { 
     let state = this.router.getCurrentNavigation()?.extras.state;
@@ -27,10 +28,17 @@ export class AreaOperacionalComponent implements OnInit {
       if(!state.edv){
         delete state.edv
       }
+      
+      this.beneficiosSelecionados = JSON.parse(localStorage.getItem('beneficiosSelecionados') as string);
       this.operacionalService.getDireitos(state).pipe(first()).subscribe(data => {
         this.evento = data.evento
         this.colaborador = data.colaborador
         this.beneficios = this.formatBeneficios(data);
+        if(this.beneficiosSelecionados && this.beneficiosSelecionados.length>0){
+          this.beneficios = this.beneficios.filter((beneficio: any)=>{
+            return this.beneficiosSelecionados.includes(beneficio.beneficio.id);
+          })
+        }
       }, error=>{
         this.router.navigate(['operacional/validacao'], {state: error});
       })
@@ -95,8 +103,6 @@ export class AreaOperacionalComponent implements OnInit {
     });
     let request: any = {eventoId: this.evento.id, colaboradorId: this.colaborador.id, direitosEntregues: direitosEntregues};
     
-    console.log(request)
-    console.log(this.colaborador)
 
     this.operacionalService.receberDireitos(request).pipe(first()).subscribe(data => {
       this.router.navigate(['operacional/validacao']);

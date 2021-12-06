@@ -28,24 +28,31 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.beneficioService.getBeneficiosByEventoId(1).pipe(first()).subscribe(
+
+
+    this.beneficioService.getBeneficiosByEventoId(0).pipe(first()).subscribe(
       data =>{
         this.beneficios = data;
-        console.log(data)
       }
     );
 
     this.validacaoForm = this.formBuilder.group({
             cpf: new FormControl('', Validators.required),
             edv: new FormControl('', Validators.required),
-            beneficiosSelecionados: new FormControl()
+            beneficiosSelecionados: new FormControl(JSON.parse(localStorage.getItem('beneficiosSelecionados') as string))
         });
+  }
+
+  selected(){
+    localStorage.setItem('beneficiosSelecionados', JSON.stringify(this.validacaoForm.value.beneficiosSelecionados));
   }
 
   submit(){
     this.submitted = this.mostrar;
     if(this.validacaoForm.controls.cpf.valid || this.validacaoForm.controls.edv.valid){
-      this.router.navigate(['operacional/retirar'], {state: this.validacaoForm.value});
+      let state= this.validacaoForm.value;
+      delete state.beneficiosSelecionados;
+      this.router.navigate(['operacional/retirar'], {state: state});
     } else{
       this.validacaoForm.markAllAsTouched();
     }
