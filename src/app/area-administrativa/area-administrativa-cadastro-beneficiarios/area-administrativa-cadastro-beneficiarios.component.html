@@ -16,8 +16,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>EDV</mat-label>
-        <input matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required (input)="edvInput()"
-          [readonly]="idColaboradorFromRoute>0" />
+        <input mask="00000000000" matInput type="text" formControlName='edv' placeholder="Ex: 0544460" required
+          (input)="edvInput()" [readonly]="idColaboradorFromRoute>0" />
         <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
           EDV é <strong>obrigatório</strong>
         </mat-error>
