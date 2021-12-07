@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,36 +11,36 @@ export class BeneficiarioService {
   constructor(private http:HttpClient) { }
 
   getBeneficiarios(eventoId: number){
-    return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/TodosDireitos/'+eventoId);
+    return this.http.get<any>(environment.webApi + '/api/AreaAdministrativa/TodosDireitos/'+eventoId);
   }
 
   
   getBeneficiarioById(idEvento:number,idColaborador: number){
-    return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/buscar-direitos', {params:{EventoId:idEvento, idColaborador: idColaborador}});
+    return this.http.get<any>(environment.webApi + '/api/AreaAdministrativa/buscar-direitos', {params:{EventoId:idEvento, idColaborador: idColaborador}});
   }
 
 
   getBeneficiarioByEdv(eventoID:number,colaboradorEDV: string){
-    return this.http.get<any>('http://localhost:5000/api/AreaAdministrativa/Direito/Buscar/'+eventoID+'/'+colaboradorEDV);
+    return this.http.get<any>(environment.webApi + '/api/AreaAdministrativa/Direito/Buscar/'+eventoID+'/'+colaboradorEDV);
   }
 
   
   
   createBeneficiario(beneficiario:any){
-    return this.http.post<any>('http://localhost:5000/api/AreaAdministrativa/Beneficiarios', beneficiario);
+    return this.http.post<any>(environment.webApi + '/api/AreaAdministrativa/Beneficiarios', beneficiario);
   }
 
 
   updateBeneficiario(beneficiarioId:number, beneficiario:any){
-    return this.http.put<any>('http://localhost:5000/api/AreaAdministrativa/Beneficiarios/'+beneficiarioId, beneficiario);
+    return this.http.put<any>(environment.webApi + '/api/AreaAdministrativa/Beneficiarios/'+beneficiarioId, beneficiario);
   }
 
   deleteBeneficiario(eventoId: number, colaboradorId: any) {
-    return this.http.delete<any>('http://localhost:5000/api/AreaAdministrativa/Direito/ColaboradorEvento/'+ colaboradorId+'/'+eventoId);
+    return this.http.delete<any>(environment.webApi + '/api/AreaAdministrativa/Direito/ColaboradorEvento/'+ colaboradorId+'/'+eventoId);
   }
 
   getAreas(){
-    return this.http.get<any>('https://localhost:5001/api/AreaAdministrativa/listar-unidade-organizacional')
+    return this.http.get<any>(environment.webApi + '/api/AreaAdministrativa/listar-unidade-organizacional')
   }
 
 }

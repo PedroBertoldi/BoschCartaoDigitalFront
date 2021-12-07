@@ -1,4 +1,5 @@
 <app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
+<app-menu></app-menu>
 <div class="max-container">
   <div class='menu-flutuante'>
     <a routerLink='/admin/evento'>
@@ -19,10 +20,10 @@
         <table>
           <tr class='cabecalho'>
             <td>Excluir</td>
-            <td>EDV</td>
-            <td>Beneficiário</td>
-            <td>CPF</td>
-            <td>Área</td>
+            <td>EDV <mat-icon (click)='ordenar("edv",$event)'>expand_less</mat-icon></td>
+            <td>Beneficiário <mat-icon (click)='ordenar("nomeCompleto",$event)'>expand_less</mat-icon></td>
+            <td>CPF <mat-icon (click)='ordenar("cpf",$event)'>expand_less</mat-icon></td>
+            <td>Área <mat-icon (click)='ordenar("unidadeOrganizacional",$event)'>expand_less</mat-icon></td>
             <td>Benefícios</td>
             <td>Indicado</td>
             <td>Ações</td>

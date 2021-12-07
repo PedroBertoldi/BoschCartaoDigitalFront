@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthenticationService {
   }
 
   login(cpf: string, nascimento: string){
-    return this.http.post<any>('http://localhost:5000/api/Autenticacao/Login', { cpf: cpf, dataNascimento: nascimento})
+    return this.http.post<any>(environment.webApi + '/api/Autenticacao/Login', { cpf: cpf, dataNascimento: nascimento})
             .pipe(map(user => {
                 user.cpf = cpf;
                 user.nasc = nascimento;

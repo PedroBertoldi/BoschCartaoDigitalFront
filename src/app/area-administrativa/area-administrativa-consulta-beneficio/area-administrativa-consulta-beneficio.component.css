@@ -3,3 +3,13 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1.5fr;
 }
+
+tr.cabecalho td {
+  position: relative;
+}
+
+tr.cabecalho td mat-icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
+}

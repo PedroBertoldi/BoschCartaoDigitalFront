@@ -65,6 +65,36 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
     })
   }
 
+  ordenar(coluna: string, evento:Event): void {
+    const elemento = evento.target as HTMLElement
+
+    if (elemento.innerHTML === 'expand_less') {
+      elemento.innerHTML = 'expand_more'
+      this.eventosBuscados = this.eventos.sort((a: any, b: any) => {
+        if(a[coluna] > b[coluna]) {
+          return 1
+        } else if (a[coluna] < b[coluna]) {
+          return -1
+        } else {
+          return 0 
+        }
+      })
+    } else {
+      elemento.innerHTML = 'expand_less'
+      this.eventosBuscados = this.eventos.sort((a: any, b: any) => {
+        if(a[coluna] > b[coluna]) {
+          return -1
+        } else if (a[coluna] < b[coluna]) {
+          return 1
+        } else {
+          return 0 
+        }
+      })
+    }
+
+
+  }
+
   buscar(valor: string): void {
     if(valor !== '') {
       this.eventosBuscados = this.eventos.filter(evento => evento.nome.toLowerCase().includes(valor.toLowerCase()) )
