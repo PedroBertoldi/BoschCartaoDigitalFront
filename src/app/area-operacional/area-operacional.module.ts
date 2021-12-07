@@ -33,7 +33,6 @@ import { AreaPublicaModule } from '../area-publica/area-publica.module';
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    AreaPublicaModule
   ]
 })
 export class AreaOperacionalModule { }
