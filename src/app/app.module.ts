@@ -20,7 +20,7 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

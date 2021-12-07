@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CardColaboradorComponent } from './card-colaborador/card-colaborador.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { AreaPublicaModule } from '../area-publica/area-publica.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatSelectModule } from '@angular/material/select';
     NgxMaskModule.forRoot(),
     MatIconModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    AreaPublicaModule
   ]
 })
 export class AreaOperacionalModule { }

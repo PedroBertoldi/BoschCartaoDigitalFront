@@ -1,6 +1,7 @@
 <app-modal [aberto]='modalAberto' (confirmarData)="onSubmit()" (fecharModal)="fecharModal()"
   [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficios"' tipoModal="confirmacao"></app-modal>
-<div class="max-container">
+  <app-menu></app-menu>
+  <div class="max-container">
   <h1>Benefícios</h1>
   <div class='container'>
     <div class='cabecalho-macro'>

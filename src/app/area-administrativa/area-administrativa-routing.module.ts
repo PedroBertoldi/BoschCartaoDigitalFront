@@ -8,7 +8,6 @@ import { AreaAdministrativaCadastroEventoComponent } from './area-administrativa
 import { AreaAdministrativaConsultaBeneficiarioComponent } from './area-administrativa-consulta-beneficiario/area-administrativa-consulta-beneficiario.component';
 import { AreaAdministrativaConsultaBeneficioComponent } from './area-administrativa-consulta-beneficio/area-administrativa-consulta-beneficio.component';
 import { AreaAdministrativaConsultaEventoComponent } from './area-administrativa-consulta-evento/area-administrativa-consulta-evento.component';
-import { AreaAdministrativaComponent } from './area-administrativa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },

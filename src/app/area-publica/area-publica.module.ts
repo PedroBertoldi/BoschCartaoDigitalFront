@@ -19,7 +19,7 @@ import { MenuComponent } from './menu/menu.component'
     AreaPublicaComponent,
     BeneficioTableComponent,
     AreaPublicaIndicarComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +32,9 @@ import { MenuComponent } from './menu/menu.component'
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxMaskModule.forRoot(),
+  ],
+  exports: [
+    MenuComponent
   ]
 })
 export class AreaPublicaModule { }
