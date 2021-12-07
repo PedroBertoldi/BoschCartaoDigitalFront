@@ -37,8 +37,8 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
     );
 
     this.validacaoForm = this.formBuilder.group({
-            cpf: new FormControl('', Validators.required),
-            edv: new FormControl('', Validators.required),
+            cpf: new FormControl('', [Validators.required, Validators.minLength(11)]),
+            edv: new FormControl('', [Validators.required, Validators.minLength(3)]),
             beneficiosSelecionados: new FormControl(JSON.parse(localStorage.getItem('beneficiosSelecionados') as string))
         });
   }
@@ -53,7 +53,7 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
       let state= this.validacaoForm.value;
       delete state.beneficiosSelecionados;
       this.router.navigate(['operacional/retirar'], {state: state});
-    } else{
+    } else {
       this.validacaoForm.markAllAsTouched();
     }
   }
