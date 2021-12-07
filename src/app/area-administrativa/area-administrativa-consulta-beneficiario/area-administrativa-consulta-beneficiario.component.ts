@@ -58,6 +58,56 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
     )
   }
 
+  ordenar(coluna: string, evento:Event): void {
+    const elemento = evento.target as HTMLElement
+
+    if (elemento.innerHTML === 'expand_less') {
+      elemento.innerHTML = 'expand_more'
+      this.buscaBeneficiarios = this.beneficiarios.sort((a: any, b: any) => {
+        if(coluna === 'unidadeOrganizacional') {
+          if(a.colaborador.unidadeOrganizacional.descricao > b.colaborador.unidadeOrganizacional.descricao) {
+            return 1
+          } else if (a.colaborador.unidadeOrganizacional.descricao < b.colaborador.unidadeOrganizacional.descricao) {
+            return -1
+          } else {
+            return 0 
+          }
+        }
+
+        if(a.colaborador[coluna] > b.colaborador[coluna]) {
+          return 1
+        } else if (a.colaborador[coluna] < b.colaborador[coluna]) {
+          return -1
+        } else {
+          return 0 
+        }
+      })
+    } else {
+      elemento.innerHTML = 'expand_less'
+      this.buscaBeneficiarios = this.beneficiarios.sort((a: any, b: any) => {
+        if(coluna === 'unidadeOrganizacional') {
+          if(a.colaborador.unidadeOrganizacional.descricao > b.colaborador.unidadeOrganizacional.descricao) {
+            return -1
+          } else if (a.colaborador.unidadeOrganizacional.descricao < b.colaborador.unidadeOrganizacional.descricao) {
+            return 1
+          } else {
+            return 0 
+          }
+        }
+
+        if(a.colaborador[coluna] > b.colaborador[coluna]) {
+          return -1
+        } else if (a.colaborador[coluna] < b.colaborador[coluna]) {
+          return 1
+        } else {
+          return 0 
+        }
+      })
+    }
+
+
+  }
+
   buscar(valor: string): void {
     function buscaCompleta(buscado: any): any {
       for(var prop in buscado) {

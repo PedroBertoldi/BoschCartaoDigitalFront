@@ -63,6 +63,36 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   buscar(valor: string): void {
     this.buscaBeneficios = this.beneficios.filter((beneficio :any) => beneficio.descricaoNormalizada.includes(valor.toUpperCase())) 
   }
+
+  ordenar(evento:Event): void {
+    const elemento = evento.target as HTMLElement
+
+    if (elemento.innerHTML === 'expand_less') {
+      elemento.innerHTML = 'expand_more'
+      this.buscaBeneficios = this.beneficios.sort((a: any, b: any) => {
+        if(a.descricao > b.descricao) {
+          return 1
+        } else if (a.descricao < b.descricao) {
+          return -1
+        } else {
+          return 0 
+        }
+      })
+    } else {
+      elemento.innerHTML = 'expand_less'
+      this.buscaBeneficios = this.beneficios.sort((a: any, b: any) => {
+        if(a.descricao > b.descricao) {
+          return -1
+        } else if (a.descricao < b.descricao) {
+          return 1
+        } else {
+          return 0 
+        }
+      })
+    }
+
+
+  }
   
   limpar(): void {
     this.buscaBeneficios = this.beneficios

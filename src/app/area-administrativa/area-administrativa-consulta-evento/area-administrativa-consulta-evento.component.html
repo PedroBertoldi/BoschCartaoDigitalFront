@@ -17,9 +17,9 @@
         <table>
           <tr class='cabecalho'>
             <td>Excluir</td>
-            <td>Nome do Evento</td>
-            <td>Data de Início</td>
-            <td>Data de Fim</td>
+            <td>Nome do Evento <mat-icon (click)='ordenar("nome",$event)'>expand_less</mat-icon></td>
+            <td>Data de Início <mat-icon (click)='ordenar("dataInicio",$event)'>expand_less</mat-icon></td>
+            <td>Data de Fim <mat-icon (click)='ordenar("dataFim",$event)'>expand_less</mat-icon></td>
             <td>Ativo</td>
             <td>Ações</td>
           </tr>
