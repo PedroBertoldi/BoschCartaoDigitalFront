@@ -1,10 +1,12 @@
-.headerGraphic {
-    background: url('/assets/supergraphic.svg');
-    height: 15px;
+.header-login {
+  background-color: var(--cinza-50);
 }
 
-p {
-    font-size: large;
-    margin-left: 10px;
-    color: #737A80;
+.principal {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.header-login h1 {
+  margin: 0;
 }

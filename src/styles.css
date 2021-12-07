@@ -91,6 +91,15 @@ h3 {
   color: var(--texto);
 }
 
+.headerGraphic {
+  background: url("/assets/supergraphic.svg");
+  height: 15px;
+}
+
+router-outlet + * {
+  position: relative;
+}
+
 /* FORMULARIOS */
 
 form {

@@ -1,4 +1,8 @@
 p {
-    margin-left: 10px;
-    color: #737A80;
+  color: var(--texto);
+  text-align: center;
+}
+
+.footer {
+  padding: 0.5rem;
 }
