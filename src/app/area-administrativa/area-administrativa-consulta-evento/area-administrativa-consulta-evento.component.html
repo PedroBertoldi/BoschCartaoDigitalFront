@@ -1,4 +1,5 @@
-<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
+<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()"
+  [tipoModal]="tipoModal"></app-modal>
 <app-menu></app-menu>
 <div class="max-container">
   <div class='menu-flutuante'>
@@ -17,9 +18,12 @@
         <table>
           <tr class='cabecalho'>
             <td>Excluir</td>
-            <td>Nome do Evento <mat-icon (click)='ordenar("nome",$event)'>expand_less</mat-icon></td>
-            <td>Data de Início <mat-icon (click)='ordenar("dataInicio",$event)'>expand_less</mat-icon></td>
-            <td>Data de Fim <mat-icon (click)='ordenar("dataFim",$event)'>expand_less</mat-icon></td>
+            <td>Nome do Evento <mat-icon (click)='ordenar("nome",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Data de Início <mat-icon (click)='ordenar("dataInicio",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Data de Fim <mat-icon (click)='ordenar("dataFim",$event)'>expand_less</mat-icon>
+            </td>
             <td>Ativo</td>
             <td>Ações</td>
           </tr>
@@ -28,13 +32,13 @@
               <app-loading></app-loading>
             </td>
           </tr>
-          <tr *ngIf='eventos.length ===  0'>
+          <tr *ngIf='eventos && eventos.length ===  0'>
             <td colspan="100%">
               Ainda não foi registrado nenhum evento.
             </td>
           </tr>
-          <ng-container *ngIf='eventos.length > 0'>
-            <tr *ngIf='eventosBuscados.length ===  0'>
+          <ng-container *ngIf='eventos && eventos.length > 0'>
+            <tr *ngIf='eventosBuscados && eventosBuscados.length ===  0'>
               <td colspan="100%">
                 Nenhum registro encontrado.
               </td>
@@ -69,6 +73,5 @@
         </table>
       </div>
     </div>
-    <span class='numero-registros'>Mostrando de 1 até 15 de {{eventosBuscados.length}} registros.</span>
   </div>
 </div>
