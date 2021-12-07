@@ -16,6 +16,11 @@ export interface Beneficio {
 })
 export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
 
+  modalAberto = false
+
+  tipoModal!: 'confirmacao' | 'exclusao' 
+
+  beneficioExclusao: any
 
   idEventoFromRoute!: number;
 
@@ -41,7 +46,14 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   }
 
   deleteBeneficio(beneficio : any){
-    this.beneficioService.deleteBeneficio(beneficio.id).pipe(first()).subscribe(
+    this.beneficioExclusao = beneficio
+    this.tipoModal = 'exclusao'
+    this.abrirModal()
+  }
+  
+  confirmarDelete() {
+    this.tipoModal = 'confirmacao'
+    this.beneficioService.deleteBeneficio(this.beneficioExclusao.id).pipe(first()).subscribe(
       data =>{
         this.updateBeneficioList();
       }
@@ -54,6 +66,14 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   
   limpar(): void {
     this.buscaBeneficios = this.beneficios
+  }
+
+  fecharModal() {
+    this.modalAberto = false
+  }
+
+  abrirModal(): void {
+    this.modalAberto = true
   }
 
 }

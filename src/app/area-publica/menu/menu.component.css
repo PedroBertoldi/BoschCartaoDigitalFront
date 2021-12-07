@@ -1,0 +1,42 @@
+button {
+  box-shadow: none;
+}
+
+mat-icon[mat-button] {
+  cursor: pointer;
+}
+
+.nav-container {
+  border-bottom: 1px solid var(--cinza-100);
+}
+
+.nav-menu {
+  position: absolute;
+  right: 10%;
+  top: 10%;
+}
+
+nav {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+nav a {
+  padding: 1rem 0;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+nav a:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav a:hover {
+  border-bottom: 2px solid var(--azul-50);
+}
+
+a.ativo {
+  border-bottom: 2px solid var(--azul-50);
+}

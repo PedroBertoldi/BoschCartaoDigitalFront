@@ -11,6 +11,11 @@ import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 })
 export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
 
+  modalAberto = false
+
+  tipoModal!: 'confirmacao' | 'exclusao' 
+
+  colaboradorExclusao: any
 
   idEventoFromRoute!: number;
 
@@ -67,7 +72,14 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   }
 
   deleteColaborador(beneficiario:any){
-    this.beneficiarioService.deleteBeneficiario(this.idEventoFromRoute, beneficiario.colaborador.id).pipe(first()).subscribe(
+    this.colaboradorExclusao = beneficiario
+    this.tipoModal = 'exclusao'
+    this.abrirModal()
+  }
+  
+  confirmarDelete() {
+    this.tipoModal = 'confirmacao'
+    this.beneficiarioService.deleteBeneficiario(this.idEventoFromRoute, this.colaboradorExclusao.colaborador.id).pipe(first()).subscribe(
       data=>{
         this.updateBeneficiarioList();
       }
@@ -76,6 +88,14 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   
   limpar(): void {
     this.buscaBeneficiarios = this.beneficiarios
+  }
+
+  fecharModal() {
+    this.modalAberto = false
+  }
+
+  abrirModal(): void {
+    this.modalAberto = true
   }
 
 }

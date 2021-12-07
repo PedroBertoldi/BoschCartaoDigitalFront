@@ -20,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatSelectModule } from '@angular/material/select';
 import {  MatOptionModule } from '@angular/material/core';
+import { MenuComponent } from '../area-publica/menu/menu.component';
+import { AreaPublicaModule } from '../area-publica/area-publica.module';
 
 
 @NgModule({
@@ -34,7 +36,7 @@ import {  MatOptionModule } from '@angular/material/core';
     AreaAdministrativaConsultaBeneficiarioComponent,
     BuscarComponent,
     AreaAdministrativaCadastroBeneficioComponent,
-    AreaAdministrativaCadastroBeneficiariosComponent
+    AreaAdministrativaCadastroBeneficiariosComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,7 @@ import {  MatOptionModule } from '@angular/material/core';
     MatOptionModule,
     MatInputModule,
     NgxMaskModule.forRoot(),
+    AreaPublicaModule
   ],
-  
 })
 export class AreaAdministrativaModule { }

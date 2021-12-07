@@ -5,7 +5,7 @@
     <p>Data antiga, tem certeza que deseja salvar?</p>
     <div class="buttons">
       <button (click)="fecharModal.emit()" class="neutro">Cancelar</button>
-      <button (click)="confirmarData.emit()" class="destrutivo">Ok</button>
+      <button (click)="confirmarAcao.emit()" class="destrutivo">Ok</button>
     </div>
   </div>
   <div class="container" *ngIf="tipoModal === 'confirmacao'">
@@ -13,7 +13,19 @@
     <h2>Sucesso</h2>
     <p>A operação foi realizada com sucesso.</p>
     <div class="buttons">
-      <a [routerLink]='redirecionar'><button class="confirmar" (click)="fecharModal.emit()">Ok</button></a>
+        <a *ngIf='redirecionar' [routerLink]='redirecionar'>
+          <button class="confirmar" (click)="fecharModal.emit()">Ok</button>
+        </a>
+        <button *ngIf='!redirecionar' class="confirmar" (click)="fecharModal.emit()">Ok</button>
+    </div>
+  </div>
+  <div class="container" *ngIf="tipoModal === 'exclusao'">
+    <mat-icon class="atencao">delete</mat-icon>
+    <h2>Atenção</h2>
+    <p>Tem certeza que deseja excluir esse registro?</p>
+    <div class="buttons">
+      <button (click)="fecharModal.emit()" class="neutro">Cancelar</button>
+      <button (click)="confirmarAcao.emit()" class="destrutivo">Ok</button>
     </div>
   </div>
 </div>
