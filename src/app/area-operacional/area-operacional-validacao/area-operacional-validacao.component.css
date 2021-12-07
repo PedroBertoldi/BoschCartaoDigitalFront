@@ -47,4 +47,9 @@ app-botao-validacao {
     app-botao-validacao {
         width: 100%
     }
+
+    .validacao-form mat-form-field {
+        width: 80vw;
+        margin: 5px;
+    }
 }
