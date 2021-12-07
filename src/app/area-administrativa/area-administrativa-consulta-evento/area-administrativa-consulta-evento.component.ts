@@ -23,9 +23,9 @@ export class AreaAdministrativaConsultaEventoComponent implements OnInit {
 
   eventoExclusao: any
 
-  eventos: Evento[] = []
+  eventos!: Evento[]
 
-  eventosBuscados: Evento[] = []
+  eventosBuscados!: Evento[]
 
   constructor(private eventoService: EventoService) { }
 

@@ -23,6 +23,11 @@
             <td>Ativo</td>
             <td>Ações</td>
           </tr>
+          <tr *ngIf='!eventos'>
+            <td colspan="100%">
+              <app-loading></app-loading>
+            </td>
+          </tr>
           <tr *ngIf='eventos.length ===  0'>
             <td colspan="100%">
               Ainda não foi registrado nenhum evento.
