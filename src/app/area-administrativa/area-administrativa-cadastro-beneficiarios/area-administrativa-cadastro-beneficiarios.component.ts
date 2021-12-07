@@ -46,11 +46,11 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
     
     this.formBeneficiario = this.formBuilder.group({
-      nomeCompleto: new FormControl('',Validators.required),
-      edv: new FormControl({value:'', disabled:this.idColaboradorFromRoute>0},Validators.required),
+      nomeCompleto: new FormControl('',[Validators.required, Validators.maxLength(255)]),
+      edv: new FormControl({value:'', disabled:this.idColaboradorFromRoute>0},[Validators.required, Validators.minLength(3)]),
       cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
       unidadeOrganizacionalId: new FormControl('',Validators.required),
-      dataNascimento: new FormControl('', Validators.required)
+      dataNascimento: new FormControl('', [Validators.required, Validators.maxLength(10)])
     })
     
     

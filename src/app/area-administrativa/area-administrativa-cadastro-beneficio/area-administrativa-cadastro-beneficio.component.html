@@ -12,9 +12,11 @@
         <mat-label>Nome</mat-label>
         <input matInput type="text" formControlName='nome' placeholder="Ex: Cesta Fria" required />
         <mat-error *ngIf='formBeneficio.get("nome")?.hasError("required")'>
-          Nome é <strong>obrigatório</strong>
+          Nome é <strong>obrigatório.</strong>
         </mat-error>
-
+        <mat-error *ngIf='formBeneficio.get("nome")?.hasError("maxlength")'>
+          O tamanho máximo para nome é <strong>255</strong> caracteres.
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Evento</mat-label>

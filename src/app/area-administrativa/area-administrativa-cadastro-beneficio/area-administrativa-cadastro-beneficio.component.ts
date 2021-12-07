@@ -18,7 +18,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
   modalAberto = false;
 
   formBeneficio = this.formBuilder.group({
-    nome: new FormControl('',Validators.required),
+    nome: new FormControl('',[Validators.required, Validators.maxLength(255)]),
   })
   repeated: boolean = false;
 

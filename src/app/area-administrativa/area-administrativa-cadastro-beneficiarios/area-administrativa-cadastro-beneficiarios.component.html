@@ -11,30 +11,39 @@
       <mat-form-field>
         <mat-label>Nome Completo</mat-label>
         <input matInput type="text" formControlName='nomeCompleto' placeholder="Ex: Maria Souza" required />
-        <mat-error *ngIf='formBeneficiario.get("nome")?.hasError("required")'>
-          Nome é <strong>obrigatório</strong>
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("required")'>
+          Nome é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("maxlength")'>
+          O tamanho máximo para nome é <strong>255</strong> caracteres.
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>EDV</mat-label>
-        <input mask="9999999999" maxlength="10" matInput type="text" formControlName='edv' placeholder="Ex: 0544460"
+        <input mask="0009999999" maxlength="10" matInput type="text" formControlName='edv' placeholder="Ex: 0544460"
           required (input)="edvInput()" />
         <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
-          EDV é <strong>obrigatório</strong>
+          EDV é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("minlength")'>
+          EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Data de Nascimento</mat-label>
         <input matInput type="date" formControlName='dataNascimento' placeholder="Ex: 19/02/1993" required />
         <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("required")'>
-          EDV é <strong>obrigatório</strong>
+          Data de nascimento é <strong>obrigatória.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("maxlength")'>
+          Data de nascimento <strong>inválida.</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>CPF</mat-label>
         <input mask="000.000.000-00" matInput type="text" formControlName='cpf' placeholder="Ex: 999.999.999-99" />
         <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
-          Use apenas os <strong>11 números</strong> do CPF
+          Use apenas os <strong>11 números</strong> do CPF.
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -44,6 +53,9 @@
             {{area.descricao}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf='formBeneficiario.get("unidadeOrganizacionalId")?.hasError("required")'>
+          Área é <strong>obrigatória.</strong>
+        </mat-error>
       </mat-form-field>
 
       <form>
