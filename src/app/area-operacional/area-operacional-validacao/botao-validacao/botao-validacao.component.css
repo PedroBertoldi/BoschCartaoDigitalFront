@@ -1,9 +1,9 @@
 .button {
-    min-width: 50vw;
-    max-width: 50vw;
     min-height: 10vh;
     white-space: normal;
-    margin: 2px 
+    margin: 2px;
+    width: 100%;
+    background-color: #007bff;
 }
 
 .button:hover {

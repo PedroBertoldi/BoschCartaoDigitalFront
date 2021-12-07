@@ -3,15 +3,16 @@
     width: auto;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-
-.validacao-form {
+app-botao-validacao {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 50vw;
     font-size: x-large;
+    margin: 5vh;
 }
 
 .validacao-form div {
@@ -30,7 +31,7 @@
 }
 
 .error {
-    font-size: 75%;
+    margin-top: 10px;
 }
 
 ::ng-deep.mat-menu-panel {
@@ -42,6 +43,8 @@
     width: 100%;
 }
 
-app-botao-validacao {
-    margin: 5px;
+@media only screen and (max-width: 600px) {
+    app-botao-validacao {
+        width: 100%
+    }
 }

@@ -23,7 +23,6 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
     let state = this.router.getCurrentNavigation()?.extras.state;
 
     if(state){
-      console.log(state)
       this.error =state.error;
     }
    }

@@ -6,6 +6,7 @@
 }
 
 h1 {
+    margin: 2vh;
     text-align: center;
 }
 
@@ -14,8 +15,15 @@ h1 {
 }
 
 button {
-    margin: 0 auto;
-    margin-bottom: 50px;
-    width: 20vw;
-    height: 7vh;
+    margin: 2vw;
+    width: fit-content;
+}
+
+.divButtons {
+    display: flex;
+    justify-content: center;
+}
+
+.divButtons .cancel {
+    background-color: #bfc0c2;
 }
