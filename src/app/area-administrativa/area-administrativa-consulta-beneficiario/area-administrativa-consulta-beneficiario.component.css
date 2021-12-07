@@ -7,3 +7,13 @@ td.produtos div {
 td.produtos div span {
   white-space: nowrap;
 }
+
+tr.cabecalho td {
+  position: relative;
+}
+
+tr.cabecalho td mat-icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
+}

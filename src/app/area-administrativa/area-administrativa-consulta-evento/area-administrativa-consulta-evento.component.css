@@ -9,10 +9,20 @@ td.icone {
   text-align: center;
 }
 
-mat-icon {
+td.icone mat-icon {
   color: tomato;
 }
 
-mat-icon.ativo {
+td.icone mat-icon.ativo {
   color: yellowgreen;
+}
+
+tr.cabecalho td {
+  position: relative;
+}
+
+tr.cabecalho td mat-icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 1rem;
 }
