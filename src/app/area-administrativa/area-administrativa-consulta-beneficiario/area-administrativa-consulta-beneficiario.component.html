@@ -28,6 +28,11 @@
             <td>Indicado</td>
             <td>Ações</td>
           </tr>
+          <tr *ngIf='!beneficiarios'>
+            <td colspan="100%">
+              <app-loading></app-loading>
+            </td>
+          </tr>
           <tr *ngIf='beneficiarios && beneficiarios.length ===  0'>
             <td colspan="100%">
               Ainda não foi registrado nenhum beneficiário.

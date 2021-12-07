@@ -23,6 +23,11 @@
             <td>Nome <mat-icon (click)='ordenar($event)'>expand_less</mat-icon></td>
             <td>Ações</td>
           </tr>
+          <tr *ngIf='!beneficios'>
+            <td colspan="100%">
+              <app-loading></app-loading>
+            </td>
+          </tr>
           <tr *ngIf='beneficios && beneficios.length ===  0'>
             <td colspan="100%">
               Ainda não foi registrado nenhum benefício.
