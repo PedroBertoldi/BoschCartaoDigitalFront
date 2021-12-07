@@ -20,7 +20,7 @@
         <table>
           <tr class='cabecalho'>
             <td>Excluir</td>
-            <td>Nome</td>
+            <td>Nome <mat-icon (click)='ordenar($event)'>expand_less</mat-icon></td>
             <td>Ações</td>
           </tr>
           <tr *ngIf='beneficios && beneficios.length ===  0'>
