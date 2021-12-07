@@ -30,8 +30,7 @@
 }
 
 .error {
-    color: red;
-    margin-top: 5vh;
+    font-size: 75%;
 }
 
 ::ng-deep.mat-menu-panel {

@@ -23,7 +23,8 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
     let state = this.router.getCurrentNavigation()?.extras.state;
 
     if(state){
-      this.error ="Erro ao buscar o colaborador, tente novamente."
+      console.log(state)
+      this.error =state.error;
     }
    }
 

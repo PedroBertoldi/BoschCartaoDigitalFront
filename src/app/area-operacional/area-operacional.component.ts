@@ -41,11 +41,13 @@ export class AreaOperacionalComponent implements OnInit {
           })
         }
 
+
+
         if (this.beneficios.length == 0) {
-          this.router.navigate(['operacional/validacao']);
+          this.router.navigate(['operacional/validacao'],{state: {error:"Nenhum benefício disponível para este usuário."}});
         }
       }, error=>{
-        this.router.navigate(['operacional/validacao'], {state: error});
+        this.router.navigate(['operacional/validacao'], {state: {error:"Nenhum usuário com os dados enviados foi encontrado. Por favor tente novamente."}});
       })
     }
   }
