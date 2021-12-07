@@ -40,14 +40,18 @@ export class AreaOperacionalComponent implements OnInit {
             return this.beneficiosSelecionados.includes(beneficio.beneficio.id);
           })
         }
+
+        if (this.beneficios.length == 0) {
+          this.router.navigate(['operacional/validacao']);
+        }
       }, error=>{
         this.router.navigate(['operacional/validacao'], {state: error});
       })
     }
 
-    if (this.beneficios.length == 0 && this.evento == undefined && this.colaborador == undefined) {
-      this.router.navigate(['operacional/validacao']);
-    }
+    
+
+    
   }
 
   ngOnInit(): void {
