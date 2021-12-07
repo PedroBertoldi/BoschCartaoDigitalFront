@@ -48,10 +48,6 @@ export class AreaOperacionalComponent implements OnInit {
         this.router.navigate(['operacional/validacao'], {state: error});
       })
     }
-
-    
-
-    
   }
 
   ngOnInit(): void {
