@@ -54,5 +54,6 @@ import { LoadingComponent } from './loading/loading.component';
     NgxMaskModule.forRoot(),
     AreaPublicaModule,
   ],
+  exports:[LoadingComponent]
 })
 export class AreaAdministrativaModule { }

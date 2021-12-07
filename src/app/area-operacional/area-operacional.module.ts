@@ -14,6 +14,7 @@ import { CardColaboradorComponent } from './card-colaborador/card-colaborador.co
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { AreaPublicaModule } from '../area-publica/area-publica.module';
+import { AreaAdministrativaModule } from '../area-administrativa/area-administrativa.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AreaPublicaModule } from '../area-publica/area-publica.module';
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
+    AreaAdministrativaModule
   ]
 })
 export class AreaOperacionalModule { }
