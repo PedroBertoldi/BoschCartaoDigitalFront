@@ -19,6 +19,7 @@ export class AreaOperacionalComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute, private operacionalService: OperacionalService) { 
     let state = this.router.getCurrentNavigation()?.extras.state;
+
     if (!state) {
       this.router.navigate(['operacional/validacao']);
     } else {
@@ -44,13 +45,13 @@ export class AreaOperacionalComponent implements OnInit {
       })
     }
 
+    if (this.beneficios.length == 0 && this.evento == undefined && this.colaborador == undefined) {
+      this.router.navigate(['operacional/validacao']);
+    }
   }
 
   ngOnInit(): void {
-    
-    
   }
-
 
   formatBeneficios(data:any){
     let beneficios: any = [];
@@ -103,10 +104,8 @@ export class AreaOperacionalComponent implements OnInit {
     });
     let request: any = {eventoId: this.evento.id, colaboradorId: this.colaborador.id, direitosEntregues: direitosEntregues};
     
-
     this.operacionalService.receberDireitos(request).pipe(first()).subscribe(data => {
       this.router.navigate(['operacional/validacao']);
     });
   }
-
 }

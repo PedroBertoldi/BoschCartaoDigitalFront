@@ -21,15 +21,13 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder, private router: Router, private beneficioService : BeneficioService) {
     let state = this.router.getCurrentNavigation()?.extras.state;
+
     if(state){
-      this.error ="Erro ao buscar o Colaborador, tente novamente."
+      this.error ="Erro ao buscar o colaborador, tente novamente."
     }
    }
 
   ngOnInit(): void {
-
-
-
     this.beneficioService.getBeneficiosByEventoId(0).pipe(first()).subscribe(
       data =>{
         this.beneficios = data;
@@ -50,7 +48,7 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
   submit(){
     this.submitted = this.mostrar;
     if(this.validacaoForm.controls.cpf.valid || this.validacaoForm.controls.edv.valid){
-      let state= this.validacaoForm.value;
+      let state = this.validacaoForm.value;
       delete state.beneficiosSelecionados;
       this.router.navigate(['operacional/retirar'], {state: state});
     } else {
