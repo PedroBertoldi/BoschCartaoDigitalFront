@@ -72,10 +72,14 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          
 
           <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
           <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
         </div>
+        <mat-error *ngIf='nenhumSelecionado' class="nenhumSelecionado">
+          Selecione um beneficio antes de adicionar.
+        </mat-error>
         <div class="seletor-beneficios">
           <ng-container *ngIf='direitos && direitos.length === 0'>
             <span>Nenhum benefício cadastrado nesse evento.</span>

@@ -36,6 +36,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   newBeneficio: any;
   beneficiosError: boolean =false;
   formBeneficiario: any;
+  nenhumSelecionado: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService, private indicacaoService:IndicacaoService) { }
 
@@ -126,6 +127,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
   adicionarBeneficio(){
     if(this.newBeneficio){
+      this.nenhumSelecionado = false;
       this.beneficiosError=false;
       const found = this.direitos.find(( direito:any) => direito.beneficio.id == this.newBeneficio.id);
       if(found){
@@ -134,6 +136,10 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
         this.direitos.push({beneficio:this.newBeneficio, quantidade:1})
       }
       this.newBeneficio="";
+    } else {
+      console.log(this.nenhumSelecionado)
+      this.nenhumSelecionado = true;
+      console.log(this.nenhumSelecionado)
     }
   }
 
