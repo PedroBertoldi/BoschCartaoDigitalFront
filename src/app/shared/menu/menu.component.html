@@ -12,13 +12,13 @@
 <div *ngIf='larguraTela <= 720' class="nav-menu">
     <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
     <mat-menu #menu="matMenu">
-        <button *ngIf="user.cargos.includes('HRL')" mat-menu-item routerLink="['/admin/evento']">Administrar
+        <button *ngIf="user.cargos.includes('HRL')" [class]='caminho.includes("/admin") ? "ativo" : ""' mat-menu-item routerLink="/admin/evento">Administrar
             Eventos</button>
-        <button *ngIf="user.cargos.includes('Entrega')" mat-menu-item routerLink="/operacional">Configurar
+        <button *ngIf="user.cargos.includes('Entrega')" [class]='caminho.includes("/operacional") ? "ativo" : ""' mat-menu-item routerLink="/operacional">Configurar
             Ilha</button>
-        <button *ngIf="route != '/meus-beneficios'" mat-menu-item routerLink="/meus-beneficios">Meus
+        <button *ngIf="route != '/meus-beneficios'" [class]='caminho === "/meus-beneficios" ? "ativo" : ""' mat-menu-item routerLink="/meus-beneficios">Meus
             Benef&iacute;cios</button>
-        <button *ngIf="route != '/indicar'" mat-menu-item routerLink="/indicar">Indicar um Terceiro</button>
+        <button *ngIf="route != '/indicar'" [class]='caminho === "/indicar" ? "ativo" : ""' mat-menu-item routerLink="/indicar">Indicar um Terceiro</button>
         <button mat-menu-item (click)="logout()">Sair</button>
     </mat-menu>
 </div>

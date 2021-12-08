@@ -4,6 +4,7 @@ td.produtos div {
   height: 100%;
 }
 
-td.produtos div span {
+td.produtos div span,
+td.cpf {
   white-space: nowrap;
 }

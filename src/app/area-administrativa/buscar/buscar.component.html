@@ -1,8 +1,10 @@
-<div>
+<div [class]="larguraTela <= 720 ? 'mobile' : ''">
   <mat-form-field>
     <mat-label>Pesquisa</mat-label>
     <input matInput type="text" placeholder="Ex: Nome" [value]='valorBuscado' (input)='valorBuscado = obterValor($event)' (keyup.enter)="buscar.emit(valorBuscado)"/>
   </mat-form-field>
-  <button (click)='limparValor()' (click)='limpar.emit()' class='neutro'>LIMPAR</button>
-  <button (click)='buscar.emit(valorBuscado)'>BUSCAR</button>
+  <div>
+    <button (click)='limparValor()' (click)='limpar.emit()' class='neutro'>LIMPAR</button>
+    <button (click)='buscar.emit(valorBuscado)'>BUSCAR</button>
+  </div>
 </div>
