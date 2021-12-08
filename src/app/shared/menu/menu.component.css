@@ -7,13 +7,17 @@ mat-icon[mat-button] {
 }
 
 .nav-container {
-  border-bottom: 1px solid var(--cinza-100);
+  border-bottom: 1px solid var(--bosch-light-gray);
 }
 
 .nav-menu {
   position: absolute;
-  right: 10%;
-  top: 10%;
+  right: 5%;
+  top: 1.5rem;
+}
+
+mat-menu {
+  margin-right: 100%;
 }
 
 nav {
@@ -35,6 +39,12 @@ nav a:not(:last-child) {
 
 nav a:hover {
   border-bottom: 2px solid var(--bosch-dark-blue);
+}
+
+button.ativo {
+  text-decoration: underline;
+  text-decoration-color: var(--bosch-dark-blue);
+  text-underline-offset: 0.25rem;
 }
 
 a.ativo {

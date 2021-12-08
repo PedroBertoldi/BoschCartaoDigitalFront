@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +14,7 @@ export class MenuComponent implements OnInit {
   caminho!: string
   larguraTela: number = 0;
 
-  constructor(private auth:AuthenticationService, private router: Router, private location: Location, private breakpointObserver: BreakpointObserver) { }
+  constructor(private auth:AuthenticationService, private router: Router, private location: Location) { }
 
 
   ngOnInit(): void {

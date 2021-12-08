@@ -3,6 +3,12 @@ div {
   align-items: center;
 }
 
+div.mobile {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
 mat-form-field {
   margin-right: auto;
   width: 360px;
