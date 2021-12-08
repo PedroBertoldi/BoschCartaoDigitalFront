@@ -18,7 +18,7 @@
     </div>
 
 
-    <form [formGroup]="indicarForm" class="indicarForm" action="meus-beneficios" (ngSubmit)="submitIndicacao()">
+    <form [formGroup]="indicarForm" class="indicarForm" action="meus-beneficios">
         <mat-form-field>
             <mat-select [(value)]="idType" (selectionChange)="changeType()">
                 <mat-option value="edv">
@@ -61,7 +61,8 @@
             </mat-error>
         </div>
 
-        <app-button-with-loading [loading]="loading" label="Enviar" type="submit"></app-button-with-loading>
+        <app-button-with-loading [loading]="loading" label="Enviar" (click)="submitIndicacao()">
+        </app-button-with-loading>
     </form>
 
 </div>

@@ -67,7 +67,6 @@ export class AreaPublicaIndicarComponent implements OnInit {
 
   submitIndicacao(){
     this.submitted= true;
-    console.log(this.indicarForm.valid)
     if((this.indicarForm.controls.cpf.valid && this.indicarForm.controls.name.valid)||this.indicarForm.controls.edv.valid &&!this.notfound){
       this.loading=true;
       this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(
