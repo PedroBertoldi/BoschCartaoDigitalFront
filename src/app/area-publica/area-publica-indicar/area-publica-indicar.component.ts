@@ -10,16 +10,18 @@ import { IndicacaoService } from 'src/app/services/indicacao.service';
   styleUrls: ['./area-publica-indicar.component.css']
 })
 export class AreaPublicaIndicarComponent implements OnInit {
+  removeLoading: boolean =false;
+  loading: boolean =false;
+  idType= "edv";
+  user: any;
+  indicado : any;
+  edv!:string;
+  indicarForm!: FormGroup;
+  submitted = false;
+  notfound= false;
   
   constructor(private auth:AuthenticationService, 
     private router: Router, private formBuilder:FormBuilder, private indicar: IndicacaoService) { }
-    idType= "edv";
-    user: any;
-    indicado : any;
-    edv!:string;
-    indicarForm!: FormGroup;
-    submitted = false;
-    notfound= false;
     
   ngOnInit(): void {
     this.idType="edv";
@@ -42,7 +44,9 @@ export class AreaPublicaIndicarComponent implements OnInit {
 
 
   removeIndicacao(){
+    this.removeLoading =true;
     this.indicar.removeIndicar(this.user.id).pipe(first()).subscribe(data=>{
+      this.removeLoading=false;
       this.updateIndicado();
       this.indicarForm.reset();
       this.submitted= false;
@@ -51,11 +55,13 @@ export class AreaPublicaIndicarComponent implements OnInit {
 
   submitIndicacao(){
     this.submitted= true;
+    this.loading=true;
     if(this.indicarForm.controls.cpf.invalid && this.indicarForm.controls.edv.invalid){
       return;
     }
     this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(
                 data => {
+                  this.loading=false;
                   this.updateIndicado();
                 });
     this.indicarForm.reset();

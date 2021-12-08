@@ -1,0 +1,34 @@
+@keyframes animation {
+    50% {
+        color: var(--azul-100);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    color: var(--bosch-light-gray);
+    animation: animation 0.75s infinite cubic-bezier(0, 0, 0, 0);
+    margin: auto
+}
+
+button {
+    background-color: var(--bosch-pro-blue);
+    display: flex;
+    text-align: center;
+    font-size: 16px;
+    height: 30px;
+    border: none;
+    padding: 4px 10px 4px 10px;
+}
+
+button p {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+:host {
+    width: fit-content;
+}

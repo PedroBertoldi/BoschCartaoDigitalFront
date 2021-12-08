@@ -13,7 +13,8 @@
             est&aacute; indicado
             atualmente.
         </span>
-        <button (click)="removeIndicacao()">Remover Indica&ccedil;&atilde;o</button>
+        <app-button-with-loading [loading]="removeLoading" label="Remover Indicação" (click)="removeIndicacao()">
+        </app-button-with-loading>
     </div>
 
 
@@ -56,7 +57,7 @@
             </div>
         </div>
 
-        <button type="submit">Enviar</button>
+        <app-button-with-loading [loading]="loading" label="Enviar" type="submit"></app-button-with-loading>
     </form>
 
 </div>

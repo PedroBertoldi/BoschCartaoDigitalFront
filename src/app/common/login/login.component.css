@@ -27,14 +27,8 @@ button {
   margin: 5px auto 5px auto;
 }
 
-.loginForm button {
-  background-color: #007bff;
-  color: #cee8ff;
-  width: fit-content;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px 5px 10px;
-  margin: 10px;
+app-button-with-loading {
+  margin: 0 auto 10px auto;
 }
 
 .loginForm div {
