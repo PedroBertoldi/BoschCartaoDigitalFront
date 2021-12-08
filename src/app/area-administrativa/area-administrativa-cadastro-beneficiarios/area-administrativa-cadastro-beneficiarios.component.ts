@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { delay, first } from 'rxjs/operators';
 import { BeneficiarioService } from 'src/app/services/beneficiario.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
 import { IndicacaoService } from 'src/app/services/indicacao.service';
@@ -28,7 +28,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
 
 
  
-  idColaboradorFromRoute!: number;
+  idColaborador!: number;
   colaborador: any;
   evento: any;
   direitos: any=[];
@@ -44,24 +44,25 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
-    this.idColaboradorFromRoute = Number(routeParams.get('idColaborador'));
+    this.idColaborador = Number(routeParams.get('idColaborador'));
     
     this.formBeneficiario = this.formBuilder.group({
       nomeCompleto: new FormControl('',[Validators.required, Validators.maxLength(255)]),
-      edv: new FormControl({value:'', disabled:this.idColaboradorFromRoute>0},[Validators.required, Validators.minLength(3)]),
-      cpf: new FormControl('',Validators.pattern(/^[0-9]{11}$/)),
+      edv: new FormControl('',[Validators.required, Validators.minLength(3)]),
+      cpf: new FormControl('',[Validators.pattern(/^[0-9]{11}$/), Validators.required]),
       unidadeOrganizacionalId: new FormControl('',Validators.required),
       dataNascimento: new FormControl('', [Validators.required, Validators.maxLength(10)])
     })
     
     
 
-    if(this.idColaboradorFromRoute){
-      this.beneficiarioService.getBeneficiarioById(this.idEventoFromRoute,this.idColaboradorFromRoute).pipe(first()).subscribe(
+    if(this.idColaborador){
+      this.disableAll();
+      this.beneficiarioService.getBeneficiarioById(this.idEventoFromRoute,this.idColaborador).pipe(first()).subscribe(
         data=>{
           this.colaborador = data.colaborador;
           this.evento = data.evento;
-
+          
 
 
           data.direitos.forEach((direitoUnitario: any) => {
@@ -160,6 +161,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
       this.beneficiarioService.getBeneficiarioByEdv(this.idEventoFromRoute,this.formBeneficiario.value.edv).pipe(first()).subscribe(
         data=>{
           this.colaborador= data.colaborador;
+          this.idColaborador = data.colaborador.id  
           this.direitos = [];
             data.direitos.forEach((direitoUnitario: any) => {
               let rep = false;
@@ -174,37 +176,51 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
                 this.direitos.push(direitoUnitario);
               }
             });
-            this.formBeneficiario.setValue({
+
+            let values = {
               ...(this.formBeneficiario.value),
               nomeCompleto: this.colaborador.nomeCompleto,
               edv: this.colaborador.edv,
               cpf: this.colaborador.cpf,
-              unidadeOrganizacionalId: this.colaborador.unidadeOrganizacional.id,
               dataNascimento: this.colaborador.dataNascimento.substr(0,10)
+            };
+            if(this.colaborador.unidadeOrganizacional){
+              values.unidadeOrganizacionalId =this.colaborador.unidadeOrganizacional?.id;
             }
-          )
+            this.formBeneficiario.setValue(values)
+            this.disableAll();
         }
       )
     }
   }
 
 
+
+  disableAll(){
+    this.formBeneficiario.controls.edv.disable();
+    this.formBeneficiario.controls.nomeCompleto.disable();
+    this.formBeneficiario.controls.cpf.disable();
+    this.formBeneficiario.controls.dataNascimento.disable();
+  }
+
   onSubmit(): void {
     if(this.direitos.length==0){
+      this.formBeneficiario.markAllAsTouched()
       this.beneficiosError =true;
       return;
     }
-    if(this.formBeneficiario.valid){
-      if(this.idColaboradorFromRoute){
-        this.formBeneficiario.controls.edv.enable();
-        this.beneficiarioService.updateBeneficiario(this.idColaboradorFromRoute,this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
+    if(this.formBeneficiario.controls.edv.disabled || this.formBeneficiario.valid){
+      if(this.idColaborador){
+        console.log(this.formBeneficiario.getRawValue())
+        console.log(this.colaborador)
+        this.beneficiarioService.updateBeneficiario(this.idColaborador,this.organizeData(this.formBeneficiario.getRawValue(), this.direitos)).pipe(first()).subscribe(
           data=>{
             this.formBeneficiario.reset()
             this.abrirModal()
           }
         )
       }else{
-        this.beneficiarioService.createBeneficiario(this.organizeData(this.formBeneficiario.value, this.direitos)).pipe(first()).subscribe(
+        this.beneficiarioService.createBeneficiario(this.organizeData(this.formBeneficiario.getRawValue(), this.direitos)).pipe(first()).subscribe(
           data=>{
             this.formBeneficiario.reset()
             this.abrirModal()
