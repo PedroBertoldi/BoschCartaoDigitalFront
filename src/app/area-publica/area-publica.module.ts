@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { SharedModule } from '../shared/shared.module';
+import { MatInputModule } from '@angular/material/input';
 
   
 @NgModule({
@@ -27,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxMaskModule.forRoot(),

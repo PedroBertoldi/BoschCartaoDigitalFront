@@ -20,7 +20,7 @@
 
     <form [formGroup]="indicarForm" class="indicarForm" action="meus-beneficios" (ngSubmit)="submitIndicacao()">
         <mat-form-field>
-            <mat-select [(value)]="idType" (selectionChange)="indicarForm.reset(); submitted=false">
+            <mat-select [(value)]="idType" (selectionChange)="changeType()">
                 <mat-option value="edv">
                     Colaborador Bosch
                 </mat-option>
@@ -30,31 +30,35 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <label for="name">Nome</label>
-            <input [class.disabled]="idType =='edv'" [class.erro]="submitted && indicarForm.controls.name.errors"
-                formControlName="name" type="text">
-            <div *ngIf="submitted && indicarForm.controls.name.errors && idType =='cpf'" class="erro">Preencha o nome do
-                indicado!
-            </div>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name" type="text">
+                <mat-error *ngIf="submitted && indicarForm.controls.name.untouched && idType =='cpf'">
+                    Preencha o nome do indicado!
+                </mat-error>
+            </mat-form-field>
         </div>
 
         <div *ngIf="idType =='cpf'">
-            <label for="cpf">CPF</label>
-            <input mask="000.000.000-00" [class.erro]="submitted && indicarForm.controls.cpf.errors"
-                formControlName="cpf" type="text">
-            <div *ngIf="submitted && indicarForm.controls.cpf.errors" class="erro">Preencha o CPF do
-                indicado!
-            </div>
+            <mat-form-field>
+                <mat-label>CPF</mat-label>
+                <input mask="000.000.000-00" matInput formControlName="cpf" type="text">
+                <mat-error *ngIf="submitted && indicarForm.controls.cpf.errors">
+                    1 Preencha o CPF do indicado!
+                </mat-error>
+            </mat-form-field>
         </div>
         <div *ngIf="idType =='edv'">
-            <label for="edv">EDV</label>
-            <input mask="0000000" [class.erro]="submitted && indicarForm.controls.edv.errors" formControlName="edv"
-                (input)="searchEdv()" type="text">
-            <div *ngIf="submitted && indicarForm.controls.edv.errors" class="erro">Preencha o EDV do
-                indicado!
-            </div>
-            <div *ngIf="notfound" class="erro">EDV inv&aacute;lido!
-            </div>
+            <mat-form-field>
+                <mat-label>EDV</mat-label>
+                <input (input)="searchEdv()" mask="0009999999" matInput formControlName="edv" type="text">
+                <mat-error *ngIf="submitted && indicarForm.controls.edv.errors">
+                    Preencha o EDV do indicado!
+                </mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="notfound">
+                EDV não encontrado!
+            </mat-error>
         </div>
 
         <app-button-with-loading [loading]="loading" label="Enviar" type="submit"></app-button-with-loading>

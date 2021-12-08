@@ -55,15 +55,16 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading=true;
-    this.auth.login(this.loginForm.controls.cpf.value.replace(".","").replace("-",""),this.loginForm.controls.nasc.value)
+    this.auth.login(this.loginForm.controls.cpf.value,this.loginForm.controls.nasc.value)
       .pipe(first()).subscribe(
                 data => {
                   this.loading=false;
                   this.redirect();
                 },
                 error => {
+                  console.log(error)
                   this.loading=false;
-                  if(error.status == 400){
+                  if(error.status == 400 || error.status == 401 ){
                     this.wrong = true;
                   }
                 });
