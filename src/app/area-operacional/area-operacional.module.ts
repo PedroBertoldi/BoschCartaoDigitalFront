@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { AreaPublicaModule } from '../area-publica/area-publica.module';
 import { AreaAdministrativaModule } from '../area-administrativa/area-administrativa.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AreaAdministrativaModule } from '../area-administrativa/area-administra
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    AreaAdministrativaModule
+    SharedModule
   ]
 })
 export class AreaOperacionalModule { }

@@ -1,7 +1,9 @@
 <div *ngIf='larguraTela > 720' class='nav-container'>
     <nav>
-        <a *ngIf="user.cargos.includes('HRL')" [class]='caminho.includes("/admin") ? "ativo" : ""' routerLink='/admin/evento'>Administrar Eventos</a>
-        <a *ngIf="user.cargos.includes('Entrega')" [class]='caminho.includes("/operacional") ? "ativo" : ""' routerLink='/operacional'>Configurar Ilha</a>
+        <a *ngIf="user.cargos.includes('HRL')" [class]='caminho.includes("/admin") ? "ativo" : ""'
+            routerLink='/admin/evento'> Administrar Eventos</a>
+        <a *ngIf="user.cargos.includes('Entrega')" [class]='caminho.includes("/operacional") ? "ativo" : ""'
+            routerLink='/operacional'>Configurar Ilha</a>
         <a [class]='caminho === "/meus-beneficios" ? "ativo" : ""' routerLink="/meus-beneficios">Meus Benefícios</a>
         <a [class]='caminho === "/indicar" ? "ativo" : ""' routerLink="/indicar">Indicar um Terceiro</a>
         <a (click)="logout()">Sair</a>
@@ -10,7 +12,7 @@
 <div *ngIf='larguraTela <= 720' class="nav-menu">
     <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
     <mat-menu #menu="matMenu">
-        <button *ngIf="user.cargos.includes('HRL')" mat-menu-item routerLink="/admin/evento">Administrar
+        <button *ngIf="user.cargos.includes('HRL')" mat-menu-item routerLink="['/admin/evento']">Administrar
             Eventos</button>
         <button *ngIf="user.cargos.includes('Entrega')" mat-menu-item routerLink="/operacional">Configurar
             Ilha</button>
