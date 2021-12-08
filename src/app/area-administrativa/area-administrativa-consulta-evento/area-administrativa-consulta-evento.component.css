@@ -1,28 +1,11 @@
-.cabecalho-tabela {
-  background-color: #cecece;
-
-  display: flex;
-  padding: 0.5rem;
-}
-
 td.icone {
   text-align: center;
 }
 
 td.icone mat-icon {
-  color: tomato;
+  color: var(--bosch-red-50);
 }
 
 td.icone mat-icon.ativo {
-  color: yellowgreen;
-}
-
-tr.cabecalho td {
-  position: relative;
-}
-
-tr.cabecalho td mat-icon {
-  cursor: pointer;
-  position: absolute;
-  bottom: 1rem;
+  color: var(--green-50);
 }

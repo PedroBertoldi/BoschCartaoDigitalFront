@@ -1,17 +1,24 @@
-.center {
-    width: 80%;
-    margin: 5px auto 5px auto;
-}
-
-.menuContainer {
-    display: flex;
-    justify-content: space-between;
-}
-
-.center div {
-    margin: 20px 0 20px 0;
-}
-
 .blue {
-    color: #34B7F1;
+  color: var(--bosch-dark-blue-50);
+}
+
+.cabecalho-secao + p {
+  margin-top: 2rem;
+}
+
+.legenda {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.legenda div {
+  display: flex;
+  align-items: center;
+}
+
+.legenda mat-icon {
+  margin-bottom: 0.1rem;
+  margin-right: 0.25rem;
 }

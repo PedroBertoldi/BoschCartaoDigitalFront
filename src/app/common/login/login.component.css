@@ -2,6 +2,12 @@
   width: 360px;
   max-width: 90%;
   margin: 0 auto;
+
+  border: 1px solid var(--bosch-light-gray-100);
+  border-radius: 0.25rem;
+  box-shadow: var(--sombra);
+
+  padding: 2rem 1rem;
 }
 
 div.re-captcha {
@@ -38,6 +44,6 @@ app-button-with-loading {
 }
 
 .erro {
-  color: red;
-  border-color: red;
+  color: var(--bosch-red);
+  border-color: var(--bosch-red);
 }

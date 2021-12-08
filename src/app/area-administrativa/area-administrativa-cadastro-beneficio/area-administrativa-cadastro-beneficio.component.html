@@ -2,10 +2,11 @@
   [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficios"' tipoModal="confirmacao"></app-modal>
   <app-menu></app-menu>
   <div class="max-container">
-  <h1>Benefícios</h1>
-  <div class='container'>
-    <div class='cabecalho-macro'>
-      <h3>Formulário</h3>
+    <div class='container'>
+    <h1>Benefícios</h1>
+    <div class="principal">
+    <div class='cabecalho-secao'>
+      Formulário
     </div>
     <form [formGroup]='formBeneficio'>
       <mat-form-field>
@@ -26,6 +27,7 @@
         Já existe um benefício com este nome.
       </mat-error>
     </form>
+  </div>
   </div>
 </div>
 <div class='menu-flutuante'>

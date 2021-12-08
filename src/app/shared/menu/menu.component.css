@@ -34,9 +34,9 @@ nav a:not(:last-child) {
 }
 
 nav a:hover {
-  border-bottom: 2px solid var(--azul-50);
+  border-bottom: 2px solid var(--bosch-dark-blue);
 }
 
 a.ativo {
-  border-bottom: 2px solid var(--azul-50);
+  border-bottom: 2px solid var(--bosch-dark-blue);
 }

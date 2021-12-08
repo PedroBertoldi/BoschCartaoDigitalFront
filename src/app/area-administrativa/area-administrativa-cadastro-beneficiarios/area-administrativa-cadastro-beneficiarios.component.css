@@ -1,19 +1,14 @@
-.container {
-  margin: 0 6rem;
-}
-
-.container>form {
+.form-container > form {
   display: grid;
   gap: 1rem;
   grid-template-areas:
     "nome edv"
     "cpf area"
     "data nascimento"
-    "beneficios beneficios"
-    "indicado .";
+    "beneficios beneficios";
 }
 
-.container>form>* {
+.form-container > form > * {
   margin: 0;
 }
 
@@ -37,11 +32,7 @@ input[formControlName="dataNascimento"] {
   grid-area: dataNascimento;
 }
 
-input[formControlName="indicado"] {
-  grid-area: indicado;
-}
-
-form>form {
+form > form {
   grid-area: beneficios;
   display: block;
   padding: 0;
@@ -75,9 +66,8 @@ input::-webkit-inner-spin-button {
 
 .seletor-beneficio-cabecalho {
   margin-bottom: 0.5rem;
-  display: flex
+  display: flex;
 }
-
 
 .seletor-beneficio-cabecalho mat-form-field {
   margin-left: auto;
@@ -89,13 +79,7 @@ input::-webkit-inner-spin-button {
 }
 
 button.neutro {
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  font-weight: bold;
-  box-shadow: var(--sombra);
-  color: black;
-  background-color: #efefef;
-  margin: 2px
+  margin: 0.25rem;
 }
 
 .nenhumSelecionado {

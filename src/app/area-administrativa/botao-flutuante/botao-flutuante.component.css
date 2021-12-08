@@ -1,7 +1,7 @@
 button {
   padding: 0.5rem;
 
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: var(--sombra);
   border-radius: 10rem;
 
   border: none;
@@ -11,13 +11,13 @@ button {
 }
 
 button.azul {
-  background-color: cornflowerblue;
+  background-color: var(--bosch-dark-blue-50);
   color: white;
 }
 
 button.branco {
-  background-color: white;
-  color: gray;
+  background-color: var(--bosch-light-gray-50);
+  color: var(--texto);
 }
 
 mat-icon {
