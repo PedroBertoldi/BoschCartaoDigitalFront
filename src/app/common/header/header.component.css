@@ -1,10 +1,9 @@
 .header-login {
-  background-color: var(--cinza-50);
+  background-color: var(--bosch-light-gray-50);
 }
 
-.principal {
-  max-width: 1240px;
-  margin: 0 auto;
+.container {
+  color: var(--bosch-dark-gray);
 }
 
 .header-login h1 {

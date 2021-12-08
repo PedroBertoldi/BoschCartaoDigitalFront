@@ -1,8 +1,8 @@
 <app-menu></app-menu>
-<div class="center">
-    <div class="menuContainer">
+<div class="max-container">
+    <div class="container">
         <h1>Indicar um Terceiro</h1>
-    </div>
+        <div class="principal">
     <div *ngIf="indicado" class="currentIndication">
         <span>
             <span *ngIf="indicado.edv">Colaborador</span>
@@ -70,5 +70,6 @@
         <app-button-with-loading [loading]="loading" label="Enviar" (click)="submitIndicacao()">
         </app-button-with-loading>
     </form>
-
+</div>
+</div>
 </div>

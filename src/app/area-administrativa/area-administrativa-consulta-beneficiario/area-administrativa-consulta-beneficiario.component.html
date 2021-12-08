@@ -9,12 +9,12 @@
       <app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante>
     </a>
   </div>
-  <h1>Beneficiários</h1>
   <div class='container'>
-    <div class='cabecalho-macro'>
-      <h3>Lista</h3>
-    </div>
+    <h1>Beneficiários</h1>
     <div class='principal'>
+      <div class='cabecalho-secao'>
+        Lista
+      </div>
       <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
       <div class="tabela-overflow">
         <table>

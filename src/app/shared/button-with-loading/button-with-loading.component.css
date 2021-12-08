@@ -1,34 +1,29 @@
 @keyframes animation {
-    50% {
-        color: var(--azul-100);
-    }
+  50% {
+    color: var(--azul-100);
+  }
 
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading {
-    color: var(--bosch-light-gray);
-    animation: animation 0.75s infinite cubic-bezier(0, 0, 0, 0);
-    margin: auto
+  color: var(--bosch-light-gray);
+  animation: animation 0.75s infinite cubic-bezier(0, 0, 0, 0);
+  position: absolute;
 }
 
 button {
-    background-color: var(--bosch-pro-blue);
-    display: flex;
-    text-align: center;
-    font-size: 16px;
-    height: 30px;
-    border: none;
-    padding: 4px 10px 4px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button p {
-    margin-top: auto;
-    margin-bottom: auto;
+.hide {
+  color: transparent;
 }
 
 :host {
-    width: fit-content;
+  width: fit-content;
 }

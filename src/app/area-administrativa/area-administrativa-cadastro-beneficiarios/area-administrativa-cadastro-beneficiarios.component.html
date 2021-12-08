@@ -2,10 +2,11 @@
   [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"' tipoModal="confirmacao"></app-modal>
   <app-menu></app-menu>
   <div class="max-container">
-  <h1>Beneficiários</h1>
-  <div class='container'>
-    <div class='cabecalho-macro'>
-      <h3>Formulário</h3>
+    <div class='container'>
+    <h1>Beneficiários</h1>
+    <div class="principal">
+    <div class='cabecalho-secao'>
+      Formulário
     </div>
     <form [formGroup]='formBeneficiario'>
       <mat-form-field>
@@ -97,6 +98,7 @@
         </div>
       </form>
     </form>
+  </div>
   </div>
 </div>
 <div class='menu-flutuante'>

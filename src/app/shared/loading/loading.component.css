@@ -1,6 +1,6 @@
 @keyframes animation {
   50% {
-    color: var(--azul-100);
+    color: var(--bosch-pro-blue);
   }
   100% {
     transform: rotate(360deg);
@@ -8,7 +8,7 @@
 }
 
 .loading {
-  color: var(--azul-50);
+  color: var(--bosch-dark-blue);
   animation: animation 0.75s infinite cubic-bezier(0, 0, 0, 0);
 }
 
