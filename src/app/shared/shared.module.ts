@@ -5,12 +5,14 @@ import { LoadingComponent } from './loading/loading.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AreaPublicaRoutingModule } from '../area-publica/area-publica-routing.module';
+import { ButtonWithLoadingComponent } from './button-with-loading/button-with-loading.component';
 
 
 
 @NgModule({
   declarations: [MenuComponent,
-                LoadingComponent],
+                LoadingComponent,
+                ButtonWithLoadingComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -19,7 +21,8 @@ import { AreaPublicaRoutingModule } from '../area-publica/area-publica-routing.m
   ],
   exports:[
     MenuComponent,
-    LoadingComponent
+    LoadingComponent,
+    ButtonWithLoadingComponent
   ]
 })
 export class SharedModule { }

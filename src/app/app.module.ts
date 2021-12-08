@@ -14,6 +14,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { MatInputModule } from '@angular/material/input';
 import { AuthTokenInterceptor } from './interceptor/auth-token.interceptor';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
     FormsModule,
     NgxMaskModule.forRoot(),
     MatInputModule,
+    SharedModule
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
