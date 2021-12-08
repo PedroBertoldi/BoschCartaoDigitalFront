@@ -48,6 +48,10 @@ form > form {
   gap: 1rem;
 }
 
+.seletor-beneficios {
+  grid-template-columns: 1fr;
+}
+
 .seletor-beneficios mat-form-field {
   text-align: center;
   width: 2rem;
@@ -65,24 +69,32 @@ input::-webkit-inner-spin-button {
 }
 
 .seletor-beneficio-cabecalho {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
+  align-items: center;
 }
 
-.seletor-beneficio-cabecalho mat-form-field {
+.seletor-beneficio-cabecalho:not(.mobile) > *:not(mat-form-field) {
+  margin-bottom: 1.34375rem;
+}
+
+.seletor-beneficio-cabecalho:not(.mobile) mat-form-field {
   margin-left: auto;
 }
 
-.seletor-beneficio-cabecalho button {
-  height: fit-content;
-  margin-bottom: auto;
+.seletor-beneficio-cabecalho:not(.mobile) button:first-child {
+  margin: 0 1rem;
 }
 
-button.neutro {
-  margin: 0.25rem;
+.seletor-beneficio-cabecalho.mobile mat-form-field {
+  margin-top: 1rem;
 }
 
-.nenhumSelecionado {
-  display: flex;
-  justify-content: end;
+.seletor-beneficio-cabecalho.mobile button:first-child {
+  margin-right: 1rem;
+}
+
+.seletor-beneficio-cabecalho.mobile {
+  flex-direction: column;
+  align-items: unset;
 }

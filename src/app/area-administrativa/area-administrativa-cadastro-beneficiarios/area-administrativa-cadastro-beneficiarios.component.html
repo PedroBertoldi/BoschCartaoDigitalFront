@@ -65,7 +65,7 @@
 
       <form>
 
-        <div class="seletor-beneficio-cabecalho">
+        <div [class]="larguraTela > 720 ? 'seletor-beneficio-cabecalho' : 'seletor-beneficio-cabecalho mobile'">
           <div>Benefícios *
             <div>
               <mat-error *ngIf='beneficiosError'>
@@ -81,18 +81,17 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-
-
-
-          <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
-          <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
+          <div>
+            <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
+            <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
+          </div>
         </div>
         <mat-error *ngIf='nenhumSelecionado' class="nenhumSelecionado">
           Selecione um beneficio antes de adicionar.
         </mat-error>
-        <div class="seletor-beneficios">
+        <div [class]="larguraTela > 720 ? 'seletor-beneficios' : 'seletor-beneficios mobile'">
           <ng-container *ngIf='direitos && direitos.length === 0'>
-            <span>Nenhum benefício cadastrado nesse evento.</span>
+            <span>Nenhum benefício cadastrado.</span>
           </ng-container>
           <ng-container *ngIf='direitos &&direitos.length > 0'>
             <div *ngFor='let direito of direitos'>

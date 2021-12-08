@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { delay, first } from 'rxjs/operators';
@@ -37,6 +37,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
   beneficiosError: boolean =false;
   formBeneficiario: any;
   nenhumSelecionado: boolean = false;
+  larguraTela: number = 0;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private beneficiarioService:BeneficiarioService, private beneficioService:BeneficioService, private indicacaoService:IndicacaoService) { }
 
@@ -45,6 +46,7 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
     const routeParams = this.route.snapshot.paramMap;
     this.idEventoFromRoute = Number(routeParams.get('idEvento'));
     this.idColaborador = Number(routeParams.get('idColaborador'));
+    this.larguraTela = window.innerWidth;
     
     this.formBeneficiario = this.formBuilder.group({
       nomeCompleto: new FormControl('',[Validators.required, Validators.maxLength(255)]),
@@ -53,8 +55,6 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
       unidadeOrganizacionalId: new FormControl('',Validators.required),
       dataNascimento: new FormControl('', [Validators.required, Validators.maxLength(10)])
     })
-    
-    
 
     if(this.idColaborador){
       this.disableAll();
@@ -101,6 +101,11 @@ export class AreaAdministrativaCadastroBeneficiariosComponent implements OnInit 
           this.areas =data;
         }
       )
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.larguraTela = event.target.innerWidth;
   }
 
   construtorFormGroup(): any {
