@@ -32,7 +32,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Data de Nascimento</mat-label>
-        <input matInput type="date" min="1500-01-01" max="2500-01-01" formControlName='dataNascimento' placeholder="Ex: 19/02/1993" required />
+        <input matInput type="date" min="1500-01-01" max="2500-01-01" formControlName='dataNascimento'
+          placeholder="Ex: 19/02/1993" required />
         <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("required")'>
           Data de nascimento é <strong>obrigatória.</strong>
         </mat-error>
@@ -43,6 +44,9 @@
       <mat-form-field>
         <mat-label>CPF</mat-label>
         <input mask="000.000.000-00" matInput type="text" formControlName='cpf' placeholder="Ex: 999.999.999-99" />
+        <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("required")'>
+          CPF é <strong>obrigatório.</strong>
+        </mat-error>
         <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
           Use apenas os <strong>11 números</strong> do CPF.
         </mat-error>
@@ -60,11 +64,15 @@
       </mat-form-field>
 
       <form>
+
         <div class="seletor-beneficio-cabecalho">
-          Benefícios *
-          <mat-error *ngIf='beneficiosError'>
-            (Adicione pelo menos 1 Benefício)
-          </mat-error>
+          <div>Benefícios *
+            <div>
+              <mat-error *ngIf='beneficiosError'>
+                Adicione pelo menos 1 Benefício
+              </mat-error>
+            </div>
+          </div>
           <mat-form-field appearance="fill">
             <mat-label>Novo Benefício</mat-label>
             <mat-select [(value)]="newBeneficio">
@@ -73,7 +81,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          
+
+
 
           <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
           <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
@@ -88,7 +97,7 @@
           <ng-container *ngIf='direitos &&direitos.length > 0'>
             <div *ngFor='let direito of direitos'>
               <mat-form-field>
-                <input matInput type="number" [name]="direito.id" [ngModelOptions]="{standalone: true}"
+                <input matInput type="number" [name]="direito.id" mask="0999" [ngModelOptions]="{standalone: true}"
                   [(ngModel)]="direito.quantidade">
               </mat-form-field>
               <span>x</span>

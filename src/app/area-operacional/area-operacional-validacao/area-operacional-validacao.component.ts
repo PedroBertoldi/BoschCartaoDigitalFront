@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
 
 @Component({
@@ -19,13 +20,15 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
   submitted: string = "";
   beneficios: any;
 
-  constructor(private formBuilder:FormBuilder, private router: Router, private beneficioService : BeneficioService) {
+  constructor(private formBuilder:FormBuilder, private router: Router, private beneficioService : BeneficioService, private auth: AuthenticationService) {
     let state = this.router.getCurrentNavigation()?.extras.state;
 
     if(state){
       this.error =state.error;
     }
    }
+
+  
 
   ngOnInit(): void {
     this.beneficioService.getBeneficiosByEventoId(0).pipe(first()).subscribe(
@@ -39,6 +42,11 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
             edv: new FormControl('', [Validators.required, Validators.minLength(3)]),
             beneficiosSelecionados: new FormControl(JSON.parse(localStorage.getItem('beneficiosSelecionados') as string))
         });
+  }
+
+  logout(){
+    this.auth.logout();
+    this.router.navigate(['operacional']);
   }
 
   selected(){
