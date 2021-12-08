@@ -28,7 +28,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   }
 
   formCadastro = this.formBuilder.group({
-    nomeEvento: new FormControl('',Validators.required),
+    nomeEvento: new FormControl('',[Validators.required, Validators.maxLength(50)]),
     descricao: '',
     inicio: new FormControl('',Validators.required),
     fim: new FormControl('',[Validators.required,this.validarDataFim()])

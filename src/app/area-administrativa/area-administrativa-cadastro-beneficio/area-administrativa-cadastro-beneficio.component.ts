@@ -66,7 +66,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
               this.abrirModal()
             },
             error=>{
-              if(error.status == 400 || error.status == 500){
+              if(error.status == 500){
                 this.repeated =true;
               }
               return;
@@ -80,7 +80,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
             this.abrirModal()
           },
           error=>{
-            if(error.status == 400 || error.status == 500){
+            if(error.status == 500){
                 this.repeated= true;
             }
             return;

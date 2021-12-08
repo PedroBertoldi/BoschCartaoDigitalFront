@@ -26,8 +26,8 @@ export class AreaPublicaIndicarComponent implements OnInit {
   ngOnInit(): void {
     this.indicarForm = this.formBuilder.group({
             cpf: ['', Validators.required],
-            edv: ['', Validators.required,],
-            name:new FormControl({value:'',disabled:true},Validators.required)
+            edv: ['', [Validators.required, Validators.minLength(3)],],
+            name:new FormControl({value:'',disabled:true},[Validators.required, Validators.maxLength(255)])
         });
 
     this.user= this.auth.getUser();
