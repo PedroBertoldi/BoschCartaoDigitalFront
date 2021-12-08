@@ -3,15 +3,16 @@
     <div class="menuContainer">
         <h1>Meus Benef&iacute;cios</h1>
     </div>
-    <p>{{user.nomeCompleto}}</p>
-    <app-beneficio-table [data]="direitos"></app-beneficio-table>
-
+    <app-loading *ngIf="loading"></app-loading>
+    <p *ngIf="direitos">{{user.nomeCompleto}}</p>
+    <p *ngIf="direitos && direitos.length==0">Não existem benefícios cadastrados para você.</p>
+    <app-beneficio-table *ngIf="direitos && direitos.length>0" [data]="direitos"></app-beneficio-table>
     <h1 *ngIf="indicacoes && indicacoes.length>0">Posso Retirar</h1>
     <div *ngFor="let indicacao of indicacoes">
         <p>{{indicacao.colaborador.nomeCompleto}}</p>
         <app-beneficio-table [data]="indicacao.direitos"></app-beneficio-table>
     </div>
-    <div>
+    <div *ngIf="(direitos && direitos.length>0 )||(indicacoes && indicacoes.length>0 )">
         <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>Retirado&nbsp;<mat-icon aria-label="Disponivel">
             done
         </mat-icon>

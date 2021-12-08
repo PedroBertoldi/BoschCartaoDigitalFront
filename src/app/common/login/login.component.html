@@ -1,12 +1,10 @@
 <div class="max-container">
-    <form [formGroup]="loginForm" class="container" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" class="container">
         <h1 class="logintitle">Efetuar Login
             <span *ngIf="area == 'admin'"> Adminstrativo</span>
             <span *ngIf="area == 'ops'"> Operacional</span>
         </h1>
-        <div *ngIf="submitted && wrong" class="erro">
-            CPF ou Senha incorretos
-        </div>
+
         <mat-form-field>
             <mat-label>CPF</mat-label>
             <input matInput mask="000.000.000-00" formControlName="cpf" type="text"
@@ -29,7 +27,11 @@
                 Por favor <strong>preencha</strong> o reCAPTCHA
             </mat-error>
         </div>
-        <button type="submit">Confirmar</button>
+
+        <app-button-with-loading (click)="login()" [loading]="loading" label="Confirmar"></app-button-with-loading>
+        <mat-error *ngIf="submitted && wrong" class="erro">
+            CPF ou Senha incorretos
+        </mat-error>
     </form>
 </div>
 

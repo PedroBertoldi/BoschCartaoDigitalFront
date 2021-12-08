@@ -10,6 +10,11 @@
   --cinza-900: #121212;
   --texto: gray;
 
+  --bosch-pro-blue: #003b6a;
+  --bosch-dark-blue: #005691;
+  --bosch-red: #e20015;
+  --bosch-light-gray: #bfc0c2;
+  --bosch-dark-gray: #525f6b;
   --sombra: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -20,6 +25,7 @@ body {
   width: 100%;
   margin: 0px;
 }
+
 html,
 body {
   height: 100%;
@@ -96,7 +102,7 @@ h3 {
   height: 15px;
 }
 
-router-outlet + * {
+router-outlet+* {
   position: relative;
 }
 
@@ -109,7 +115,7 @@ form {
   color: var(--texto);
 }
 
-form > *:not(:last-child) {
+form>*:not(:last-child) {
   margin-bottom: 1rem;
 }
 
@@ -133,12 +139,12 @@ tr:nth-child(2n) {
   background-color: var(--cinza-50);
 }
 
-tr > * {
+tr>* {
   border: 0.5px solid var(--cinza-100);
   padding: 1rem;
 }
 
-.registro > div {
+.registro>div {
   padding: 0.5rem;
   gap: 0.25rem;
   justify-content: center;
@@ -152,7 +158,7 @@ tr.cabecalho {
   text-align: center;
 }
 
-td.botoes > div {
+td.botoes>div {
   display: flex;
   gap: 0.25rem;
   justify-content: center;

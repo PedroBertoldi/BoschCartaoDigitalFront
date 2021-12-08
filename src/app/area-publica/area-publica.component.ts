@@ -14,12 +14,14 @@ export class AreaPublicaComponent implements OnInit {
   direitos: any;
   indicacoes: any;
   user: any;
+  loading:boolean=true;
   constructor(private auth:AuthenticationService, private direito: DireitoService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = this.auth.getUser();
     this.direito.getDireitos(this.user.cpf, this.user.nasc).pipe(first()).subscribe(
                 data => {
+                    this.loading=false;
                     this.direitos = data.direitos;
                     this.indicacoes = data.indicacoes;
                 });

@@ -11,7 +11,8 @@ import { AreaPublicaIndicarComponent } from './area-publica-indicar/area-publica
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { MenuComponent } from './menu/menu.component'
+import { SharedModule } from '../shared/shared.module';
+import { MatInputModule } from '@angular/material/input';
 
   
 @NgModule({
@@ -19,22 +20,19 @@ import { MenuComponent } from './menu/menu.component'
     AreaPublicaComponent,
     BeneficioTableComponent,
     AreaPublicaIndicarComponent,
-    MenuComponent,
   ],
   imports: [
     CommonModule,
     AreaPublicaRoutingModule,
     MatIconModule,
-    MatMenuModule,
     MatSelectModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxMaskModule.forRoot(),
+    SharedModule
   ],
-  exports: [
-    MenuComponent
-  ]
 })
 export class AreaPublicaModule { }
