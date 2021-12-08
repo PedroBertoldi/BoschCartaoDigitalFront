@@ -20,6 +20,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
   formBeneficio = this.formBuilder.group({
     nome: new FormControl('',[Validators.required, Validators.maxLength(255)]),
   })
+
   repeated: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private eventoService : EventoService, private beneficioService : BeneficioService) { }
@@ -40,9 +41,6 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
           this.formBeneficio.controls.nome.setValue(data.descricao);
         }
       });
-
-      
-    
   }
 
   fecharModal() {
@@ -68,7 +66,7 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
               this.abrirModal()
             },
             error=>{
-              if(error.status ==400){
+              if(error.status == 400 || error.status == 500){
                 this.repeated =true;
               }
               return;
@@ -82,8 +80,8 @@ export class AreaAdministrativaCadastroBeneficioComponent implements OnInit {
             this.abrirModal()
           },
           error=>{
-            if(error.status ==400){
-                this.repeated =true;
+            if(error.status == 400 || error.status == 500){
+                this.repeated= true;
             }
             return;
         });
