@@ -10,9 +10,9 @@ export class BuscarComponent implements OnInit {
   @Output() buscar = new EventEmitter;
   @Output() limpar = new EventEmitter;
   larguraTela: number = 0;
-
+  
   valorBuscado: string = ''
-
+  
   constructor() { }
 
   ngOnInit(): void {
