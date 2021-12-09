@@ -46,8 +46,11 @@
             <mat-form-field>
                 <mat-label>CPF</mat-label>
                 <input mask="000.000.000-00" matInput formControlName="cpf" type="text">
-                <mat-error *ngIf="indicarForm.controls.cpf.errors">
+                <mat-error *ngIf='indicarForm.get("cpf")?.hasError("required")'>
                     Preencha o CPF do indicado!
+                </mat-error>
+                <mat-error *ngIf='indicarForm.get("cpf")?.hasError("minlength")'>
+                    CPF <strong>inválido</strong>. Deve ter 11 digitos.
                 </mat-error>
             </mat-form-field>
         </div>
@@ -55,15 +58,18 @@
             <mat-form-field>
                 <mat-label>EDV</mat-label>
                 <input (input)="searchEdv()" mask="0009999999" matInput formControlName="edv" type="text">
-                <mat-error *ngIf="indicarForm.controls.edv.errors">
+                <mat-error *ngIf='indicarForm.get("edv")?.hasError("required")'>
                     Preencha o EDV do indicado!
                 </mat-error>
+                <mat-error *ngIf='indicarForm.get("edv")?.hasError("minlength")'>
+                    EDV <strong>inválido.</strong>
+                </mat-error>  
             </mat-form-field>
-            <mat-error *ngIf="notfound">
-                EDV não encontrado!
+            <mat-error *ngIf="notfound && !indicarForm.get('edv')?.hasError('minlength') && !indicarForm.get('edv')?.hasError('required')">
+                EDV <strong>não</strong> encontrado!
             </mat-error>
-            <mat-error *ngIf='indicarForm.get("edv")?.hasError("minlength")'>
-                EDV <strong>inválido.</strong>
+            <mat-error *ngIf="!notfound && selfIndicating">
+                Você <strong>não pode</strong> indicar a si mesmo.
             </mat-error>
         </div>
 

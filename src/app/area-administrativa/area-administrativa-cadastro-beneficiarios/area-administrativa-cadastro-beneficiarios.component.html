@@ -48,7 +48,7 @@
           CPF é <strong>obrigatório.</strong>
         </mat-error>
         <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
-          Use apenas os <strong>11 números</strong> do CPF.
+          CPF <strong>inválido</strong>. Deve ter 11 digitos.
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">

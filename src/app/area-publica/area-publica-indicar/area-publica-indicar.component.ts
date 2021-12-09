@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -18,15 +18,16 @@ export class AreaPublicaIndicarComponent implements OnInit {
   edv!:string;
   indicarForm!: FormGroup;
   submitted = false;
-  notfound= false;
+  notfound = false;
+  selfIndicating = false;
   
   constructor(private auth:AuthenticationService, 
     private router: Router, private formBuilder:FormBuilder, private indicar: IndicacaoService) { }
     
   ngOnInit(): void {
     this.indicarForm = this.formBuilder.group({
-            cpf: ['', Validators.required],
-            edv: ['', [Validators.required, Validators.minLength(3)],],
+            cpf: ['', [Validators.required, Validators.minLength(11)]],
+            edv: ['', [Validators.required, Validators.minLength(3)]],
             name:new FormControl({value:'',disabled:true},[Validators.required, Validators.maxLength(255)])
         });
 
@@ -69,7 +70,7 @@ export class AreaPublicaIndicarComponent implements OnInit {
 
   submitIndicacao(){
     this.submitted= true;
-    if((this.indicarForm.controls.cpf.valid && this.indicarForm.controls.name.valid)||this.indicarForm.controls.edv.valid &&!this.notfound){
+    if((this.indicarForm.controls.cpf.valid && this.indicarForm.controls.name.valid)||this.indicarForm.controls.edv.valid && !this.notfound && !this.selfIndicating){
       this.loading=true;
       this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(
                   data => {
@@ -91,9 +92,17 @@ export class AreaPublicaIndicarComponent implements OnInit {
       this.indicar.getColaborador(this.indicarForm.controls.edv.value).pipe(first()).subscribe(data => {
                     this.indicarForm.controls.name.setValue(data.nomeCompleto);
                     this.notfound = false;
+                    
+                    if (data.id == this.user.id) {
+                      this.selfIndicating = true;
+                    } else {
+                      this.selfIndicating = false;
+                    }
+                      
                   }, error=>{
                     console.log('not found')
                     this.notfound = true;
+                    this.selfIndicating = false;
                     this.indicarForm.controls.name.setValue('');
                 });
     }else{
