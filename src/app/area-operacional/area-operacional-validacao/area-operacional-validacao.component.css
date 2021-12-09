@@ -8,7 +8,7 @@
   cursor: pointer;
 }
 
-mat-form-field + button {
+mat-form-field+button {
   box-shadow: none;
 }
 
@@ -24,14 +24,14 @@ app-botao-validacao {
   width: 100%;
 }
 
-.validacao-form > div {
+.validacao-form>div {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.validacao-form > div mat-form-field {
+.validacao-form>div mat-form-field {
   width: 40vw;
 }
 
@@ -70,4 +70,12 @@ app-botao-validacao {
   .operacional-principal div {
     font-size: unset;
   }
+}
+
+.divQR {
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
 }

@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AreaPublicaModule } from '../area-publica/area-publica.module';
 import { AreaAdministrativaModule } from '../area-administrativa/area-administrativa.module';
 import { SharedModule } from '../shared/shared.module';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SharedModule } from '../shared/shared.module';
     MatIconModule,
     MatMenuModule,
     MatSelectModule,
-    SharedModule
+    SharedModule,
+    ZXingScannerModule 
   ]
 })
 export class AreaOperacionalModule { }

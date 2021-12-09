@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BarcodeFormat } from '@zxing/library';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BeneficioService } from 'src/app/services/beneficio.service';
@@ -18,6 +20,8 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
   error: string ="";
   submitted: string = "";
   beneficios: any;
+  allowedFormats = [ BarcodeFormat.QR_CODE];
+  camera!:boolean;
 
   constructor(private formBuilder:FormBuilder, private router: Router, private beneficioService : BeneficioService, private auth: AuthenticationService) {
     let state = this.router.getCurrentNavigation()?.extras.state;
@@ -25,9 +29,16 @@ export class AreaOperacionalValidacaoComponent implements OnInit {
     if(state){
       this.error =state.error;
     }
+    let scanner = new ZXingScannerComponent();
+    scanner.askForPermission().then((camera: boolean)=>{
+      this.camera= camera;
+    });
    }
 
-  
+  scanSuccess(edv: string){
+    console.log(edv)
+    this.router.navigate(['operacional/retirar'], {state: {edv:edv}});
+  }
 
   ngOnInit(): void {
     this.beneficioService.getBeneficiosByEventoId(0).pipe(first()).subscribe(

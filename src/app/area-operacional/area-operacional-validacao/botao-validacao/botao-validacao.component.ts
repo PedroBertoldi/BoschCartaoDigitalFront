@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BotaoValidacaoComponent implements OnInit {
 
-  @Input() variante!: 'ValidacaoCracha' | 'ValidacaoCPF' | 'ValidacaoEDV'
+  @Input() variante!: 'ValidacaoCracha' | 'ValidacaoCPF' | 'ValidacaoEDV' | 'qr'
   
   constructor() { }
 

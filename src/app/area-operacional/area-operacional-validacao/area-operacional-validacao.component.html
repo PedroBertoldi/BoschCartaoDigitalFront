@@ -1,52 +1,58 @@
 <div class="max-container">
     <div class="container">
-<form [formGroup]="validacaoForm" class="validacao-form">
-    <mat-icon mat-button [matMenuTriggerFor]="menu">settings</mat-icon>
-    <mat-menu #menu="matMenu">
-        <mat-form-field class="settings" appearance="fill">
-            <mat-select (selectionChange)="selected()" placeholder="Selecione os Benefícios da Ilha"
-                formControlName="beneficiosSelecionados" multiple>
-                <mat-option *ngFor="let beneficio of beneficios" [value]="beneficio.id">
-                    {{beneficio.descricao}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <button mat-menu-item (click)="logout()">Sair</button>
-    </mat-menu>
-    <div class="operacional-principal">
-        <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf';  error=''; submitted= ''">
-        </app-botao-validacao>
-        <div class="divCpf" *ngIf="mostrar === 'cpf'">
-            <mat-form-field>
-                <mat-label>Digite o CPF</mat-label>
-                <input formControlName="cpf" mask="000-000-000-00" size="15" type="text" matInput
-                    (keyup.enter)="submit()">
-                <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('required')">
-                    CPF é <strong>obrigatório.</strong>
-                </mat-error>
-                <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('minlength')">
-                    CPF <strong>inválido</strong>. Deve ter 11 digitos.
-                </mat-error>
-            </mat-form-field>
-            <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
-        </div>
-        <app-botao-validacao variante='ValidacaoEDV' (click)="mostrar = 'edv';  error=''; submitted= ''">
-        </app-botao-validacao>
-        <div *ngIf="mostrar === 'edv'">
-            <mat-form-field>
-                <mat-label>Digite o EDV</mat-label>
-                <input formControlName="edv" mask="0009999999" type="text" matInput (keyup.enter)="submit()">
-                <mat-error *ngIf="validacaoForm.get('edv')?.hasError('required')">
-                    EDV é <strong>obrigatório.</strong>
-                </mat-error>
-                <mat-error *ngIf="validacaoForm.get('edv')?.hasError('minlength')">
-                    EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
-                </mat-error>
-            </mat-form-field>
-            <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
-        </div>
-        <mat-error class="error">{{error}}</mat-error>
+        <form [formGroup]="validacaoForm" class="validacao-form">
+            <mat-icon mat-button [matMenuTriggerFor]="menu">settings</mat-icon>
+            <mat-menu #menu="matMenu">
+                <mat-form-field class="settings" appearance="fill">
+                    <mat-select (selectionChange)="selected()" placeholder="Selecione os Benefícios da Ilha"
+                        formControlName="beneficiosSelecionados" multiple>
+                        <mat-option *ngFor="let beneficio of beneficios" [value]="beneficio.id">
+                            {{beneficio.descricao}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-menu-item (click)="logout()">Sair</button>
+            </mat-menu>
+            <div class="operacional-principal">
+                <app-botao-validacao *ngIf="camera" variante='qr' (click)="mostrar = 'qr';  error=''; submitted= ''">
+                </app-botao-validacao>
+                <div class='divQR' *ngIf="mostrar === 'qr'">
+                    <zxing-scanner (scanSuccess)="scanSuccess($event)" [formats]="allowedFormats"></zxing-scanner>
+                    <button (click)="mostrar = '';  error=''; submitted= ''">Cancelar</button>
+                </div>
+                <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf';  error=''; submitted= ''">
+                </app-botao-validacao>
+                <div class="divCpf" *ngIf="mostrar === 'cpf'">
+                    <mat-form-field>
+                        <mat-label>Digite o CPF</mat-label>
+                        <input formControlName="cpf" mask="000-000-000-00" size="15" type="text" matInput
+                            (keyup.enter)="submit()">
+                        <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('required')">
+                            CPF é <strong>obrigatório.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('minlength')">
+                            CPF <strong>inválido</strong>. Deve ter 11 digitos.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
+                </div>
+                <app-botao-validacao variante='ValidacaoEDV' (click)="mostrar = 'edv';  error=''; submitted= ''">
+                </app-botao-validacao>
+                <div *ngIf="mostrar === 'edv'">
+                    <mat-form-field>
+                        <mat-label>Digite o EDV</mat-label>
+                        <input formControlName="edv" mask="0009999999" type="text" matInput (keyup.enter)="submit()">
+                        <mat-error *ngIf="validacaoForm.get('edv')?.hasError('required')">
+                            EDV é <strong>obrigatório.</strong>
+                        </mat-error>
+                        <mat-error *ngIf="validacaoForm.get('edv')?.hasError('minlength')">
+                            EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
+                </div>
+                <mat-error class="error">{{error}}</mat-error>
+            </div>
+        </form>
     </div>
-</form>
-</div>
 </div>
