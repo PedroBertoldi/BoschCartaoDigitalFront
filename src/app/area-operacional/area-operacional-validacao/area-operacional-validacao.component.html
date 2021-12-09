@@ -16,7 +16,7 @@
     <div class="operacional-principal">
         <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf';  error=''; submitted= ''">
         </app-botao-validacao>
-        <div *ngIf="mostrar === 'cpf'">
+        <div class="divCpf" *ngIf="mostrar === 'cpf'">
             <mat-form-field>
                 <mat-label>Digite o CPF</mat-label>
                 <input formControlName="cpf" mask="000-000-000-00" size="15" type="text" matInput
