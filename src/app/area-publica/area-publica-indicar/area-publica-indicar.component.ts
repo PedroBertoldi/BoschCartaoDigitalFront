@@ -51,7 +51,9 @@ export class AreaPublicaIndicarComponent implements OnInit {
     this.indicar.getIndicado(this.user.id, this.user.nasc).pipe(first()).subscribe(
                     data => {
                           this.indicado = data;      
-                     });
+                     }, error=>{
+                        this.indicado = null; 
+                      });
   }
 
 
