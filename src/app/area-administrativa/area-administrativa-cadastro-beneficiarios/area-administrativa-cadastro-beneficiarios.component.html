@@ -53,7 +53,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Área</mat-label>
-        <mat-select formControlName='unidadeOrganizacionalId'>
+        <mat-select formControlName='unidadeOrganizacionalId' required>
           <mat-option *ngFor="let area of areas" [value]="area.id">
             {{area.descricao}}
           </mat-option>
