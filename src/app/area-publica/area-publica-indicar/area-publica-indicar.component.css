@@ -36,3 +36,14 @@ mat-form-field {
 app-button-with-loading {
   font-size: 0.75rem;
 }
+
+@media (max-width: 480px) {
+  .currentIndication {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .currentIndication app-button-with-loading {
+    margin-top: 5px;
+  }
+}
