@@ -1,55 +1,69 @@
-.MainContainer {
-    display: flex;
-    width: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-app-botao-validacao {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50vw;
-    font-size: x-large;
-    margin: 5vh;
-}
-
-.validacao-form div {
-    display: flex;
-}
-
-.validacao-form mat-form-field {
-    width: 40vw;
-    margin: 5px;
+.validacao-form {
+  padding: 0;
 }
 
 .validacao-form mat-icon {
-    transform: scale(2);
-    margin: auto auto auto 5px;
-    cursor: pointer;
+  align-self: flex-end;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+mat-form-field + button {
+  box-shadow: none;
+}
+
+.operacional-principal {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+app-botao-validacao {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.validacao-form > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.validacao-form > div mat-form-field {
+  width: 40vw;
 }
 
 .error {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 ::ng-deep.mat-menu-panel {
-    max-width: none !important;
-    width: 50vw;
+  width: 50vw;
 }
 
 .settings {
-    width: 100%;
+  width: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-    app-botao-validacao {
-        width: 100%
-    }
+@media only screen and (max-width: 800px) {
+  app-botao-validacao {
+    width: 100%;
+  }
 
-    .validacao-form mat-form-field {
-        width: 80vw;
-        margin: 5px;
-    }
+  .operacional-principal div {
+    font-size: 1.5rem;
+  }
+
+  .validacao-form mat-form-field {
+    width: 80vw;
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .operacional-principal div {
+    font-size: unset;
+  }
 }

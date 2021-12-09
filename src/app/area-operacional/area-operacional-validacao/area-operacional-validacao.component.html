@@ -1,3 +1,5 @@
+<div class="max-container">
+    <div class="container">
 <form [formGroup]="validacaoForm" class="validacao-form">
     <mat-icon mat-button [matMenuTriggerFor]="menu">settings</mat-icon>
     <mat-menu #menu="matMenu">
@@ -11,8 +13,7 @@
         </mat-form-field>
         <button mat-menu-item (click)="logout()">Sair</button>
     </mat-menu>
-    <div class="MainContainer">
-        <!-- <app-botao-validacao variante='ValidacaoCracha'></app-botao-validacao> -->
+    <div class="operacional-principal">
         <app-botao-validacao variante='ValidacaoCPF' (click)="mostrar = 'cpf';  error=''; submitted= ''">
         </app-botao-validacao>
         <div *ngIf="mostrar === 'cpf'">
@@ -47,3 +48,5 @@
         <mat-error class="error">{{error}}</mat-error>
     </div>
 </form>
+</div>
+</div>

@@ -1,14 +1,22 @@
-<h1>{{ evento?.nome }}</h1>
-<app-loading *ngIf="beneficios && beneficios.length ==0"></app-loading>
-<div *ngFor="let beneficio of beneficios" class="beneficios">
-    <h3>{{ beneficio.beneficio.descricao }}</h3>
+<div class="max-container">
+    <h1>{{ evento?.nome }}</h1>
+    <h2>{{ evento?.descricao }}</h2>
+    <div class="container">
+        <div class="principal">
+            <app-loading *ngIf="beneficios && beneficios.length ==0"></app-loading>
+            <div *ngFor="let beneficio of beneficios" class="beneficios">
+                <div class='cabecalho-secao'>{{ beneficio.beneficio.descricao }}</div>
+            
+                <app-card-colaborador [beneficiarios]="beneficio.beneficiario"></app-card-colaborador>
+            </div>
+            
+            <div class="divButtons">
+                <button class="neutro" [routerLink]="['/operacional/validacao']" routerLinkActive="router-link-active">
+                    Voltar
+                </button>
+                <button (click)="send()">Confirmar</button>
+            </div>
 
-    <app-card-colaborador [beneficiarios]="beneficio.beneficiario"></app-card-colaborador>
-</div>
-
-<div class="divButtons">
-    <button class="cancel" [routerLink]="['/operacional/validacao']" routerLinkActive="router-link-active">
-        Voltar
-    </button>
-    <button (click)="send()">Confirmar</button>
+        </div>
+    </div>
 </div>
