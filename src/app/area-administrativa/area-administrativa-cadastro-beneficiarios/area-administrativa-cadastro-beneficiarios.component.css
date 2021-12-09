@@ -98,3 +98,15 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: unset;
 }
+
+@media (max-width: 284px) {
+  .buttonsBeneficio {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .neutro:first-child {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
