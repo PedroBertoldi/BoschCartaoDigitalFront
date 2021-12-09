@@ -29,7 +29,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
 
   formCadastro = this.formBuilder.group({
     nomeEvento: new FormControl('',[Validators.required, Validators.maxLength(50)]),
-    descricao: '',
+    descricao: new FormControl('',Validators.maxLength(255)),
     inicio: new FormControl('',Validators.required),
     fim: new FormControl('',[Validators.required,this.validarDataFim()])
   })
@@ -52,12 +52,16 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
           })
       
       }
+
+      
   }
 
 
 
   formatarData(data: Date): string {
+    
     return new Intl.DateTimeFormat('fr-CA').format(data)
+    
   }
 
   fecharModal() {
@@ -69,6 +73,7 @@ export class AreaAdministrativaCadastroEventoComponent implements OnInit {
   }
 
   obterValor(event: Event): string {
+    
     return (event.target as HTMLInputElement).value;
   }
 

@@ -22,6 +22,9 @@
       <mat-form-field>
         <mat-label>Descrição</mat-label>
         <input matInput type="text" formControlName='descricao' placeholder="Ex: Evento especial" />
+        <mat-error *ngIf='formCadastro.get("descricao")?.hasError("maxlength")'>
+          O tamanho máximo para descrição é <strong>255</strong> caracteres.
+        </mat-error>
       </mat-form-field>
       <div>
         <mat-icon>today</mat-icon>
