@@ -3,3 +3,9 @@ form div {
   align-items: center;
   gap: 1rem;
 }
+
+@media (max-width: 318px) {
+  .inputDate {
+    width: 70%;
+  }
+}
