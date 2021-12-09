@@ -4,7 +4,9 @@
             <span *ngIf="area == 'admin'"> Adminstrativo</span>
             <span *ngIf="area == 'ops'"> Operacional</span>
         </h1>
-
+        <mat-error *ngIf="submitted && wrong"  class="erro notificacao">
+            CPF ou Senha incorretos
+        </mat-error>
         <mat-form-field>
             <mat-label>CPF</mat-label>
             <input matInput mask="000.000.000-00" formControlName="cpf" type="text"
@@ -29,9 +31,7 @@
         </div>
 
         <app-button-with-loading (click)="login()" [loading]="loading" label="Confirmar"></app-button-with-loading>
-        <mat-error *ngIf="submitted && wrong" class="erro">
-            CPF ou Senha incorretos
-        </mat-error>
+        
     </form>
 </div>
 
