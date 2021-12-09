@@ -47,3 +47,9 @@ app-button-with-loading {
   color: var(--bosch-red);
   border-color: var(--bosch-red);
 }
+
+.erro.notificacao {
+  border-radius: 0.25rem;
+  background-color: rgba(226, 0, 21, 0.2);
+  padding: 0.75rem 0.5rem;
+}
