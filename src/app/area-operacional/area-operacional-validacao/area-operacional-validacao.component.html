@@ -21,11 +21,11 @@
                 <mat-label>Digite o CPF</mat-label>
                 <input formControlName="cpf" mask="000-000-000-00" size="15" type="text" matInput
                     (keyup.enter)="submit()">
-                <mat-error *ngIf="submitted == 'cpf' && validacaoForm.controls.cpf.invalid">
-                    <span *ngIf="validacaoForm.get('cpf')?.hasError('required')">CPF é
-                        <strong>obrigatório.</strong></span>
-                    <span *ngIf="validacaoForm.get('cpf')?.hasError('minlength')">CPF <strong>inválido</strong>. Deve
-                        ter 11 digitos.</span>
+                <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('required')">
+                    CPF é <strong>obrigatório.</strong>
+                </mat-error>
+                <mat-error *ngIf="validacaoForm.get('cpf')?.hasError('minlength')">
+                    CPF <strong>inválido</strong>. Deve ter 11 digitos.
                 </mat-error>
             </mat-form-field>
             <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
@@ -36,11 +36,11 @@
             <mat-form-field>
                 <mat-label>Digite o EDV</mat-label>
                 <input formControlName="edv" mask="0009999999" type="text" matInput (keyup.enter)="submit()">
-                <mat-error *ngIf='submitted == "edv"'>
-                    <span *ngIf="validacaoForm.get('edv')?.hasError('required')">EDV é
-                        <strong>obrigatório.</strong></span>
-                    <span *ngIf="validacaoForm.get('edv')?.hasError('minlength')">EDV <strong>inválido</strong>. Deve
-                        ter entre 3 e 10 digítos.</span>
+                <mat-error *ngIf="validacaoForm.get('edv')?.hasError('required')">
+                    EDV é <strong>obrigatório.</strong>
+                </mat-error>
+                <mat-error *ngIf="validacaoForm.get('edv')?.hasError('minlength')">
+                    EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
                 </mat-error>
             </mat-form-field>
             <mat-icon (click)="submit()" aria-label="Próximo">navigate_next</mat-icon>
