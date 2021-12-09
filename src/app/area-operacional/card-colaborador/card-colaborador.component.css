@@ -52,3 +52,9 @@
     right: -102%;
   }
 }
+
+@media (max-width: 315px) {
+  .card {
+    width: 100%;
+  }
+}

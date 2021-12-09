@@ -31,3 +31,9 @@ button {
   justify-content: center;
   gap: 1rem;
 }
+
+@media (max-width: 315px) {
+  .divButtons{
+    flex-wrap: wrap;
+  }
+}
