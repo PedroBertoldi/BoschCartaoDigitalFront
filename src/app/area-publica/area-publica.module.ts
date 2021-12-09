@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AreaPublicaRoutingModule } from './area-publica-routing.module';
 import { AreaPublicaComponent } from './area-publica.component';
 import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 
 import { BeneficioTableComponent } from './beneficio-table/beneficio-table.component';
@@ -13,6 +12,8 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { SharedModule } from '../shared/shared.module';
 import { MatInputModule } from '@angular/material/input';
+import { QRCodeComponent } from './qrcode/qrcode.component';
+import { NgxKjuaModule } from 'ngx-kjua';
 
   
 @NgModule({
@@ -20,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     AreaPublicaComponent,
     BeneficioTableComponent,
     AreaPublicaIndicarComponent,
+    QRCodeComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { MatInputModule } from '@angular/material/input';
     RecaptchaModule,
     RecaptchaFormsModule,
     NgxMaskModule.forRoot(),
-    SharedModule
+    SharedModule,
+    NgxKjuaModule 
   ],
 })
 export class AreaPublicaModule { }

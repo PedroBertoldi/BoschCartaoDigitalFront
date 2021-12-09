@@ -24,6 +24,7 @@
     "@zxing/library": "^0.18.6",
     "@zxing/ngx-scanner": "^3.3.0",
     "ng-recaptcha": "^9.0.0",
+    "ngx-kjua": "^1.13.2",
     "ngx-mask": "^13.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

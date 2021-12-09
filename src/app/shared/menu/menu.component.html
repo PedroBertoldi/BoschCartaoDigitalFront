@@ -6,19 +6,24 @@
             routerLink='/operacional'>Configurar Ilha</a>
         <a [class]='caminho === "/meus-beneficios" ? "ativo" : ""' routerLink="/meus-beneficios">Meus Benefícios</a>
         <a [class]='caminho === "/indicar" ? "ativo" : ""' routerLink="/indicar">Indicar um Terceiro</a>
+        <a [class]='caminho === "/qr-code" ? "ativo" : ""' routerLink="/qr-code">QR Code</a>
         <a (click)="logout()">Sair</a>
     </nav>
 </div>
 <div *ngIf='larguraTela <= 720' class="nav-menu">
     <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
     <mat-menu #menu="matMenu">
-        <button *ngIf="user.cargos.includes('HRL')" [class]='caminho.includes("/admin") ? "ativo" : ""' mat-menu-item routerLink="/admin/evento">Administrar
+        <button *ngIf="user.cargos.includes('HRL')" [class]='caminho.includes("/admin") ? "ativo" : ""' mat-menu-item
+            routerLink="/admin/evento">Administrar
             Eventos</button>
-        <button *ngIf="user.cargos.includes('Entrega')" [class]='caminho.includes("/operacional") ? "ativo" : ""' mat-menu-item routerLink="/operacional">Configurar
+        <button *ngIf="user.cargos.includes('Entrega')" [class]='caminho.includes("/operacional") ? "ativo" : ""'
+            mat-menu-item routerLink="/operacional">Configurar
             Ilha</button>
-        <button *ngIf="route != '/meus-beneficios'" [class]='caminho === "/meus-beneficios" ? "ativo" : ""' mat-menu-item routerLink="/meus-beneficios">Meus
+        <button *ngIf="route != '/meus-beneficios'" [class]='caminho === "/meus-beneficios" ? "ativo" : ""'
+            mat-menu-item routerLink="/meus-beneficios">Meus
             Benef&iacute;cios</button>
-        <button *ngIf="route != '/indicar'" [class]='caminho === "/indicar" ? "ativo" : ""' mat-menu-item routerLink="/indicar">Indicar um Terceiro</button>
+        <button *ngIf="route != '/indicar'" [class]='caminho === "/indicar" ? "ativo" : ""' mat-menu-item
+            routerLink="/indicar">Indicar um Terceiro</button>
         <button mat-menu-item (click)="logout()">Sair</button>
     </mat-menu>
 </div>
