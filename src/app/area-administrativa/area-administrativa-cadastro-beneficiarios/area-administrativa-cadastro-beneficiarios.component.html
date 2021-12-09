@@ -10,16 +10,6 @@
     </div>
     <form [formGroup]='formBeneficiario'>
       <mat-form-field>
-        <mat-label>Nome Completo</mat-label>
-        <input matInput type="text" formControlName='nomeCompleto' placeholder="Ex: Maria Souza" required />
-        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("required")'>
-          Nome é <strong>obrigatório.</strong>
-        </mat-error>
-        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("maxlength")'>
-          O tamanho máximo para nome é <strong>255</strong> caracteres.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
         <mat-label>EDV</mat-label>
         <input mask="0009999999" maxlength="10" matInput type="text" formControlName='edv' placeholder="Ex: 0544460"
           required (input)="edvInput()" />
@@ -28,6 +18,16 @@
         </mat-error>
         <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("minlength")'>
           EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nome Completo</mat-label>
+        <input matInput type="text" formControlName='nomeCompleto' placeholder="Ex: Maria Souza" required />
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("required")'>
+          Nome é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("maxlength")'>
+          O tamanho máximo para nome é <strong>255</strong> caracteres.
         </mat-error>
       </mat-form-field>
       <mat-form-field>
