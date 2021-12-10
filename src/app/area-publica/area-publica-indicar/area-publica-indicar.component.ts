@@ -20,6 +20,7 @@ export class AreaPublicaIndicarComponent implements OnInit {
   submitted = false;
   notfound = false;
   selfIndicating = false;
+  indicationAttempt= false;
   
   constructor(private auth:AuthenticationService, 
     private router: Router, private formBuilder:FormBuilder, private indicar: IndicacaoService) { }
@@ -72,6 +73,7 @@ export class AreaPublicaIndicarComponent implements OnInit {
     this.submitted= true;
     if((this.indicarForm.controls.cpf.valid && this.indicarForm.controls.name.valid)||this.indicarForm.controls.edv.valid && !this.notfound && !this.selfIndicating){
       this.loading=true;
+      this.indicationAttempt = true;
       this.indicar.indicar(this.user.id,this.indicarForm.controls.name.value,this.indicarForm.controls.cpf.value, this.indicarForm.controls.edv.value).pipe(first()).subscribe(
                   data => {
                     this.loading=false;
