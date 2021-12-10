@@ -22,6 +22,8 @@
         <button *ngIf="route != '/meus-beneficios'" [class]='caminho === "/meus-beneficios" ? "ativo" : ""'
             mat-menu-item routerLink="/meus-beneficios">Meus
             Benef&iacute;cios</button>
+        <button *ngIf="route != '/qr-code'" [class]='caminho === "/qr-code" ? "ativo" : ""' mat-menu-item
+            routerLink="/qr-code">QR Code</button>
         <button *ngIf="route != '/indicar'" [class]='caminho === "/indicar" ? "ativo" : ""' mat-menu-item
             routerLink="/indicar">Indicar um Terceiro</button>
         <button mat-menu-item (click)="logout()">Sair</button>
