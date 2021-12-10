@@ -1,4 +1,5 @@
-<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
+<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()"
+  [tipoModal]="tipoModal"></app-modal>
 <app-menu></app-menu>
 <div class="max-container">
   <div class='menu-flutuante'>
@@ -20,12 +21,17 @@
         <table>
           <tr class='cabecalho'>
             <td>Excluir</td>
-            <td>EDV <mat-icon (click)='ordenar("edv",$event)'>expand_less</mat-icon></td>
-            <td>Beneficiário <mat-icon (click)='ordenar("nomeCompleto",$event)'>expand_less</mat-icon></td>
-            <td>CPF <mat-icon (click)='ordenar("cpf",$event)'>expand_less</mat-icon></td>
-            <td>Área <mat-icon (click)='ordenar("unidadeOrganizacional",$event)'>expand_less</mat-icon></td>
+            <td>EDV <mat-icon (click)='ordenar("edv",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Beneficiário <mat-icon (click)='ordenar("nomeCompleto",$event)'>expand_less</mat-icon>
+            </td>
+            <td>CPF <mat-icon (click)='ordenar("cpf",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Área <mat-icon (click)='ordenar("unidadeOrganizacional",$event)'>expand_less</mat-icon>
+            </td>
             <td>Benefícios</td>
             <td>Indicado</td>
+            <td>Origem</td>
             <td>Ações</td>
           </tr>
           <tr *ngIf='!beneficiarios'>
@@ -61,6 +67,7 @@
                 </div>
               </td>
               <td>{{beneficiario.indicado?.nomeCompleto}}</td>
+              <td>{{beneficiario.origem}}</td>
               <td class="botoes">
                 <div>
                   <app-botao-acao variante='editar' [routerLink]="beneficiario.colaborador.id+'/editar' ">

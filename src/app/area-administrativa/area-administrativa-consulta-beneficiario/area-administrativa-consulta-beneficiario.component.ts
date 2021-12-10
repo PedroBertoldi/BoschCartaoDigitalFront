@@ -34,6 +34,7 @@ export class AreaAdministrativaConsultaBeneficiarioComponent implements OnInit {
   updateBeneficiarioList(){
     this.beneficiarioService.getBeneficiarios(this.idEventoFromRoute).pipe(first()).subscribe(
       (data:any)=>{
+        console.log(data)
         this.beneficiarios= data.colaboradoresDireitos;
         this.beneficiarios.forEach((beneficiario:any) => {
           let direitos: any[] = [];
