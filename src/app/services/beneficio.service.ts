@@ -18,8 +18,8 @@ export class BeneficioService {
     return this.http.get<any>(environment.webApi + '/api/AreaAdministrativa/Beneficio/'+beneficioId);
   }
 
-  deleteBeneficio(beneficioId:number){
-    return this.http.delete<any>(environment.webApi + '/api/AreaAdministrativa/Beneficio/'+beneficioId);
+  deleteBeneficio(eventoId:number,beneficioId:number){
+    return this.http.delete<any>(environment.webApi + '/api/AreaAdministrativa/Beneficio/'+eventoId+'/'+beneficioId);
   }
 
 

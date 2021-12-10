@@ -53,7 +53,7 @@ export class AreaAdministrativaConsultaBeneficioComponent implements OnInit {
   
   confirmarDelete() {
     this.tipoModal = 'confirmacao'
-    this.beneficioService.deleteBeneficio(this.beneficioExclusao.id).pipe(first()).subscribe(
+    this.beneficioService.deleteBeneficio(this.idEventoFromRoute, this.beneficioExclusao.id).pipe(first()).subscribe(
       data =>{
         this.updateBeneficioList();
       }
