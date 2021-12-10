@@ -204,3 +204,9 @@ tr.cabecalho td mat-icon {
 
   z-index: 1;
 }
+
+@media (min-width: 1400px) {
+  .menu-flutuante {
+    left: 1350px;
+  }
+}

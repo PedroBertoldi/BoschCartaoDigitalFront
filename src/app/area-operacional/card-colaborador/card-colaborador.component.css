@@ -53,8 +53,14 @@
   }
 }
 
-@media (max-width: 315px) {
+@media (max-width: 480px) {
   .card {
     width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px) {
+  .card {
+    width: 30%;
   }
 }

@@ -16,6 +16,7 @@ export class AreaOperacionalComponent implements OnInit {
   evento!: any
   colaborador!: any
   beneficiosSelecionados!: number[];
+  selecionou: boolean = true;
 
   constructor(private router: Router, private route: ActivatedRoute, private operacionalService: OperacionalService) { 
     let state = this.router.getCurrentNavigation()?.extras.state;
@@ -104,10 +105,18 @@ export class AreaOperacionalComponent implements OnInit {
         }
       });
     });
-    let request: any = {eventoId: this.evento.id, colaboradorId: this.colaborador.id, direitosEntregues: direitosEntregues};
+
+
+    if (direitosEntregues.length == 0) {
+      this.selecionou = false;
+    } else {
+      this.selecionou = true;
+
+      let request: any = {eventoId: this.evento.id, colaboradorId: this.colaborador.id, direitosEntregues: direitosEntregues};
     
-    this.operacionalService.receberDireitos(request).pipe(first()).subscribe(data => {
-      this.router.navigate(['operacional/validacao']);
-    });
+      this.operacionalService.receberDireitos(request).pipe(first()).subscribe(data => {
+        this.router.navigate(['operacional/validacao']);
+      });
+    }
   }
 }

@@ -16,7 +16,7 @@
                 </button>
                 <button (click)="send()">Confirmar</button>
             </div>
-
+            <span *ngIf="!selecionou" class="error">Por favor, selecione <strong>pelo menos um</strong> beneficio para ser entregue!</span>
         </div>
     </div>
 </div>
