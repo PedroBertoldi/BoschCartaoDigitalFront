@@ -30,7 +30,7 @@
         <mat-icon>today</mat-icon>
         <mat-form-field class="inputDate">
           <mat-label>Data de Início</mat-label>
-          <input matInput type="date" min="1500-01-01" max="2500-01-01" placeholder="" formControlName='inicio' (input)="dataInicio = obterValor($event)"
+          <input matInput type="date" min="1500-01-01" max="2500-01-01" placeholder="" formControlName='inicio' (input)="dataInicio = obterValor($event); formCadastro.controls.fim.setValue(''); formCadastro.controls.fim.markAsPristine(); "
             required />
           <mat-error *ngIf='formCadastro.get("inicio")?.hasError("required")'>
             Data de Início é <strong>obrigatório.</strong>
