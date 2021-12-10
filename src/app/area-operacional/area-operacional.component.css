@@ -32,6 +32,12 @@ button {
   gap: 1rem;
 }
 
+.error {
+    color: var(--bosch-red);
+    text-align: center;
+    margin-top: 10px;
+}
+
 @media (max-width: 315px) {
   .divButtons{
     flex-wrap: wrap;
