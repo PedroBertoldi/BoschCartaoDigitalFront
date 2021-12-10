@@ -1,0 +1,6 @@
+<button type="button">
+    <span [class]="loading ? 'hide' : ''">
+        {{label}}
+    </span>
+    <mat-icon *ngIf="loading"  class="loading">data_saver_off</mat-icon>
+</button>

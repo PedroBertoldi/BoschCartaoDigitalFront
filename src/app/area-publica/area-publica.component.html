@@ -1,0 +1,27 @@
+<app-menu></app-menu>
+<div class="max-container">
+    <div class="container">
+        <h1>Meus Benef&iacute;cios</h1>
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="principal">
+    <div *ngIf="direitos" class='cabecalho-secao'>{{user.nomeCompleto}}</div>
+    <p *ngIf="direitos && direitos.length==0">Não existem benefícios cadastrados para você.</p>
+    <app-beneficio-table *ngIf="direitos && direitos.length>0" [data]="direitos"></app-beneficio-table>
+    <h1 *ngIf="indicacoes && indicacoes.length>0">Posso Retirar</h1>
+    <div *ngFor="let indicacao of indicacoes">
+        <p>{{indicacao.colaborador.nomeCompleto}}</p>
+        <app-beneficio-table [data]="indicacao.direitos"></app-beneficio-table>
+    </div>
+    <div *ngIf="(direitos && direitos.length>0 )||(indicacoes && indicacoes.length>0 )" class='legenda'>
+        <div>
+            <mat-icon class="blue" aria-label="Retirado">done_all</mat-icon>
+            Retirado
+        </div>
+        <div>
+            <mat-icon aria-label="Disponivel">done</mat-icon>
+            Pode Retirar
+        </div>
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,49 @@
+.principal {
+  padding-top: 2rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.indicarForm input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.disabled {
+  background-color: #e9ecef;
+  pointer-events: none;
+}
+
+.currentIndication {
+  background-color: #d1ecf1;
+  padding: 10px;
+  display: flex;
+  font-size: small;
+  border-radius: 5px;
+}
+
+.currentIndication span {
+  margin: auto auto auto 0;
+}
+
+.erro {
+  color: var(--bosch-red);
+  border-color: var(--bosch-red);
+}
+
+app-button-with-loading {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 480px) {
+  .currentIndication {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .currentIndication app-button-with-loading {
+    margin-top: 5px;
+  }
+}

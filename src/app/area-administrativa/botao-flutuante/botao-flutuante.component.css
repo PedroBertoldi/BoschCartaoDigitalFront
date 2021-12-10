@@ -1,0 +1,43 @@
+button {
+  padding: 0.5rem;
+
+  box-shadow: var(--sombra);
+  border-radius: 10rem;
+
+  border: none;
+
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button.azul {
+  background-color: var(--bosch-dark-blue-50);
+  color: white;
+}
+
+button.branco {
+  background-color: var(--bosch-light-gray-50);
+  color: var(--texto);
+}
+
+mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-icon.grande {
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+mat-icon.pequeno {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+button:hover {
+  transform: scale(1.1);
+}

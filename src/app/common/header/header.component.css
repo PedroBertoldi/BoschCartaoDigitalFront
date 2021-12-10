@@ -1,0 +1,11 @@
+.header-login {
+  background-color: var(--bosch-light-gray-50);
+}
+
+.container {
+  color: var(--bosch-dark-gray);
+}
+
+.header-login h1 {
+  margin: 0;
+}

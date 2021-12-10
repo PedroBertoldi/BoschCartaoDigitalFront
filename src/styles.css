@@ -1,0 +1,212 @@
+:root {
+  --texto: #525f6b;
+  --green-50: #4edb4e;
+  --green: #1ba81b;
+
+  --bosch-pro-blue-50: #336e9d;
+  --bosch-pro-blue: #003b6a;
+  --bosch-dark-blue-50: #3389c4;
+  --bosch-dark-blue: #005691;
+  --bosch-red-50: #ff3348;
+  --bosch-red: #e20015;
+  --bosch-light-gray-50: #f2f3f5;
+  --bosch-light-gray-100: #e5e6e8;
+  --bosch-light-gray: #bfc0c2;
+  --bosch-dark-gray-50: #85929e;
+  --bosch-dark-gray: #525f6b;
+
+  --sombra: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* PADRÕES */
+
+button {
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--bosch-dark-blue);
+  font-weight: bold;
+  color: white;
+  box-shadow: var(--sombra);
+
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--bosch-pro-blue);
+}
+
+button.neutro {
+  color: var(--bosch-dark-gray);
+  background-color: var(--bosch-light-gray-50);
+}
+
+button.neutro:hover {
+  background-color: var(--bosch-light-gray-100);
+}
+
+/* CONTAINERS */
+
+.max-container {
+  padding: 1rem;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1rem;
+}
+
+.cabecalho-secao {
+  background-color: var(--bosch-light-gray-50);
+
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+  margin-left: -1rem;
+  font-size: 1.25rem;
+  color: var(--bosch-dark-gray);
+}
+
+.principal {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--bosch-light-gray-100);
+  border-radius: 0.25rem;
+  margin: 0 1rem;
+  padding: 0 1rem 1rem;
+
+  box-shadow: var(--sombra);
+}
+
+.headerGraphic {
+  background: url("/assets/supergraphic.svg");
+  height: 15px;
+}
+
+router-outlet + * {
+  position: relative;
+}
+
+/* FORMULARIOS */
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  color: var(--texto);
+}
+
+form > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* TABELAS */
+
+div.tabela-overflow {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+tr:nth-child(2n) {
+  background-color: var(--bosch-light-gray-50);
+}
+
+tr > * {
+  border: 0.5px solid var(--bosch-light-gray);
+  padding: 1rem;
+}
+
+.registro > div {
+  padding: 0.5rem;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+tr:not(.cabecalho) {
+  font-weight: normal;
+}
+
+tr.cabecalho {
+  text-align: center;
+}
+
+tr.cabecalho td {
+  white-space: nowrap;
+}
+
+td.botoes > div {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+tr.cabecalho td mat-icon {
+  cursor: pointer;
+  font-size: 1.25rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  vertical-align: top;
+}
+
+.numero-registros {
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* MENU FLUTUANTE */
+
+.menu-flutuante {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  z-index: 1;
+}
+
+@media (min-width: 1400px) {
+  .menu-flutuante {
+    left: 1350px;
+  }
+}

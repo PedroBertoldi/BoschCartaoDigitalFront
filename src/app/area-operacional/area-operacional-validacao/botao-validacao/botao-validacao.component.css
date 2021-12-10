@@ -1,0 +1,25 @@
+.button {
+  min-height: 10vh;
+  white-space: normal;
+  width: 100%;
+  background-color: var(--bosch-dark-blue);
+  box-shadow: var(--sombra);
+
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--bosch-pro-blue);
+}
+
+@media only screen and (max-width: 800px) {
+  * {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  * {
+    font-size: unset;
+  }
+}

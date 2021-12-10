@@ -1,0 +1,55 @@
+.container {
+  width: 360px;
+  max-width: 90%;
+  margin: 0 auto;
+
+  border: 1px solid var(--bosch-light-gray-100);
+  border-radius: 0.25rem;
+  box-shadow: var(--sombra);
+
+  padding: 2rem 1rem;
+}
+
+div.re-captcha {
+  padding-bottom: 1.3rem;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+div.re-captcha mat-error {
+  position: absolute;
+  bottom: 0;
+  font-size: 75%;
+}
+
+button {
+  font-size: 1rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 5px auto 5px auto;
+}
+
+app-button-with-loading {
+  margin: 0 auto 10px auto;
+}
+
+.loginForm div {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.erro {
+  color: var(--bosch-red);
+  border-color: var(--bosch-red);
+}
+
+.erro.notificacao {
+  border-radius: 0.25rem;
+  background-color: rgba(226, 0, 21, 0.2);
+  padding: 0.75rem 0.5rem;
+}

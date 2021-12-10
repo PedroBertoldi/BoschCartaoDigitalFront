@@ -1,0 +1,29 @@
+@keyframes animation {
+  50% {
+    color: var(--bosch-dark-blue-50);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  color: var(--bosch-light-gray);
+  animation: animation 0.75s infinite cubic-bezier(0, 0, 0, 0);
+  position: absolute;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  color: transparent;
+}
+
+:host {
+  width: fit-content;
+}

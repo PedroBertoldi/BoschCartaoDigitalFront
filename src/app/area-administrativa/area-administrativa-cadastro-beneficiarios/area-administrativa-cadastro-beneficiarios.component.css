@@ -1,0 +1,112 @@
+.form-container > form {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "nome edv"
+    "cpf area"
+    "data nascimento"
+    "beneficios beneficios";
+}
+
+.form-container > form > * {
+  margin: 0;
+}
+
+input[formControlName="nome"] {
+  grid-area: nome;
+}
+
+input[formControlName="edv"] {
+  grid-area: edv;
+}
+
+input[formControlName="cpf"] {
+  grid-area: cpf;
+}
+
+input[formControlName="area"] {
+  grid-area: area;
+}
+
+input[formControlName="dataNascimento"] {
+  grid-area: dataNascimento;
+}
+
+form > form {
+  grid-area: beneficios;
+  display: block;
+  padding: 0;
+}
+
+.seletor-beneficios {
+  background-color: #efefef;
+  border-radius: 0.25rem;
+  padding: 1rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.seletor-beneficios {
+  grid-template-columns: 1fr;
+}
+
+.seletor-beneficios mat-form-field {
+  text-align: center;
+  width: 2rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.seletor-beneficios label {
+  margin-left: 1rem;
+  display: inline;
+}
+
+.seletor-beneficio-cabecalho {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.seletor-beneficio-cabecalho:not(.mobile) > *:not(mat-form-field) {
+  margin-bottom: 1.34375rem;
+}
+
+.seletor-beneficio-cabecalho:not(.mobile) mat-form-field {
+  margin-left: auto;
+}
+
+.seletor-beneficio-cabecalho:not(.mobile) button:first-child {
+  margin: 0 1rem;
+}
+
+.seletor-beneficio-cabecalho.mobile mat-form-field {
+  margin-top: 1rem;
+}
+
+.seletor-beneficio-cabecalho.mobile button:first-child {
+  margin-right: 1rem;
+}
+
+.seletor-beneficio-cabecalho.mobile {
+  flex-direction: column;
+  align-items: unset;
+}
+
+@media (max-width: 284px) {
+  .buttonsBeneficio {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .neutro:first-child {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}

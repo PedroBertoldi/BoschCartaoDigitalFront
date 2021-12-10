@@ -1,0 +1,11 @@
+td.icone {
+  text-align: center;
+}
+
+td.icone mat-icon {
+  color: var(--bosch-red-50);
+}
+
+td.icone mat-icon.ativo {
+  color: var(--green-50);
+}

@@ -1,0 +1,81 @@
+.validacao-form {
+  padding: 0;
+}
+
+.validacao-form mat-icon {
+  align-self: flex-end;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+mat-form-field+button {
+  box-shadow: none;
+}
+
+.operacional-principal {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+app-botao-validacao {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.validacao-form>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.validacao-form>div mat-form-field {
+  width: 40vw;
+}
+
+.error {
+  margin-top: 10px;
+}
+
+::ng-deep.mat-menu-panel {
+  width: 50vw;
+}
+
+.settings {
+  width: 100%;
+}
+
+.divCpf {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  app-botao-validacao {
+    width: 100%;
+  }
+
+  .operacional-principal div {
+    font-size: 1.5rem;
+  }
+
+  .validacao-form mat-form-field {
+    width: 80vw;
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .operacional-principal div {
+    font-size: unset;
+  }
+}
+
+.divQR {
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}

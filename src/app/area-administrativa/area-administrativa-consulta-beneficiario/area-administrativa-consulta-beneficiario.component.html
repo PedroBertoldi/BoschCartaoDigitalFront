@@ -1,0 +1,83 @@
+<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()"
+  [tipoModal]="tipoModal"></app-modal>
+<app-menu></app-menu>
+<div class="max-container">
+  <div class='menu-flutuante'>
+    <a routerLink='/admin/evento'>
+      <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+    </a>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios/cadastro"'>
+      <app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante>
+    </a>
+  </div>
+  <div class='container'>
+    <h1>Beneficiários</h1>
+    <div class='principal'>
+      <div class='cabecalho-secao'>
+        Lista
+      </div>
+      <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
+      <div class="tabela-overflow">
+        <table>
+          <tr class='cabecalho'>
+            <td>Excluir</td>
+            <td>EDV <mat-icon (click)='ordenar("edv",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Beneficiário <mat-icon (click)='ordenar("nomeCompleto",$event)'>expand_less</mat-icon>
+            </td>
+            <td>CPF <mat-icon (click)='ordenar("cpf",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Área <mat-icon (click)='ordenar("unidadeOrganizacional",$event)'>expand_less</mat-icon>
+            </td>
+            <td>Benefícios</td>
+            <td>Indicado</td>
+            <td>Origem</td>
+            <td>Ações</td>
+          </tr>
+          <tr *ngIf='!beneficiarios'>
+            <td colspan="100%">
+              <app-loading></app-loading>
+            </td>
+          </tr>
+          <tr *ngIf='beneficiarios && beneficiarios.length ===  0'>
+            <td colspan="100%">
+              Ainda não foi registrado nenhum beneficiário.
+            </td>
+          </tr>
+          <ng-container *ngIf='beneficiarios && beneficiarios.length > 0'>
+            <tr *ngIf='buscaBeneficiarios && buscaBeneficiarios.length ===  0'>
+              <td colspan="100%">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+            <tr *ngFor='let beneficiario of buscaBeneficiarios'>
+              <td class="botoes">
+                <div>
+                  <app-botao-acao variante='excluir' (click)="deleteColaborador(beneficiario)"></app-botao-acao>
+                </div>
+              </td>
+              <td>{{beneficiario.colaborador.edv}}</td>
+              <td>{{beneficiario.colaborador.nomeCompleto}}</td>
+              <td class='cpf'>{{beneficiario.colaborador.cpf | mask:"000.000.000-00"}}</td>
+              <td>{{beneficiario.colaborador.unidadeOrganizacional?.descricao}}</td>
+              <td class="produtos">
+                <div>
+                  <span *ngFor='let beneficio of beneficiario.direitos'>{{beneficio.quantidade}}x
+                    {{beneficio.beneficio.descricao}}</span>
+                </div>
+              </td>
+              <td>{{beneficiario.indicado?.nomeCompleto}}</td>
+              <td>{{beneficiario.origem}}</td>
+              <td class="botoes">
+                <div>
+                  <app-botao-acao variante='editar' [routerLink]="beneficiario.colaborador.id+'/editar' ">
+                  </app-botao-acao>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

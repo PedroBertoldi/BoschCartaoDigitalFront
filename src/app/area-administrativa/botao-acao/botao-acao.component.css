@@ -1,0 +1,21 @@
+button {
+  background-color: transparent;
+  color: var(--bosch-dark-blue-50);
+  border: 1px solid var(--bosch-dark-blue-50);
+  padding: 0.25rem 1rem;
+  border-radius: 20rem;
+  box-shadow: none;
+}
+
+button.destrutivo {
+  color: var(--bosch-red);
+  border: 1px solid var(--bosch-red);
+}
+
+mat-icon {
+  transition: transform 0.2s;
+}
+
+button:hover mat-icon {
+  transform: scale(1.15);
+}

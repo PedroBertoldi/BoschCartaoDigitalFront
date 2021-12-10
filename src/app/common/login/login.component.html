@@ -1,0 +1,38 @@
+<div class="max-container">
+    <form [formGroup]="loginForm" class="container">
+        <h1 class="logintitle">Efetuar Login
+            <span *ngIf="area == 'admin'"> Adminstrativo</span>
+            <span *ngIf="area == 'ops'"> Operacional</span>
+        </h1>
+        <mat-error *ngIf="submitted && wrong"  class="erro notificacao">
+            CPF ou Senha incorretos
+        </mat-error>
+        <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input matInput mask="000.000.000-00" formControlName="cpf" type="text"
+                [class.erro]="submitted && loginForm.controls.cpf.errors">
+            <mat-error *ngIf='submitted && loginForm.controls.cpf.errors'>
+                Por favor <strong>preencha</strong> o CPF
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput min="1500-01-01" max="2500-01-01" formControlName="nasc" type="date"
+                [class.erro]="submitted && loginForm.controls.nasc.errors">
+            <mat-error *ngIf='submitted && loginForm.controls.nasc.errors'>
+                Por favor <strong>preencha</strong> a Data de Nascimento
+            </mat-error>
+        </mat-form-field>
+        <div class='re-captcha'>
+            <re-captcha formControlName="captcha" siteKey="6LfAmG8dAAAAANZLkyxiY-zTxk3XyZEaua-_ErjI"></re-captcha>
+            <mat-error *ngIf='submitted && loginForm.controls.captcha.errors'>
+                Por favor <strong>preencha</strong> o reCAPTCHA
+            </mat-error>
+        </div>
+
+        <app-button-with-loading (click)="login()" [loading]="loading" label="Confirmar"></app-button-with-loading>
+        
+    </form>
+</div>
+
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>

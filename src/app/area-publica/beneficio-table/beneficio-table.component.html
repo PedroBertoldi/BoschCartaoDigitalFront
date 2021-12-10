@@ -1,0 +1,17 @@
+<div class="tabela-overflow">
+<table>
+    <tr class='cabecalho'>
+        <td>Status</td>
+        <td>Benef&iacute;cio</td>
+        <td>Quantidade</td>
+    </tr>
+    <tr *ngFor="let direito of direitos">
+        <td align="center">
+            <mat-icon *ngIf="!direito.retirado" aria-label="Disponivel">done</mat-icon>
+            <mat-icon *ngIf="direito.retirado" aria-label="Disponivel" class="blue">done_all</mat-icon>
+        </td>
+        <td>{{direito.beneficio.descricao}}</td>
+        <td align="center">{{direito.quantidade}}</td>
+    </tr>
+</table>
+</div>

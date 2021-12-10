@@ -1,0 +1,117 @@
+<app-modal [aberto]='modalAberto' (confirmarData)="onSubmit()" (fecharModal)="fecharModal()"
+  [redirecionar]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"' tipoModal="confirmacao"></app-modal>
+  <app-menu></app-menu>
+  <div class="max-container">
+    <div class='container'>
+    <h1>Beneficiários</h1>
+    <div class="principal">
+    <div class='cabecalho-secao'>
+      Formulário
+    </div>
+    <form [formGroup]='formBeneficiario'>
+      <mat-form-field>
+        <mat-label>EDV</mat-label>
+        <input mask="0009999999" maxlength="10" matInput type="text" formControlName='edv' placeholder="Ex: 0544460"
+          required (input)="edvInput()" />
+        <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("required")'>
+          EDV é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("edv")?.hasError("minlength")'>
+          EDV <strong>inválido</strong>. Deve ter entre 3 e 10 digítos.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nome Completo</mat-label>
+        <input matInput type="text" formControlName='nomeCompleto' placeholder="Ex: Maria Souza" required />
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("required")'>
+          Nome é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("nomeCompleto")?.hasError("maxlength")'>
+          O tamanho máximo para nome é <strong>255</strong> caracteres.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput type="date" min="1500-01-01" max="2500-01-01" formControlName='dataNascimento'
+          placeholder="Ex: 19/02/1993" required />
+        <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("required")'>
+          Data de nascimento é <strong>obrigatória.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("dataNascimento")?.hasError("maxlength")'>
+          Data de nascimento <strong>inválida.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input mask="000.000.000-00" matInput type="text" formControlName='cpf' placeholder="Ex: 999.999.999-99" required/>
+        <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("required")'>
+          CPF é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formBeneficiario.get("cpf")?.hasError("pattern")'>
+          CPF <strong>inválido</strong>. Deve ter 11 digitos.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Área</mat-label>
+        <mat-select formControlName='unidadeOrganizacionalId' required>
+          <mat-option *ngFor="let area of areas" [value]="area.id">
+            {{area.descricao}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf='formBeneficiario.get("unidadeOrganizacionalId")?.hasError("required")'>
+          Área é <strong>obrigatória.</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <form>
+
+        <div [class]="larguraTela > 720 ? 'seletor-beneficio-cabecalho' : 'seletor-beneficio-cabecalho mobile'">
+          <div>Benefícios *
+            <div>
+              <mat-error *ngIf='beneficiosError'>
+                Adicione pelo menos 1 Benefício
+              </mat-error>
+            </div>
+          </div>
+          <mat-form-field appearance="fill">
+            <mat-label>Novo Benefício</mat-label>
+            <mat-select [(value)]="newBeneficio">
+              <mat-option *ngFor="let beneficio of beneficiosEvento" [value]="beneficio">
+                {{beneficio.descricao}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="buttonsBeneficio">
+            <button class="neutro" (click)='adicionarBeneficio()'>Adicionar</button>
+            <button class="neutro" (click)='limparBeneficios()'>Limpar</button>
+          </div>
+        </div>
+        <mat-error *ngIf='nenhumSelecionado' class="nenhumSelecionado">
+          Selecione um beneficio antes de adicionar.
+        </mat-error>
+        <div [class]="larguraTela > 720 ? 'seletor-beneficios' : 'seletor-beneficios mobile'">
+          <ng-container *ngIf='direitos && direitos.length === 0'>
+            <span>Nenhum benefício cadastrado.</span>
+          </ng-container>
+          <ng-container *ngIf='direitos &&direitos.length > 0'>
+            <div *ngFor='let direito of direitos'>
+              <mat-form-field>
+                <input matInput type="number" [name]="direito.id" mask="0999" [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="direito.quantidade">
+              </mat-form-field>
+              <span>x</span>
+              <label [for]='direito.id'>{{ direito.beneficio.descricao}}</label>
+            </div>
+          </ng-container>
+        </div>
+      </form>
+    </form>
+  </div>
+  </div>
+</div>
+<div class='menu-flutuante'>
+  <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficiarios"'>
+    <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+  </a>
+  <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+</div>

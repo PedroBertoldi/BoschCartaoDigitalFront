@@ -1,0 +1,52 @@
+button {
+  box-shadow: none;
+}
+
+mat-icon[mat-button] {
+  cursor: pointer;
+}
+
+.nav-container {
+  border-bottom: 1px solid var(--bosch-light-gray);
+}
+
+.nav-menu {
+  position: absolute;
+  right: 5%;
+  top: 1.5rem;
+}
+
+mat-menu {
+  margin-right: 100%;
+}
+
+nav {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+nav a {
+  padding: 1rem 0;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+nav a:not(:last-child) {
+  margin-right: 1rem;
+}
+
+nav a:hover {
+  border-bottom: 2px solid var(--bosch-dark-blue);
+}
+
+button.ativo {
+  text-decoration: underline;
+  text-decoration-color: var(--bosch-dark-blue);
+  text-underline-offset: 0.25rem;
+}
+
+a.ativo {
+  border-bottom: 2px solid var(--bosch-dark-blue);
+}

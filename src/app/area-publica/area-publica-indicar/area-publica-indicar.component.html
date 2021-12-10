@@ -1,0 +1,87 @@
+<app-menu></app-menu>
+<div class="max-container">
+    <div class="container">
+        <h1>Indicar um Terceiro</h1>
+        <div class="principal">
+            <div *ngIf="indicado" class="currentIndication">
+                <span>
+                    <span *ngIf="indicado.edv">Colaborador</span>
+                    <span *ngIf="!indicado.edv && indicado.cpf">Terceiro</span>
+                    <b> {{indicado.nomeCompleto}}</b>
+                    <span *ngIf="indicado.edv"> de <b>EDV: {{indicado.edv}}</b></span>
+                    <span *ngIf="!indicado.edv && indicado.cpf"> de <b>CPF: {{indicado.cpf |
+                            mask:'000.000.000-00'}}</b></span>
+                    est&aacute; indicado
+                    atualmente.
+                </span>
+                <app-button-with-loading [loading]="removeLoading" label="Remover Indicação"
+                    (click)="removeIndicacao()">
+                </app-button-with-loading>
+            </div>
+
+
+            <form [formGroup]="indicarForm" class="indicarForm" action="meus-beneficios">
+                <mat-form-field>
+                    <mat-select [(value)]="idType" (selectionChange)="changeType()">
+                        <mat-option value="edv">
+                            Colaborador Bosch
+                        </mat-option>
+                        <mat-option value="cpf">
+                            Retirada Via CPF
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="name" type="text">
+                        <mat-error *ngIf="indicarForm.get('name')?.hasError('required') && idType =='cpf'">
+                            Preencha o nome do indicado!
+                        </mat-error>
+                        <mat-error *ngIf='indicarForm.get("name")?.hasError("maxlength")'>
+                            O tamanho máximo para nome é <strong>255</strong> caracteres.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="idType =='cpf'">
+                    <mat-form-field>
+                        <mat-label>CPF</mat-label>
+                        <input mask="000.000.000-00" matInput formControlName="cpf" type="text">
+                        <mat-error *ngIf='indicarForm.get("cpf")?.hasError("required")'>
+                            Preencha o CPF do indicado!
+                        </mat-error>
+                        <mat-error *ngIf='indicarForm.get("cpf")?.hasError("minlength")'>
+                            CPF <strong>inválido</strong>. Deve ter 11 digitos.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="idType =='edv'">
+                    <mat-form-field>
+                        <mat-label>EDV</mat-label>
+                        <input (input)="searchEdv()" mask="0009999999" matInput formControlName="edv" type="text">
+                        <mat-error *ngIf='indicarForm.get("edv")?.hasError("required")'>
+                            Preencha o EDV do indicado!
+                        </mat-error>
+                        <mat-error *ngIf='indicarForm.get("edv")?.hasError("minlength")'>
+                            EDV <strong>inválido.</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-error
+                        *ngIf="notfound && !indicarForm.get('edv')?.hasError('minlength') && !indicarForm.get('edv')?.hasError('required')">
+                        EDV <strong>não</strong> encontrado!
+                    </mat-error>
+                    <mat-error *ngIf="!notfound && selfIndicating">
+                        Você <strong>não pode</strong> indicar a si mesmo.
+                    </mat-error>
+                </div>
+                <mat-error *ngIf="indicationAttempt && noBenefits">
+                    Você <strong>não possui</strong> benefícios para indicar.
+                </mat-error>
+
+                <app-button-with-loading [loading]="loading" label="Enviar" (click)="submitIndicacao()">
+                </app-button-with-loading>
+            </form>
+        </div>
+    </div>
+</div>

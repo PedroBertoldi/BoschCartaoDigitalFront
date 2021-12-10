@@ -1,0 +1,62 @@
+<app-modal [aberto]='modalAberto' (confirmarAcao)="confirmarDelete()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"></app-modal>
+<app-menu></app-menu>
+<div class="max-container">
+  <div class='menu-flutuante'>
+    <a routerLink='/admin/evento'>
+      <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+    </a>
+    <a [routerLink]='"/admin/evento/" + idEventoFromRoute + "/beneficios/cadastro"'>
+      <app-botao-flutuante icone='add' cor='azul' tamanho='grande'></app-botao-flutuante>
+    </a>
+  </div>
+  <div class='container'>
+    <h1>Benefícios</h1>
+    <div class='principal'>
+      <div class='cabecalho-secao'>
+        Lista
+      </div>
+      <app-buscar (buscar)='buscar($event)' (limpar)='limpar()'></app-buscar>
+      <div class="tabela-overflow">
+        <table>
+          <tr class='cabecalho'>
+            <td>Excluir</td>
+            <td>Nome <mat-icon (click)='ordenar($event)'>expand_less</mat-icon></td>
+            <td>Ações</td>
+          </tr>
+          <tr *ngIf='!beneficios'>
+            <td colspan="100%">
+              <app-loading></app-loading>
+            </td>
+          </tr>
+          <tr *ngIf='beneficios && beneficios.length ===  0'>
+            <td colspan="100%">
+              Ainda não foi registrado nenhum benefício.
+            </td>
+          </tr>
+          <ng-container *ngIf='beneficios && beneficios.length > 0'>
+            <tr *ngIf='buscaBeneficios && buscaBeneficios.length ===  0'>
+              <td colspan="100%">
+                Nenhum registro encontrado.
+              </td>
+            </tr>
+            <tr *ngFor='let beneficio of buscaBeneficios'>
+              <td class='botoes'>
+                <div>
+                  <app-botao-acao variante='excluir' (click)="deleteBeneficio(beneficio)"></app-botao-acao>
+                </div>
+              </td>
+              <td>{{beneficio.descricao}}</td>
+              <td class='botoes'>
+                <div>
+                  <app-botao-acao variante='editar' [routerLink]="beneficio.id+'/editar' "
+                    routerLinkActive="router-link-active"></app-botao-acao>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+    <!-- <span class='numero-registros'>Mostrando de 1 até 15 de {{buscaBeneficios.length}} registros.</span> -->
+  </div>
+</div>

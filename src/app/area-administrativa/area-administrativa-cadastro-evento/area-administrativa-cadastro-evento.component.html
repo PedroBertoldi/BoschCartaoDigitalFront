@@ -1,0 +1,62 @@
+<app-modal [aberto]='modalAberto' (confirmarAcao)="salvarDados()" (fecharModal)="fecharModal()" [tipoModal]="tipoModal"
+  redirecionar='/admin/evento'></app-modal>
+  <app-menu></app-menu>
+  <div class="max-container">
+    <div class='container'>
+    <h1>Eventos</h1>
+    <div class="principal">
+    <div class='cabecalho-secao'>
+      Formulário
+    </div>
+    <form [formGroup]='formCadastro'>
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName='nomeEvento' placeholder="Ex: Natal 2021" required />
+        <mat-error *ngIf='formCadastro.get("nomeEvento")?.hasError("required")'>
+          Nome é <strong>obrigatório.</strong>
+        </mat-error>
+        <mat-error *ngIf='formCadastro.get("nomeEvento")?.hasError("maxlength")'>
+          O tamanho máximo para nome é <strong>50</strong> caracteres.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput type="text" formControlName='descricao' placeholder="Ex: Evento especial" />
+        <mat-error *ngIf='formCadastro.get("descricao")?.hasError("maxlength")'>
+          O tamanho máximo para descrição é <strong>255</strong> caracteres.
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <mat-icon>today</mat-icon>
+        <mat-form-field class="inputDate">
+          <mat-label>Data de Início</mat-label>
+          <input matInput type="date" min="1500-01-01" max="2500-01-01" placeholder="" formControlName='inicio' (input)="dataInicio = obterValor($event); formCadastro.controls.fim.setValue(''); formCadastro.controls.fim.markAsPristine(); "
+            required />
+          <mat-error *ngIf='formCadastro.get("inicio")?.hasError("required")'>
+            Data de Início é <strong>obrigatório.</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-icon>today</mat-icon>
+        <mat-form-field class="inputDate">
+          <mat-label>Data de Fim</mat-label>
+          <input matInput type="date" min="1500-01-01" max="2500-01-01" placeholder="" formControlName='fim' [min]='dataInicio' required />
+          <mat-error *ngIf='formCadastro.get("fim")?.hasError("required")'>
+            Data de Fim é <strong>obrigatório.</strong>
+          </mat-error>
+          <mat-error *ngIf='formCadastro.get("fim")?.hasError("dataAnterior")'>
+            Data de Fim não pode ser <strong>anterior</strong> à Data de Início.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+<div class='menu-flutuante'>
+  <a routerLink='/admin/evento'>
+    <app-botao-flutuante icone='chevron_left' cor='branco' tamanho='pequeno'></app-botao-flutuante>
+  </a>
+  <app-botao-flutuante (click)='onSubmit()' icone='save' cor='azul' tamanho='grande'></app-botao-flutuante>
+</div>

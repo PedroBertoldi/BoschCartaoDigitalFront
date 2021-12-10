@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 80vw;
+    margin: 0 auto 0 auto;
+}
+
+.container span {
+    padding: 10px;
+}
+
+ngx-kjua {
+    height: auto;
+}

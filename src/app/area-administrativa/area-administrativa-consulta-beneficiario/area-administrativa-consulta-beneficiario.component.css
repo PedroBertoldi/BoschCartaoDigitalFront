@@ -1,0 +1,10 @@
+td.produtos div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+td.produtos div span,
+td.cpf {
+  white-space: nowrap;
+}

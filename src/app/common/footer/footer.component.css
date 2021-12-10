@@ -1,0 +1,8 @@
+p {
+  color: var(--texto);
+  text-align: center;
+}
+
+.footer {
+  padding: 0.5rem;
+}
